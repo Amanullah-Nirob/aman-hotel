@@ -1,7 +1,6 @@
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TextField, TextFieldProps } from '@mui/material';
-import ruLocale from 'date-fns/locale/ru';
 import React from 'react';
 import { DatePickerProps } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -25,10 +24,11 @@ const DatePickerField: React.FC<DatePickerFieldProps> = ({ label, name, value, m
   });
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ruLocale}>
+    <LocalizationProvider dateAdapter={AdapterDateFns} >
       <DatePicker
         label={label}
         value={value}
+        inputFormat="dd/MM/yyyy"
         minDate={minDate || Date.now()}
         onChange={(date: number | Date | null) => {
           onChange(convertToDefEventParam(name, date));

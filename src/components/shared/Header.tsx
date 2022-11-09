@@ -66,7 +66,7 @@ const Header = (props: Props) => {
 
     return (
       <Box sx={{ display: 'flex' }}>
-      <AppBar component="nav" sx={{backgroundColor:theme==='light'?'transparent':'#121212',color:theme==='light'?'#000':'',padding:'15px 25px',position:'absolute',boxShadow:'none',backgroundImage:'none'}}>
+      <AppBar component="nav" sx={{backgroundColor:theme==='light'?'transparent':'#000',color:theme==='light'?'#000':'',padding:'15px 25px',position:'absolute',boxShadow:'none',backgroundImage:'none'}}>
         <Toolbar sx={{justifyContent:'space-between',padding:'0 50px 0 50px',alignItems:'end'}}>
           <IconButton
             color="inherit"
