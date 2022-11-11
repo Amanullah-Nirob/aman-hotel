@@ -1,10 +1,11 @@
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { TextField, TextFieldProps } from '@mui/material';
+import { Box, TextField, TextFieldProps } from '@mui/material';
 import React from 'react';
 import { DatePickerProps } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { SxProps } from "@mui/system";
 
 type DatePickerFieldProps = DatePickerProps<any,any> & {
   label: string;
@@ -23,19 +24,32 @@ const DatePickerField: React.FC<DatePickerFieldProps> = ({ label, name, value, m
     },
   });
 
+  const popperSx: SxProps = {
+    "& .MuiTabs-root": { backgroundColor: "rgba(120, 120, 120, 0.4)" }
+  };
+
+
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns} >
+    <>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
-        label={label}
         value={value}
         inputFormat="dd/MM/yyyy"
         minDate={minDate || Date.now()}
         onChange={(date: number | Date | null) => {
           onChange(convertToDefEventParam(name, date));
         }}
-        renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => <TextField {...params} {...(error && { error: true, helperText: error })} />}
+        PopperProps={{
+          sx: popperSx
+        }}
+        renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => <TextField 
+          variant="standard"
+         {...params} {...(error && { error: true, helperText: error })} 
+         />}
       />
     </LocalizationProvider>
+    </>
+
   );
 };
 

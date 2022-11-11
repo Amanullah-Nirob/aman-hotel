@@ -5,7 +5,7 @@ function useForm<T>(initialData: T, validateOnChange: boolean, validatorConfig: 
     const [data, setData] = useState<T>(initialData);
     const [errors, setErrors] = useState<{ [x: string]: string }>({});
     const [enterError, setEnterError] = useState<string | null>(null);
-  
+
     const validate = useCallback(
         (data: { [key: string]: any; }) => {
         const errors = validator(data, validatorConfig);

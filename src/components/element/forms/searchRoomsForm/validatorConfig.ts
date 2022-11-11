@@ -9,7 +9,7 @@ const validatorConfig: ConfigType = {
   arrivalDate: {
     isValidDate: {
       message: 'Date is not correct',
-    },
+    }, 
   },
   departureDate: {
     isValidDate: {

@@ -60,12 +60,13 @@ export function validator(data: { [key: string]: any }, validatorConfig: Validat
         break;
       }
       case 'isValidDate': {
-        statusValidate = !isValid(fieldData);
+        statusValidate = !isValid(fieldData);        
         break;
       }
       default:
         break;
     }
+
     if (statusValidate) return config.message;
   }
 
