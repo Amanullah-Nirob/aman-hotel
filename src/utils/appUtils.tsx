@@ -1,3 +1,4 @@
+import { useMediaQuery } from "@mui/material";
 import declOfNum from "./declOfNum";
 
 
@@ -13,6 +14,20 @@ export const guestsLabelGet = (adults: number, children: number, babies: number)
     const childrenStr = `${countChildren} ${declOfNum(countChildren, ['child', 'children', 'children'])}`;
     const babiesStr = `${countBabies} ${declOfNum(countBabies, ['baby', 'baby', 'babies'])}`;
   
-    return `${adultStr}  ${childrenStr} ${babiesStr}`;
-};
+    return (
+        <>
+        <span>
+        {adultStr} 
+        <small>•</small>
+        </span> 
+        <span>
+        {childrenStr}
+        <small>•</small>
+        </span>
+        <span>
+         {babiesStr}
+        </span>
 
+        </>
+    )
+};

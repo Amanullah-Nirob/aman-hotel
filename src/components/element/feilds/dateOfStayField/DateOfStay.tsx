@@ -1,5 +1,7 @@
-import { TextField, TextFieldProps } from '@mui/material';
+import { Paper, TextField, TextFieldProps } from '@mui/material';
 import React from 'react';
+import { useAppSelector } from '../../../../app/hooks';
+import { selectTheme } from '../../../../app/slices/theme/ThemeSlice';
 import DatePickerField from '../datePickerField/DatePickerField';
 
 const oneDayMs = 86_000_000;
@@ -13,15 +15,11 @@ type DateOfStayProps = {
 
 const DateOfStay: React.FC<DateOfStayProps> = ({ onChange, data, errors }) => {
   const { arrivalDate, departureDate } = data;
-  console.log((+arrivalDate + oneDayMs));
-  console.log(+arrivalDate);
-
-
-
+  const theme=useAppSelector(selectTheme)
 
   return (
-    <div className='dateOfStay-wrapper'>
-      <div className='dateOfStay'>
+    <Paper elevation={0} className='dateOfStay-wrapper' sx={{backgroundColor:theme==='light'?'#dddddd5e':''}}>
+      <div className='dateOfStay Check_in'>
         <p>Check-in</p>
         <DatePickerField
           label='Check-in'
@@ -52,7 +50,7 @@ const DateOfStay: React.FC<DateOfStayProps> = ({ onChange, data, errors }) => {
           )}
         />
       </div>
-    </div>
+    </Paper>
   );
 };
 

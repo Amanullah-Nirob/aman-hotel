@@ -37,11 +37,11 @@ const Counter: React.FC<CounterProps> = ({ name, label, value, min, max, onChang
     <div className='counter-wrapper'>
       {label && <p className='counter-label'>{label}</p>}
       <div className='counter-buttons__wrapper'>
-        <Button variant='contained' size='small' aria-label='reduce' onClick={handleDecrease} >
+        <Button variant='outlined' size='small' aria-label='reduce' onClick={handleDecrease} >
           <RemoveIcon fontSize='small' />
         </Button>
         <input className='counter-input' type='text' value={value} readOnly />
-        <Button variant='contained' size='small' aria-label='increase' onClick={handleIncrease}>
+        <Button variant='outlined' size='small' aria-label='increase' onClick={handleIncrease}>
           <AddIcon fontSize='small' />
         </Button>
       </div>

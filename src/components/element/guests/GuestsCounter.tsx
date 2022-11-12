@@ -27,13 +27,12 @@ const GuestsCounter: React.FC<GuestsCounterProps> = ({ data, onChange }) => {
   const { adults, children, babies } = data;
 
   return (
-    <Box sx={{padding:'20px'}}>
-      <p className='guests-label'>{getGuestsLabel(adults, children, babies)}</p>
+    <Box className='guestCounter_area'>
       <Counter name='adults' label='adults' min={1} max={10} onChange={onChange} value={+adults} />
       <Counter name='children' label='Children' min={0} max={10} onChange={onChange} value={children} />
       <Counter name='babies' label='babies' min={0} max={10} onChange={onChange} value={+babies} />
     </Box>
   );
 };
-
+ 
 export default React.memo(GuestsCounter);

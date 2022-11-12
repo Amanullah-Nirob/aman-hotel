@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, Paper, useMediaQuery } from '@mui/material';
 import React, { useState } from 'react';
 import { Form, useForm } from '../../../../hooks/useForm';
 import DateOfStay from '../../feilds/dateOfStayField/DateOfStay';
@@ -9,6 +9,9 @@ import Router from 'next/router';
 import queryString from 'query-string';
 import { guestsLabelGet } from '../../../../utils/appUtils';
 import GuestCount from '../../../menus/GuestCount';
+import { useAppSelector } from '../../../../app/hooks';
+import { selectTheme } from '../../../../app/slices/theme/ThemeSlice';
+import PersonIcon from '@mui/icons-material/Person';
 
 const oneDayMs = 86000000;
 const initialState = {
@@ -21,8 +24,9 @@ const initialState = {
 
 const SearchRoomsForm = () => {
     const { data, errors, handleInputChange, handleKeyDown, validate, handleResetForm } = useForm(initialState,true,validatorConfig);
-
     const [guestCountMenuAnchor, setGuestCountMenuAnchor] = useState<any | null>(null);
+    const theme=useAppSelector(selectTheme)
+    const mediaTab=useMediaQuery('(max-width:768px)')
 
     const handleSubmit = (event: React.FormEvent<HTMLButtonElement>) => {
       event.preventDefault();
@@ -32,17 +36,23 @@ const SearchRoomsForm = () => {
         console.log(queryParams);
       }
     };
-    
+
     return (
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown as any}>
         <DateOfStay data={data} onChange={handleInputChange} errors={errors} />
-        <div style={{border:'1px solid'}} onClick={(e) => setGuestCountMenuAnchor(e.target)}>{guestsLabelGet(data?.adults,data?.children,data?.babies)}</div>
 
-        <Button type='button' onClick={handleResetForm}>Clear</Button>
-        <Button endIcon={<ArrowRight />} type='submit' onClick={handleSubmit} disabled={Object.keys(errors).length > 0}>
-        Search
-        </Button>
+        <Paper elevation={0} className='guest_count' onClick={(e) => setGuestCountMenuAnchor(e.target)} sx={{backgroundColor:theme==='light'?'#dddddd5e':'',width:mediaTab?'58%':{md:'40%',sm:'50%'}}}>
+        <p className='guestTitle'>Guests</p>
+        <div className="guestContent">
+        <PersonIcon sx={{display:{xs:'none',lg:'inline-block',marginRight:'10px'}}} />
+         <div className='guestMain'>{guestsLabelGet(data?.adults,data?.children,data?.babies)}</div>
+        </div>
+        </Paper>
 
+        <div className='searchAction'>
+              <Button type='submit' variant="contained" onClick={handleSubmit}  sx={{width:'100%',marginLeft:{sm:'10px',sx:'0'},padding: {sm:'28px 16px',xs:'20px 16px'}, backgroundColor:'#5c98f2',color:'#fff'}} disabled={Object.keys(errors).length > 0}>Search</Button>
+        </div>
+      
     {/* guest count menu */}
       <GuestCount
          anchor={guestCountMenuAnchor}

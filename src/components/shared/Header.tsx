@@ -64,6 +64,7 @@ const Header = (props: Props) => {
           </ListItem>
         ))}
       </List>
+      <SwitchToggle></SwitchToggle>
     </Box>
   );
   
