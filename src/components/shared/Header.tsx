@@ -64,7 +64,6 @@ const Header = (props: Props) => {
           </ListItem>
         ))}
       </List>
-      <SwitchToggle></SwitchToggle>
     </Box>
   );
   
@@ -86,26 +85,34 @@ const Header = (props: Props) => {
             sx={{ justifyContent:'space-between',alignItems:'end',}}
           >
             {/* app logo */}
-              <h6
+            <Link href='/' style={{textDecoration:'none',color:theme==='light'?'#000':'#fff'}}>
+            <h6
                     className={dmFont.className}
                     style={{ 
                       margin:'0',
+                      cursor:'pointer',
                       fontWeight:'bold', 
                       letterSpacing:'2px',fontSize:'25px' 
                     }}
                   > 
                   Aman <span style={{color:'#5C98F2'}}>Hotel</span> 
               </h6>
+            </Link>
+            
           {/* mobile menu icon */}
+          <Box sx={{display: { sm: 'none',xs:'flex' }, }}>
+           <SwitchToggle></SwitchToggle>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
                 edge="start"
                 onClick={handleDrawerToggle}
-                sx={{ mr: 2, display: { sm: 'none' } }}
+                sx={{ ml: 1, display: { sm: 'none' } }}
               >
                 <MenuIcon />
               </IconButton>
+          </Box>
+
             {/* navigation list */}
                 <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                   {navItems.map((item) => (
@@ -130,16 +137,21 @@ const Header = (props: Props) => {
             {/* login btn dark switch*/}
                 <Box sx={{display: { xs: 'none', sm: 'flex'}}}>
                 <SwitchToggle></SwitchToggle>
-                <Button variant="contained"
+                <Link href='/login' style={{color:'#fff',textDecoration:'none'}}>
+                  <Button variant="contained"
                   sx={{padding:'9px 26px',
                   textTransform:'capitalize',
                   backgroundColor:'#5c98f2',
                   borderRadius:'10px',
                   fontSize:'14px',
-                  color:'#fff',
+
                   marginLeft: '12px'
                   }}
-                >Login</Button>
+                >
+                  Login
+                  </Button>
+                  </Link>
+                
                 </Box>
         </Toolbar>
       </AppBar>

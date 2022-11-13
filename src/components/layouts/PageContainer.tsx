@@ -1,8 +1,10 @@
 import Head from 'next/head';
 import React, { ReactNode } from "react";
+import Header from '../shared/Header';
 
 const initHeaders = (
     <>
+     <Header></Header>
     </>
 );
 const initFooters = (
