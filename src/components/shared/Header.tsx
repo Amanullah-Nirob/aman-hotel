@@ -129,16 +129,17 @@ const Header = (props: Props) => {
                 </Box>
             {/* login btn dark switch*/}
                 <Box sx={{display: { xs: 'none', sm: 'flex'}}}>
+                <SwitchToggle></SwitchToggle>
                 <Button variant="contained"
                   sx={{padding:'9px 26px',
                   textTransform:'capitalize',
                   backgroundColor:'#5c98f2',
                   borderRadius:'10px',
                   fontSize:'14px',
-                  color:'#fff'
+                  color:'#fff',
+                  marginLeft: '12px'
                   }}
                 >Login</Button>
-                <SwitchToggle></SwitchToggle>
                 </Box>
         </Toolbar>
       </AppBar>
