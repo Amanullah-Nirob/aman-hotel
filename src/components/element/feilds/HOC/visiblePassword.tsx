@@ -39,5 +39,5 @@ const visiblePassword =
       />
     );
   };
-  visiblePassword.displayName = 'visiblePassword';
+visiblePassword.displayName = 'VisiblePassword';
 export default visiblePassword;
