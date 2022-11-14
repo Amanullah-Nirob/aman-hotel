@@ -6,6 +6,7 @@ import { persistReducer,FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER,} from
 // internal imports
 import storage from "./sync-storage";
 import themReducer from './slices/theme/ThemeSlice'
+import { userApi } from "./apiSlice/useApiSlice";
 
 const persistConfig = {
     key: "root",
@@ -15,6 +16,7 @@ const persistConfig = {
 }; 
 
 const rootReducer = combineReducers({
+  [userApi.reducerPath]: userApi.reducer,
   theme:themReducer,
 });
 
@@ -27,7 +29,7 @@ export const store = configureStore({
         immutableCheck: false,
         serializableCheck: false,
       }) 
-
+      .concat(userApi.middleware)
 
 });
 

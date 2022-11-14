@@ -1,11 +1,11 @@
-import { BookingType } from '../../../../types/types';
-import { ValidatorConfigType } from '../../../../utils/validator'
+import { BookingType } from '../../../types/types';
+import { ValidatorConfigType } from '../validator'
 
 type ConfigType = {
   [Property in keyof BookingType]?: ValidatorConfigType[Property];
 };
 
-const validatorConfig: ConfigType = {
+const roomSearchValidatorConfig: ConfigType = {
   arrivalDate: {
     isValidDate: {
       message: 'Date is not correct',
@@ -24,4 +24,4 @@ const validatorConfig: ConfigType = {
   },
 };
 
-export default validatorConfig;
+export default roomSearchValidatorConfig;

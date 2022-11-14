@@ -3,6 +3,8 @@ import { ThemeProvider ,createTheme} from '@mui/material/styles';
 import { selectTheme } from '../../app/slices/theme/ThemeSlice';
 import { CssBaseline } from '@mui/material';
 import { useAppSelector } from '../../app/hooks';
+import Header from '../shared/Header';
+
 interface LayoutProps {
     children: React.ReactNode;
 }
@@ -25,6 +27,7 @@ const MusterLayout = ({children}:LayoutProps) => {
     return (
         <ThemeProvider theme={theme}>
         <CssBaseline />
+        <Header></Header>
             {children}
         </ThemeProvider>
     );

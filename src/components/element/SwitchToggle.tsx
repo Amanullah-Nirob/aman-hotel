@@ -13,7 +13,6 @@ const SwitchToggle = () => {
   const handleChange = (_event: any) => {
     dispatch(switchTheme(theme == 'dark' ? 'light' : 'dark'))
 };
-
     return (
         <Box className='switchButton' onClick={handleChange} sx={{ padding:'5px 8px',cursor:'pointer'}}>
           {theme==='light'?<DarkModeOutlinedIcon sx={{transform: 'translate(0px, 5px)'}} />:<WbSunnyOutlinedIcon sx={{transform: 'translate(0px, 5px)'}}/>}

@@ -13,9 +13,10 @@ type DatePickerFieldProps = DatePickerProps<any,any> & {
   minDate: Date | number;
   name: string;
   error?: string;
+  btnvariant?:"standard" | "filled" | "outlined"
 };
 
-const DatePickerField: React.FC<DatePickerFieldProps> = ({ label, name, value, minDate, onChange, error, ...rest }) => {
+const DatePickerField: React.FC<DatePickerFieldProps> = ({ label, name, value, minDate, onChange, error,btnvariant, ...rest }) => {
 
   const convertToDefEventParam = (name: string, value: Date | number | null) => ({
     target: {
@@ -43,7 +44,7 @@ const DatePickerField: React.FC<DatePickerFieldProps> = ({ label, name, value, m
           sx: popperSx
         }}
         renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => <TextField 
-          variant="standard"
+          variant={btnvariant || "outlined"}
          {...params} {...(error && { error: true, helperText: error })} 
          />}
       />

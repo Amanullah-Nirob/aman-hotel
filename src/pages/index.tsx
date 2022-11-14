@@ -1,14 +1,19 @@
 import type { NextPage } from 'next'
-import PageContainer from '../components/layouts/PageContainer'
+import Head from 'next/head'
 import HomeBanner from '../components/home/HomeBanner'
 
 
 const Home: NextPage = () => {
 
   return (
-      <PageContainer>
-        <HomeBanner></HomeBanner>
-      </PageContainer>
+    <>
+    <Head>
+     <title>
+      AmanHotel
+    </title>
+    </Head>
+    <HomeBanner></HomeBanner>
+    </>
   )
 }
 

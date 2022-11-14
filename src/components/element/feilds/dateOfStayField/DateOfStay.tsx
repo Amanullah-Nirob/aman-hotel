@@ -28,6 +28,7 @@ const DateOfStay: React.FC<DateOfStayProps> = ({ onChange, data, errors }) => {
           onChange={onChange}
           error={errors?.arrivalDate && errors?.arrivalDate}
           value={+arrivalDate}
+          btnvariant="standard"
           renderInput={(params) => (
             <TextField 
             {...params} 
@@ -45,6 +46,7 @@ const DateOfStay: React.FC<DateOfStayProps> = ({ onChange, data, errors }) => {
           onChange={onChange}
           value={+departureDate}
           error={errors?.departureDate && errors?.departureDate}
+          btnvariant="standard"
           renderInput={(params) => (
             <TextField {...params} {...(errors?.departureDate && { error: true, helperText: errors?.departureDate })} />
           )}

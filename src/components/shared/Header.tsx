@@ -1,5 +1,5 @@
 // external imports
-import React from 'react';
+import React, { useCallback } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -32,7 +32,7 @@ const navItems = [
   {name:'Home',url:'/'},
   {name:'Rooms',url:'/rooms'},
   {name:'About',url:'/about'},
-  {name:'Contact',url:'/contact'}
+  {name:'login',url:'/login'}
 ];
 
 
@@ -41,11 +41,12 @@ const Header = (props: Props) => {
   const theme=useAppSelector(selectTheme)
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-
+  
   // mobile drawer
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
@@ -61,6 +62,7 @@ const Header = (props: Props) => {
                <ListItemText primary={item.name} />
                </Link>
             </ListItemButton>
+
           </ListItem>
         ))}
       </List>
@@ -75,7 +77,7 @@ const Header = (props: Props) => {
           sx={{
           backgroundColor:theme==='light'?'transparent':'#000',
           color:theme==='light'?'#000':'',
-          padding:{lg:'15px 25px',sx:'5px 0',xs:'0px'},
+          padding:{lg:'15px 25px',sx:'5px 0',xs:'0px 0 25px'},
           position:'absolute',
           boxShadow:'none',
           backgroundImage:'none'
@@ -178,4 +180,4 @@ const Header = (props: Props) => {
     );
 };
 
-export default Header;
+export default React.memo(Header);

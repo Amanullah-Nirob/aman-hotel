@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, ReactElement, useCallback, useState } from 'react';
-import { validator, ValidatorConfigType } from '../utils/validator'
+import { validator, ValidatorConfigType } from '../utils/validator/validator'
 
 function useForm<T>(initialData: T, validateOnChange: boolean, validatorConfig: ValidatorConfigType) {
     const [data, setData] = useState<T>(initialData);

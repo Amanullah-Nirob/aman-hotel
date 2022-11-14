@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Form, useForm } from '../../../../hooks/useForm';
 import DateOfStay from '../../feilds/dateOfStayField/DateOfStay';
 import GuestsCounter, { getGuestsLabel } from '../../guests/GuestsCounter';
-import validatorConfig from './validatorConfig';
+import roomSearchValidatorConfig from '../../../../utils/validator/validatorConfig/roomSearchValidatorConfig';
 import { ArrowRight } from '@mui/icons-material';
 import Router from 'next/router';
 import queryString from 'query-string';
@@ -23,7 +23,7 @@ const initialState = {
 };
 
 const SearchRoomsForm = () => {
-    const { data, errors, handleInputChange, handleKeyDown, validate, handleResetForm } = useForm(initialState,true,validatorConfig);
+    const { data, errors, handleInputChange, handleKeyDown, validate, handleResetForm } = useForm(initialState,true,roomSearchValidatorConfig);
     const [guestCountMenuAnchor, setGuestCountMenuAnchor] = useState<any | null>(null);
     const theme=useAppSelector(selectTheme)
     const mediaTab=useMediaQuery('(max-width:768px)')
