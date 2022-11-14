@@ -11,7 +11,7 @@ import Link from 'next/link';
 import Register from '../../components/login/Register';
 
 
-const login = () => {
+const Login = () => {
     const theme=useAppSelector(selectTheme)
     const [registerOpen,setRegisterOpen]=useState(false)
     
@@ -65,4 +65,4 @@ const login = () => {
     );
 };
 
-export default login;
+export default Login;
