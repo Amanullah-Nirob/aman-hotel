@@ -4,11 +4,12 @@ import { useAppDispatch } from '../../app/hooks';
 import { Form, useForm } from '../../hooks/useForm';
 import { UserType } from '../../types/types';
 import registerValidatorConfig from '../../utils/validator/validatorConfig/registerValidatorConfig';
-import visiblePassword from '../element/feilds/HOC/visiblePassword';
+
 import InputField from '../element/feilds/InputField/InputField';
 import RadioGroupField from '../element/feilds/InputField/RadioGroupField';
 import DatePickerField from '../element/feilds/datePickerField/DatePickerField'
 import SwitchInput from '../element/feilds/InputField/SwitchInput';
+import VisiblePassword from '../element/feilds/HOC/visiblePassword';
 
 const genderItems = [
     { id: 'male', title: 'male' },
@@ -37,7 +38,7 @@ const Register = () => {
           
         }
       };
-    const InputFieldWithPassword = useMemo(() => visiblePassword(InputField), []);
+    const InputFieldWithPassword = useMemo(() => VisiblePassword(InputField), []);
     return (
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown as any}>
          <div className='register_name_area'>
