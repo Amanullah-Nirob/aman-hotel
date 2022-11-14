@@ -9,7 +9,7 @@ import InputField from '../element/feilds/InputField/InputField';
 import RadioGroupField from '../element/feilds/InputField/RadioGroupField';
 import DatePickerField from '../element/feilds/datePickerField/DatePickerField'
 import SwitchInput from '../element/feilds/InputField/SwitchInput';
-import VisiblePassword from '../element/feilds/HOC/visiblePassword';
+import VisiblePassword from '../element/feilds/HOC/VisiblePassword';
 
 const genderItems = [
     { id: 'male', title: 'male' },

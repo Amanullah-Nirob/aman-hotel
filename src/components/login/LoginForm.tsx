@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../app/hooks';
 import { Form, useForm } from '../../hooks/useForm';
 import { SignInDataType } from '../../types/types';
 import loginvalidatorConfig from '../../utils/validator/validatorConfig/loginvalidatorConfig';
-import VisiblePassword from '../element/feilds/HOC/visiblePassword';
+import VisiblePassword from '../element/feilds/HOC/VisiblePassword';
 
 
 import InputField from '../element/feilds/InputField/InputField';
