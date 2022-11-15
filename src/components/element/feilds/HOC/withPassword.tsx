@@ -5,7 +5,8 @@ import { TextFieldProps as MuiTextFieldProps } from '@mui/material';
 
 type InjectedProps = {};
 
-const VisiblePassword =
+/* eslint-disable react/display-name */
+const withPassword =
   <P extends InjectedProps>(Component: React.ComponentType<P>) =>
   (props: MuiTextFieldProps) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -40,4 +41,5 @@ const VisiblePassword =
     );
   };
 
-export default VisiblePassword;
+withPassword.displayName='withPassword'
+export default withPassword;

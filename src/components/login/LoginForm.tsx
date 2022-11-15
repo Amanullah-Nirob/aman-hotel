@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../app/hooks';
 import { Form, useForm } from '../../hooks/useForm';
 import { SignInDataType } from '../../types/types';
 import loginvalidatorConfig from '../../utils/validator/validatorConfig/loginvalidatorConfig';
-import VisiblePassword from '../element/feilds/HOC/VisiblePassword';
+import withPassword from '../element/feilds/HOC/withPassword';
 
 
 import InputField from '../element/feilds/InputField/InputField';
@@ -30,7 +30,7 @@ const LoginForm = () => {
         }
     }
 
-    const InputFieldWithPassword = useMemo(() => VisiblePassword(InputField), []);
+    const InputFieldWithPassword = useMemo(() => withPassword(InputField), []);
     return (
         <>
              <Form data={data} errors={errors} handleChange={handleInputChange}>
