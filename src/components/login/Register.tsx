@@ -4,12 +4,15 @@ import { useAppDispatch } from '../../app/hooks';
 import { Form, useForm } from '../../hooks/useForm';
 import { UserType } from '../../types/types';
 import registerValidatorConfig from '../../utils/validator/validatorConfig/registerValidatorConfig';
-
+import LoadingButton from '@mui/lab/LoadingButton';
 import InputField from '../element/feilds/InputField/InputField';
 import RadioGroupField from '../element/feilds/InputField/RadioGroupField';
 import DatePickerField from '../element/feilds/datePickerField/DatePickerField'
 import SwitchInput from '../element/feilds/InputField/SwitchInput';
 import withPassword from '../element/feilds/HOC/withPassword';
+import { useRegisterUserMutation } from '../../app/apiSlice/useApiSlice';
+import { RegisterRequest } from '../../app/interface/userinterface';
+import { displayToast } from '../../app/slices/ToastSlice';
 
 const genderItems = [
     { id: 'male', title: 'male' },
@@ -30,24 +33,40 @@ const initialData: UserType = {
 const Register = () => {
     const { data, errors, handleInputChange, handleKeyDown, validate } = useForm(initialData, true, registerValidatorConfig);
     const dispatch=useAppDispatch()
+    const [registerUser,{ isLoading, isError, error }]=useRegisterUserMutation()
 
-    const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        if (validate(data)) {
-          console.log(data);
-          
+        try {
+          if (validate(data)) {
+            const registerInputValue={
+              name:data.firstName + " " + data.secondName,
+              email:data.email,
+              password:data.password,
+              birthYear:data.birthYear,
+              gender:data.gender,
+              role:data.role,
+              subscribe:data.subscribe
+            } 
+            const userData= await registerUser(registerInputValue as RegisterRequest).unwrap()
+            console.log(userData);
+          }
+        } catch (error:any) {
+          dispatch(  
+            displayToast({ title: "Registration Failed", message: error?.data.message? error?.data.message : 'Registration Failed', type: "error", duration: 3000, positionVert: "top",
+              positionHor: "center",
+          }))
         }
       };
+      
+
     const InputFieldWithPassword = useMemo(() => withPassword(InputField), []);
     return (
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown as any}>
-         <div className='register_name_area'>
          <InputField autoFocus name='firstName' label='First name' />
          <InputField name='secondName' label='Last name' />
-         </div>
         <InputField name='email' label='Email' />
         <InputFieldWithPassword name='password' label='password' type='password' />
-        <div className="date_gender">
         <DatePickerField
           value={data.birthYear}
           onChange={handleInputChange}
@@ -61,9 +80,11 @@ const Register = () => {
           )}
         />
         <RadioGroupField name='gender' items={genderItems} />
-        </div>
+
          <SwitchInput name='subscribe' label='special offers' onChange={handleInputChange} />
-         <Button variant="outlined" type='submit' onClick={handleSubmit}  disabled={Object.keys(errors).length !== 0} sx={{width:'100%'}}> Register</Button>
+         <LoadingButton variant="outlined" type='submit' 
+         onClick={handleSubmit}  
+         disabled={Object.keys(errors).length !== 0} sx={{width:'100%'}} loading={isLoading?true:false} > Register</LoadingButton>
         </Form>
     );
 };

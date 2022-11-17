@@ -27,7 +27,7 @@ const HomeBanner = () => {
             height:{xl:'90vh',lg:'100vh',md:'100vh',sm:'98vh',xs:'55rem'}
             }}
           >
-         <Container sx={{zIndex:'2'}}>
+         <Container sx={{zIndex:'2'}} >
          <div className="homeBannerAllContent">
          <Grid container>
           <Grid item xl={7} lg={7} md={7} sm={12} xs={12}>

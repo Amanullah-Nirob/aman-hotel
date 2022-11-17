@@ -8,9 +8,7 @@ const Home: NextPage = () => {
   return (
     <>
     <Head>
-     <title>
-      AmanHotel
-    </title>
+     <title>AmanHotel</title>
     </Head>
     <HomeBanner></HomeBanner>
     </>

@@ -17,8 +17,9 @@ import Link from 'next/link';
 import { useAppSelector } from '../../app/hooks';
 import { selectTheme } from '../../app/slices/theme/ThemeSlice';
 import SwitchToggle from '../element/SwitchToggle';
-import { useMediaQuery } from '@mui/material';
+import { Container, useMediaQuery } from '@mui/material';
 import { dmFont, dmSansFont } from '../../utils/nextFont';
+import { useRouter } from 'next/router';
 
 
 // intenal imports
@@ -41,6 +42,9 @@ const Header = (props: Props) => {
   const theme=useAppSelector(selectTheme)
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const router=useRouter()
+  const isRoomsPageOpen=router.pathname==='/rooms'
+
   
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -77,14 +81,14 @@ const Header = (props: Props) => {
           sx={{
           backgroundColor:theme==='light'?'transparent':'#000',
           color:theme==='light'?'#000':'',
-          padding:{lg:'15px 25px',sx:'5px 0',xs:'0px 0 25px'},
+          padding:{lg:'27px 0px 22px',sx:'5px 0',xs:'19px 0 18px'},
           position:'absolute',
           boxShadow:'none',
           backgroundImage:'none'
           }}
       >
-        <Toolbar 
-            sx={{ justifyContent:'space-between',alignItems:'end',}}
+        <Container maxWidth="xl" 
+            sx={{display:'flex', justifyContent:'space-between'}}
           >
             {/* app logo */}
             <Link href='/' style={{textDecoration:'none',color:theme==='light'?'#000':'#fff'}}>
@@ -136,6 +140,9 @@ const Header = (props: Props) => {
                     </Button>
                   ))}
                 </Box>
+                <Box sx={{display:{sm:isRoomsPageOpen?'block':'none',xs:'none'},backgroundColor:'red',width:'35vh'}}>
+                  <p style={{margin:'0'}}>search rooms</p>
+                </Box>
             {/* login btn dark switch*/}
                 <Box sx={{display: { xs: 'none', sm: 'flex'}}}>
                 <SwitchToggle></SwitchToggle>
@@ -155,7 +162,7 @@ const Header = (props: Props) => {
                   </Link>
                 
                 </Box>
-        </Toolbar>
+        </Container>
       </AppBar>
         {/* mobile drawer */}
         <Box component="nav">

@@ -4,6 +4,7 @@ import { selectTheme } from '../../app/slices/theme/ThemeSlice';
 import { CssBaseline } from '@mui/material';
 import { useAppSelector } from '../../app/hooks';
 import Header from '../shared/Header';
+import AppToast from '../common/appToast/AppToast';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -22,13 +23,13 @@ const MusterLayout = ({children}:LayoutProps) => {
         [mode],
       );
 
-
       
     return (
         <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header></Header>
             {children}
+          <AppToast></AppToast> 
         </ThemeProvider>
     );
 };

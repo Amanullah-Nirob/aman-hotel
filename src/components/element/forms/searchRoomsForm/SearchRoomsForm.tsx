@@ -32,11 +32,11 @@ const SearchRoomsForm = () => {
       event.preventDefault();
       if (validate(data)) {
         const queryParams = queryString.stringify(data);
-        // Router.push(`/rooms?${queryParams}`);
-        console.log(queryParams);
+        Router.push(`/rooms?${queryParams}`);
+        
       }
     };
-
+ 
     return (
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown as any}>
         <DateOfStay data={data} onChange={handleInputChange} errors={errors} />

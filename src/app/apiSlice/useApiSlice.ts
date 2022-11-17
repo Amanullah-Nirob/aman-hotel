@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
 
-import { RegisterRequest,AuthResponse,LoginRequest,loginResponse } from "../interface/userinterface";
+import { RegisterRequest,AuthResponse,LoginRequest } from "../interface/userinterface";
 
 
 export const userApi=createApi({
     reducerPath: "userApi",
     baseQuery:fetchBaseQuery({
-        baseUrl:`${process.env.API_URL}/api/user`,
+        baseUrl:`${process.env.NEXT_PUBLIC_APIURL}/api/user`,
         prepareHeaders:(headers,{getState})=>{
         // By default, if we have a token in the store, let's use that for authenticated requests
         // const token = (getState() as RootState).auth?.loggedInUser?.token;
@@ -15,26 +15,26 @@ export const userApi=createApi({
         // if (token) { 
         //   headers.set("Authorization", `Bearer ${token}`);
         // }
-        headers.set("Content-Type", `application/json`);
+         headers.set("Content-Type", `application/json`);
          return headers;
     }
     }),
     tagTypes: ["User"], 
     endpoints:(builder)=>({
         registerUser:builder.mutation<AuthResponse,RegisterRequest>({
-            query:({name,email,password})=>({
+            query:(data)=>({
                 url: "/register",
                 method: "POST",
-                body: JSON.stringify({name,email,password}),
+                body: JSON.stringify(data),
             }),
             invalidatesTags: ["User"],
         }),
  
-        login: builder.mutation<loginResponse, LoginRequest>({
-            query: ({email,password}) => ({
+        login: builder.mutation<AuthResponse, LoginRequest>({
+            query: (data) => ({
               url: "/login",
               method: "POST",
-              body: JSON.stringify({email,password}),
+              body: JSON.stringify(data),
             }),
             invalidatesTags: ["User"],
         }),

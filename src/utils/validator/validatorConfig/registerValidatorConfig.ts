@@ -8,12 +8,12 @@ type ConfigType = {
 const registerValidatorConfig: ConfigType = {
   firstName: {
     isRequired: {
-      message: 'firstName required',
+      message: 'first Name required',
     },
   },
   secondName: {
     isRequired: { 
-      message: 'LastName required',
+      message: 'Last Name required',
     },
   },
   email: {

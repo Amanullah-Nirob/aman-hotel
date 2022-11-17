@@ -7,6 +7,9 @@ import { persistReducer,FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER,} from
 import storage from "./sync-storage";
 import themReducer from './slices/theme/ThemeSlice'
 import { userApi } from "./apiSlice/useApiSlice";
+import { roomApi } from "./apiSlice/roomApiSlice";
+import authSliceReducer from './slices/auth/authSlice'
+import toastReducer from './slices/ToastSlice'
 
 const persistConfig = {
     key: "root",
@@ -17,7 +20,10 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   [userApi.reducerPath]: userApi.reducer,
+  [roomApi.reducerPath]: roomApi.reducer,
   theme:themReducer,
+  auth:authSliceReducer,
+  ToastData:toastReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -30,6 +36,7 @@ export const store = configureStore({
         serializableCheck: false,
       }) 
       .concat(userApi.middleware)
+      .concat(roomApi.middleware)
 
 });
 
