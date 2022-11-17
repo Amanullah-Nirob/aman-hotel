@@ -12,7 +12,7 @@ import {Grid} from '@mui/material'
 import RoomFilters from '../../components/rooms/RoomFilters';
 import Head from 'next/head';
 
-const index = () => {
+const RoomsMain = () => {
   const { searchFilters, handleResetSearchFilters } = useFiltersQuery();
   const { data, error, isLoading }:any = useRoomGetByFilteredQuery(searchFilters);
   const { filteredData, searchTerm, setSearchTerm, handleChangeSearch } = useSearch(data, { searchBy: 'roomNumber'});
@@ -48,4 +48,4 @@ const index = () => {
     );
 };
 
-export default index; 
+export default RoomsMain; 
