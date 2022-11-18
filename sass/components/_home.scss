@@ -115,6 +115,28 @@
         }
     }
 }
+// breadcrumb
+ul.breadcrumb {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin: 9px 0px 15px;
+    li{
+        &:before {
+            content: "/";
+            margin: 0 5px;
+            color: #878787;
+        }
+        &:first-child{
+            &:before {
+                content: none;
+            }
+        }
+    }
+}
+
+
+
 
 @media screen and (max-width:'600px'){
     .homeBanner {

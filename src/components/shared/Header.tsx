@@ -43,7 +43,7 @@ const Header = (props: Props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const router=useRouter()
-  const isRoomsPageOpen=router.pathname==='/rooms'
+  const isRoomOpen=router.pathname==='/rooms'
 
   
   const handleDrawerToggle = () => {
@@ -140,9 +140,7 @@ const Header = (props: Props) => {
                     </Button>
                   ))}
                 </Box>
-                <Box sx={{display:{sm:isRoomsPageOpen?'block':'none',xs:'none'},backgroundColor:'red',width:'35vh'}}>
-                  <p style={{margin:'0'}}>search rooms</p>
-                </Box>
+
             {/* login btn dark switch*/}
                 <Box sx={{display: { xs: 'none', sm: 'flex'}}}>
                 <SwitchToggle></SwitchToggle>

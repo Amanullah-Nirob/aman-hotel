@@ -1,6 +1,6 @@
 import Router, { useRouter } from 'next/router';
 import React, { useCallback, useEffect } from 'react';
-import {Container,Button} from '@mui/material'
+import {Container,Button, Box} from '@mui/material'
 import qs from 'query-string';
 import useFiltersQuery from '../../hooks/useFiltersQuery';
 import { useRoomGetByFilteredQuery } from '../../app/apiSlice/roomApiSlice';
@@ -11,8 +11,13 @@ import { setPageSizeOptions } from '../../utils/appUtils';
 import {Grid} from '@mui/material'
 import RoomFilters from '../../components/rooms/RoomFilters';
 import Head from 'next/head';
+import BreadCrumb from '../../components/element/BreadCrumb';
+import { useAppSelector } from '../../app/hooks';
+import { selectTheme } from '../../app/slices/theme/ThemeSlice';
+
 
 const RoomsMain = () => {
+  const theme=useAppSelector(selectTheme)
   const { searchFilters, handleResetSearchFilters } = useFiltersQuery();
   const { data, error, isLoading }:any = useRoomGetByFilteredQuery(searchFilters);
   const { filteredData, searchTerm, setSearchTerm, handleChangeSearch } = useSearch(data, { searchBy: 'roomNumber'});
@@ -23,6 +28,12 @@ const RoomsMain = () => {
 
   
   
+  
+  const breadCrumb = [
+    {text:'Home',url: '/'},
+    {text: 'Rooms'}
+  ];
+
     return (
       <>
     <Head>
@@ -30,17 +41,18 @@ const RoomsMain = () => {
     </Head>
     <div className='rooms_area_main'>
          <Container maxWidth="xl">
-         <div className="rooms_all_content">
+         <Box className="rooms_all_content" sx={{transform:theme==='light'?{sm:'translate(0px, 8vh)',xs:'translate(0px, 9vh)'}:'translate(0px, 10vh)'}}>
+         <BreadCrumb breacrumb={breadCrumb} />
           <Grid container spacing={0}>
             <Grid item sm={3}>
-              <RoomFilters></RoomFilters>
+              <RoomFilters filteredData={filteredData}></RoomFilters>
             </Grid>
             <Grid item sm={9}>
              <div style={{backgroundColor:'green',height:'90vh'}}>room main part</div>
             </Grid>
  
           </Grid>
-         </div>
+         </Box>
          </Container>
         </div>
       </>

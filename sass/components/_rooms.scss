@@ -1,6 +1,29 @@
 .rooms_area_main {
     height: 100vh;
     .rooms_all_content {
-        transform: translate(0px, 10vh);
+        .roomFilters{
+            .filterTitle{
+                border-bottom: 0.1rem solid;
+                padding-bottom: 10px;
+                p{
+                    color: rgb(135, 135, 135);
+                    margin: 0;
+                    font-size: 15px;
+                }
+            }
+        }
     }
 }
+
+.V_hidden {
+    clip: rect(0 0 0 0); 
+    clip-path: inset(100%);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+  
