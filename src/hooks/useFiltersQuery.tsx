@@ -22,7 +22,6 @@ const useFiltersQuery = () => {
     ({ target }:any) => {
       const { name } = target; 
       const newFilter = omit(searchFilters, name);
-
       setSearchQuery(newFilter);
     },
     [searchFilters, setSearchQuery]
@@ -31,12 +30,9 @@ const useFiltersQuery = () => {
   
   const handleChangeFilter = useCallback(
     ({ target }:any) => {  
-      console.log(target);
-      
       const { name, value } = target;
       if (value === false || value === 0) {
         const newFilter = { ...searchFilters, [name]: value };
-        setSearchQuery(newFilter);
         return clearFilter({ target });
       }
       const newFilter = { ...searchFilters, [name]: value };

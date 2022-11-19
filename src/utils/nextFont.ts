@@ -1,4 +1,4 @@
-import { DM_Serif_Display,DM_Sans } from '@next/font/google';
+import { DM_Serif_Display,DM_Sans,Roboto } from '@next/font/google';
 
 export const dmFont=DM_Serif_Display({
     display: 'swap',
@@ -9,5 +9,10 @@ export const dmFont=DM_Serif_Display({
 export const dmSansFont=DM_Sans({
     display: 'swap',
     weight: '500',
+    subsets: ['latin'] 
+})
+export const roboto=Roboto({
+    display: 'swap',
+    weight: '300',
     subsets: ['latin'] 
 })

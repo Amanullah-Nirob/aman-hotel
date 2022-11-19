@@ -44,11 +44,11 @@ const RoomsMain = () => {
          <Box className="rooms_all_content" sx={{transform:theme==='light'?{sm:'translate(0px, 8vh)',xs:'translate(0px, 9vh)'}:'translate(0px, 10vh)'}}>
          <BreadCrumb breacrumb={breadCrumb} />
           <Grid container spacing={0}>
-            <Grid item sm={3}>
+            <Grid item sm={2}>
               <RoomFilters filteredData={filteredData}></RoomFilters>
             </Grid>
-            <Grid item sm={9}>
-             <div style={{backgroundColor:'green',height:'90vh'}}>room main part</div>
+            <Grid item sm={10}>
+             <div>room main part</div>
             </Grid>
  
           </Grid>
