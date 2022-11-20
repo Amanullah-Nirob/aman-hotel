@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAppSelector } from '../../app/hooks';
+import { selectTestBox } from '../../app/slices/test';
 import { selectTheme } from '../../app/slices/theme/ThemeSlice';
 import useFiltersQuery from '../../hooks/useFiltersQuery';
 import { dmSansFont} from '../../utils/nextFont';
@@ -12,8 +13,6 @@ import RoomsFilterList from './RoomsFilterList';
 const RoomFilters = ({filteredData}:any) => {
    const theme=useAppSelector(selectTheme)
    const { searchFilters, handleChangeFilter, handleResetSearchFilters } = useFiltersQuery();
-    console.log(filteredData);
-    
    
 
     
@@ -42,6 +41,7 @@ const RoomFilters = ({filteredData}:any) => {
          <PriceRange
           label='Price range'
           name='price'
+          data={searchFilters}
           onChange={handleChangeFilter}
           min={0}
           max={15000}

@@ -12,27 +12,27 @@ import {Grid} from '@mui/material'
 import RoomFilters from '../../components/rooms/RoomFilters';
 import Head from 'next/head';
 import BreadCrumb from '../../components/element/BreadCrumb';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectTheme } from '../../app/slices/theme/ThemeSlice';
+
 
 
 const RoomsMain = () => {
   const theme=useAppSelector(selectTheme)
   const { searchFilters, handleResetSearchFilters } = useFiltersQuery();
-  const { data, error, isLoading }:any = useRoomGetByFilteredQuery(searchFilters);
+  const { data, error, isLoading,isError }:any = useRoomGetByFilteredQuery(searchFilters);
+
   const { filteredData, searchTerm, setSearchTerm, handleChangeSearch } = useSearch(data, { searchBy: 'roomNumber'});
   const { sortedItems, sortBy, setSortBy } = useSort(filteredData || [], { path: 'roomNumber', order: 'desc' } as any);
   const {
     itemsListCrop: roomListSliceByPagination, currentPage,pageSize,handleChangePage, handleChangePageSize,
   } = usePagination(sortedItems || [], setPageSizeOptions[1].value);
 
-  
-  
-  
   const breadCrumb = [
     {text:'Home',url: '/'},
     {text: 'Rooms'}
   ];
+
 
     return (
       <>
@@ -47,12 +47,13 @@ const RoomsMain = () => {
             <Grid item sm={2}>
               <RoomFilters filteredData={filteredData}></RoomFilters>
             </Grid>
-            <Grid item sm={10}>
-             <div>room main part</div>
+            <Grid item sm={10} sx={{padding:'20px'}}>
+             {data?.map((singleData:any)=><li key={singleData._id}>{singleData.price}</li>)}
             </Grid>
  
           </Grid>
-         </Box>
+         </Box> 
+
          </Container>
         </div>
       </>

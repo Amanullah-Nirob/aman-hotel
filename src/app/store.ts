@@ -24,6 +24,7 @@ const rootReducer = combineReducers({
   theme:themReducer,
   auth:authSliceReducer,
   ToastData:toastReducer,
+
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -31,6 +31,7 @@ const RoomsFilterList: React.FC<RoomsFiltersListProps>  = ({ handleChange, data,
     const clonedElements = React.Children.map(children, child => {
         const item = child as ReactElement<PropsWithChildren<FilterItemProps>>;
         const childType = typeof item;
+
         
         let config = {};
         if (

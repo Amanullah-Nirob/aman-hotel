@@ -8,7 +8,7 @@ const useFiltersQuery = () => {
   const router=useRouter()
   const searchQuery=router.query
 
-  const searchFilters = searchQuery
+  const searchFilters = useMemo(() => searchQuery,[searchQuery]);
 
   const setSearchQuery = useCallback(
     (filter: Record<string, any>) => {

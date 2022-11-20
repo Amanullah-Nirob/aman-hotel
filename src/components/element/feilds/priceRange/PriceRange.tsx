@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import InputField from '../InputField/InputField';
 
 const valuetext = (value: number) => {
-  return `${value}tk`;
+  return `${value}৳`;
 };
 
 type onChange = {
@@ -16,6 +16,9 @@ type onChange = {
 type RangeSliderFieldProps = SliderProps & {
   label: string;
   minDistance?: number;
+  data?: {
+    [key: string]: any;
+  };
   value?: number[];
   onChange: (props: onChange) => void;
 };
@@ -27,19 +30,17 @@ const PriceRange: React.FC<RangeSliderFieldProps> = ({
   value = [],
   min = 0,
   max = 1000,
+  data,
   minDistance = 1500,
 }) => {
 
   const [sliderValue, setSliderValue] = useState<number[]>(value.map(Number));
-  // console.log(sliderValue);
-  
+
   const handleChange = useCallback(
     (event: Event, newValue: number | number[], activeThumb: number) => {
       if (!Array.isArray(newValue)) {
         return;
       }
-      console.log(newValue);
-      
       if (newValue[1] - newValue[0] < minDistance) {
         if (activeThumb === 0) {
           const clamped = Math.min(newValue[0], max - minDistance);
@@ -62,28 +63,24 @@ const PriceRange: React.FC<RangeSliderFieldProps> = ({
     if (event.target.name === 'min') {
       onChange({ target: { name, value: [+event.target.value, sliderValue[1]] } });
     }
-  };
+   };
 
   useEffect(() => {
-    if(value.length === 0){
-      setSliderValue([min,max]);
-    }else{
-      setSliderValue(value);
-    }
-  }, [value[0],value[1]]);
+    setSliderValue(data?.price);
+  }, [data]);
 
-  if (value) {
     return (
       <div>
-        <div className='rangeSlier-header'>
-          <p className='rangeSlider-header__label'>{label || 'Range Slider'}</p>
-          <p className='rangeSlider-header__value'>
-            {value[0]}&#2547; - {value[1]}&#2547;
-          </p>
+        <div className='priceRangeHeader'>
+          <p>{label}</p>
+          {
+            value?.length === 0 ?  <p>{min}&#2547; - {max}&#2547;</p> : <p>{value[0]}&#2547; - {value[1]}&#2547;</p> 
+          }
         </div>
+        <div className="priceRangeMainSlider">
         <Slider
           name={name}
-          value={sliderValue.map(i=>Number(i))}
+          value={sliderValue ? sliderValue.map((i)=>Number(i)): [min,max]}
           valueLabelFormat={valuetext}
           onChange={handleChange}
           valueLabelDisplay='auto'
@@ -92,11 +89,13 @@ const PriceRange: React.FC<RangeSliderFieldProps> = ({
           step={100}
           onChangeCommitted={() => onChange({ target: { name: name || '', value: sliderValue } })}
         />
-      
+        </div>
+
+       
       </div>
     );
-  }
-  return <CircularProgress />;
+
+  // return <CircularProgress />;
 };
 
 export default React.memo(PriceRange);
