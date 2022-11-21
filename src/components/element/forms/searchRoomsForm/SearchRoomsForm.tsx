@@ -19,7 +19,7 @@ const initialState = {
   departureDate: Date.now() + oneDayMs,
   adults: 1,
   children: 0,
-  babies: 0,
+  babies: 0, 
 };
 
 const SearchRoomsForm = () => {
@@ -31,9 +31,8 @@ const SearchRoomsForm = () => {
     const handleSubmit = (event: React.FormEvent<HTMLButtonElement>) => {
       event.preventDefault();
       if (validate(data)) {
-        const queryParams = queryString.stringify(data);
+        const queryParams = queryString.stringify(data);        
         Router.push(`/rooms?${queryParams}`);
-        
       }
     };
  

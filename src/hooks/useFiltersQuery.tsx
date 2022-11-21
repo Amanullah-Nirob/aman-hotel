@@ -2,13 +2,17 @@ import qs from 'query-string';
 import { useCallback, useMemo } from 'react';
 import omit from 'lodash.omit';
 import { useRouter } from 'next/router';
+import { useClientRouter } from "use-client-router";
+import { NextRouter } from 'next/router';
 
-
+export function isRouterReady(router: NextRouter) {
+  return router.asPath !== router.route;
+}
 const useFiltersQuery = () => {
-  const router=useRouter()
-  const searchQuery=router.query
+  const router= useClientRouter()
+  const searchQuery= router.asPath.slice(7)
 
-  const searchFilters = useMemo(() => searchQuery,[searchQuery]);
+  const searchFilters = useMemo(() => qs.parse(searchQuery, { parseNumbers: true, parseBooleans: true }), [searchQuery]);
 
   const setSearchQuery = useCallback(
     (filter: Record<string, any>) => {
@@ -20,7 +24,7 @@ const useFiltersQuery = () => {
 
   const clearFilter = useCallback(
     ({ target }:any) => {
-      const { name } = target; 
+      const { name } = target;  
       const newFilter = omit(searchFilters, name);
       setSearchQuery(newFilter);
     },

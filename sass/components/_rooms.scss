@@ -42,3 +42,49 @@
     }
 }
 
+.priceRangeMainArea {
+    margin: 0px 15px 0 0;
+    .priceRangeHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        span {
+            font-size: 13px;
+            margin-top: 0px;
+        }
+        h3 {
+            margin: 0;
+            font-size: 19px;
+        }
+    }
+}
+
+.filterDate{
+    margin-right: 20px;
+    .dateOfStay {
+        .MuiFormControl-root{
+            width: 100%;
+        }
+        &.Check_in {
+            margin-bottom: 15px;
+        }
+        p {
+            margin: 0;
+        }
+    }
+}
+.guest_count{
+    .guestMain {
+        display: flex;
+        justify-content: space-between;
+        span{
+           small{
+            display: none;
+           }
+        }
+    }
+    .guestTitle{
+        margin: 0;
+        margin-bottom: 5px;
+    }
+}

@@ -9,12 +9,13 @@ type InputTypes = {
   value?: string;
   error?: any | null;
   autoFocus?: boolean;
+  btnvariant?:string;
 } & MuiTextFieldProps;
 
-const InputField: React.FC<InputTypes> = ({ label, type = 'text', name, value, onChange, error = null, ...rest }) => {
+const InputField: React.FC<InputTypes> = ({ label, type = 'text', name, value, onChange, btnvariant='outlined', error = null, ...rest }) => {
   return (
     <TextField
-      variant='outlined'
+      variant={btnvariant}
       label={label}
       name={name}
       value={value}
@@ -25,6 +26,6 @@ const InputField: React.FC<InputTypes> = ({ label, type = 'text', name, value, o
       {...(error && { error: true, helperText: error })}
     />
   );
-};
+}; 
 
 export default React.memo(InputField);

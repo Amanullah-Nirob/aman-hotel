@@ -24,7 +24,7 @@ const DateOfStay: React.FC<DateOfStayProps> = ({ onChange, data, errors }) => {
         <DatePickerField
           label='Check-in'
           name='arrivalDate'
-          minDate={Date.now()}
+          minDate={Date.now()} 
           onChange={onChange}
           error={errors?.arrivalDate && errors?.arrivalDate}
           value={+arrivalDate}

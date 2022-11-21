@@ -44,7 +44,7 @@ const DatePickerField: React.FC<DatePickerFieldProps> = ({ label, name, value, m
           sx: popperSx
         }}
         renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => <TextField 
-          variant={btnvariant || "outlined"}
+          variant={btnvariant || "standard"}
          {...params} {...(error && { error: true, helperText: error })} 
          />}
       />

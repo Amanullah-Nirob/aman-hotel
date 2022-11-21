@@ -18,11 +18,11 @@ export const roomApi=createApi({
     }),
     tagTypes: ["Room"], 
     endpoints:(builder)=>({
-        roomGetByFiltered: builder.query<[], any>({
+        roomGetByFiltered: builder.query<[], any>({ 
             query: (arg) => {
                 return {
                   url: '/',
-                  params: { ...arg},
+                  params: {...arg}, 
                 };
             },
             providesTags: ["Room"],

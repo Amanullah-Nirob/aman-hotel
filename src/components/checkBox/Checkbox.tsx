@@ -21,7 +21,7 @@ type CheckboxTypes = {
   filtereddatalength?:any
 };
 
-const Checkbox: React.FC<CheckboxTypes> = ({ label, name, value, onChange, filtereddatalength,...rest }) => {
+const Checkbox: React.FC<CheckboxTypes> = ({ label, name,value, onChange, filtereddatalength,...rest }) => {
   const theme=useAppSelector(selectTheme)
   const convertToDefEventParam = (name: string, value: boolean) => ({ 
     target: { 
@@ -29,8 +29,11 @@ const Checkbox: React.FC<CheckboxTypes> = ({ label, name, value, onChange, filte
       value,
     },
   });
-  const filterDataLength=filtereddatalength?.filter((filterData:any)=>filterData.comforts.includes(name)).length
 
+ const filterDataLength=filtereddatalength?.filter((filter:any)=>filter.includes(name)).length
+
+ 
+  
   return (
     <FormControlLabel sx={{width:'100%',marginLeft:'0',marginRight:'0',marginBottom:'5px','.MuiTypography-root':{width:'100%'}}} control={
     <MuiCheckBox 

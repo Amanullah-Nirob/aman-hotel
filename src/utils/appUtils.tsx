@@ -50,4 +50,28 @@ export  const setPageSizeOptions = [
     { name: '12', value: 12 },
     { name: '18', value: 18 }, 
     { name: '24', value: 24 },
-  ];
+];
+
+
+const oneDayMs = 86000000;
+
+export const initialState = {
+  arrivalDate: Date.now(),
+  departureDate: Date.now() + oneDayMs,
+  adults: 1,
+  children: 0,
+  babies: 0,
+  price: [0, 15000],
+  hasConditioner: false,
+  hasWifi: false,
+  hasWashingMachine: false,
+  hasKitchen: false,
+  hasWorkSpace: false,
+  guestAllow: false,
+  smokingAllow: false,
+  animalAllow: false,
+  standard: false,
+  moderate: false,
+  deluxe: false,
+  suite: false,
+};

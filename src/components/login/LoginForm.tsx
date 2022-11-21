@@ -44,7 +44,7 @@ const LoginForm = () => {
         <>
              <Form data={data} errors={errors} handleChange={handleInputChange}>
              <InputField name='email' label='Email' autoFocus />
-             <InputFieldWithPassword name='password' label='password' type='password' />
+             <InputFieldWithPassword name='password' label='password' type='password'/>
              <Button  variant="contained" sx={{marginY:'auto'}} onClick={handleSubmit} fullWidth type='submit'>login</Button>
              </Form>
         </>

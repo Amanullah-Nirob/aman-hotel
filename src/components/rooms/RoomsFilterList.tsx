@@ -7,7 +7,6 @@ type RoomsFiltersListProps = {
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     data: { [key: string]: any };
     children: React.ReactNode;
-    filteredData:[]
 };
 type FilterItemProps = {
     name: string;
@@ -26,7 +25,7 @@ type FilterItemProps = {
 };
 
 
-const RoomsFilterList: React.FC<RoomsFiltersListProps>  = ({ handleChange, data, children,filteredData }) => {
+const RoomsFilterList: React.FC<RoomsFiltersListProps>  = ({ handleChange, data, children }) => {
      const theme=useAppSelector(selectTheme)
     const clonedElements = React.Children.map(children, child => {
         const item = child as ReactElement<PropsWithChildren<FilterItemProps>>;
@@ -41,7 +40,6 @@ const RoomsFilterList: React.FC<RoomsFiltersListProps>  = ({ handleChange, data,
           config = {
             ...item.props,
             data,
-            filteredData:filteredData,
             onChange: handleChange,
             value: data[item.props.name],
           };
