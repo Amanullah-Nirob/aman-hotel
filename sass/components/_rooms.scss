@@ -1,6 +1,17 @@
 .rooms_area_main {
     height: 100vh;
     .rooms_all_content {
+
+        .roomMainAllContent{
+            .roomMainContentHeader {
+                border-bottom: 0.1rem solid;
+                display: flex;
+                justify-content: end;
+            }
+        }
+
+
+
         .roomFilters{
             form.filters_form {
                 border-right: 1px solid;
@@ -31,11 +42,12 @@
             }
             .filterTitle{
                 border-bottom: 0.1rem solid;
-                padding-bottom: 7px;
+                padding-bottom: 18px;
                 p{
                     color: rgb(135, 135, 135);
                     margin: 0;
                     font-size: 15px;
+                    margin-top: 8px;
                 }
             }
         }

@@ -1,4 +1,22 @@
-
+export type RoomType = {
+  _id: string;
+  roomNumber: number | string;
+  countReviews?: number;
+  rate?: number;
+  images?: Array<string>;
+  price: number;
+  type?: 'standard' | 'moderate' | 'deluxe'| 'suite';
+  comforts?: Array<string>;
+  bookings?: Array<string> | null;
+  hasConditioner: boolean,
+  hasWifi: boolean,
+  hasWashingMachine: boolean,
+  hasKitchen: boolean,
+  hasWorkSpace: boolean,
+  guestAllow: boolean,
+  smokingAllow: boolean,
+  animalAllow: boolean,
+};
 export type BookingType = {
   _id?: string;
   adults: number;

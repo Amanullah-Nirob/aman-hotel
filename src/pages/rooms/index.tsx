@@ -14,6 +14,12 @@ import Head from 'next/head';
 import BreadCrumb from '../../components/element/BreadCrumb';
 import { useAppSelector } from '../../app/hooks';
 import { selectTheme } from '../../app/slices/theme/ThemeSlice';
+import RoomSearch from '../../components/rooms/roomsMainContent/roomMainContentHeader/RoomSearch';
+import RoomSort from '../../components/rooms/roomsMainContent/roomMainContentHeader/RoomSort';
+import RoomDisplayShow from '../../components/rooms/roomsMainContent/roomMainContentHeader/RoomDisplayShow';
+import RoomContent from '../../components/rooms/roomsMainContent/RoomContent';
+import RoomsListSkeleton from '../../components/rooms/roomsMainContent/roomList/skeleton/RoomsListSkeleton';
+
 
 
 
@@ -27,10 +33,20 @@ const RoomsMain = () => {
     itemsListCrop: roomListSliceByPagination, currentPage,pageSize,handleChangePage, handleChangePageSize,
   } = usePagination(sortedItems || [], setPageSizeOptions[1].value);
 
+  
   const breadCrumb = [
     {text:'Home',url: '/'},
     {text: 'Rooms'}
   ];
+
+  const handleSort = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setSortBy(JSON.parse(event.target.value));
+      handleChangePage(event, 1); 
+    },
+    [handleChangePage, setSortBy]
+  );
+
 
     return (
       <>
@@ -45,10 +61,18 @@ const RoomsMain = () => {
             <Grid item xl={2} lg={2.5} md={3} sm={4} xs={12}>
               <RoomFilters filteredData={filteredData}></RoomFilters>
             </Grid>
-            <Grid item xl={10} lg={9.5} md={9} sm={8} xs={12} sx={{padding:'20px',backgroundColor:'green'}}>
-             {data?.map((singleData:any)=> <ul key={singleData._id}>
-              <li>{singleData.price}</li>
-             </ul>)}
+            <Grid item xl={10} lg={9.5} md={9} sm={8} xs={12}>
+             <div className='roomMainAllContent'>
+              <div className="roomMainContentHeader" style={{borderColor:theme==='light'?'rgb(233, 226, 226)':'rgb(68, 66, 66)'}}>
+              <RoomSearch searchTerm={searchTerm} handleChangeSearch={handleChangeSearch}></RoomSearch>
+                <RoomSort sortBy={sortBy} onSort={handleSort}></RoomSort>
+                <RoomDisplayShow count={pageSize} setCount={handleChangePageSize} options={setPageSizeOptions} ></RoomDisplayShow>
+              </div>
+              <div className="roomMainContent">
+              {isLoading ? <RoomsListSkeleton pageSize={pageSize} /> : <RoomContent rooms={roomListSliceByPagination.slice(0,1) as any}  />}
+               
+              </div>
+             </div>
             </Grid>
           </Grid>
          </Box> 

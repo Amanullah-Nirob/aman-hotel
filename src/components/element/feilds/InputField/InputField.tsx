@@ -10,9 +10,10 @@ type InputTypes = {
   error?: any | null;
   autoFocus?: boolean;
   btnvariant?:string;
+  inputsize?:'medium' | 'small'  | string
 } & MuiTextFieldProps;
 
-const InputField: React.FC<InputTypes> = ({ label, type = 'text', name, value, onChange, btnvariant='outlined', error = null, ...rest }) => {
+const InputField: React.FC<InputTypes> = ({ label, type = 'text', name, value, onChange, btnvariant='outlined', inputsize='medium',error = null, ...rest }) => {
   return (
     <TextField
       variant={btnvariant}
@@ -22,6 +23,7 @@ const InputField: React.FC<InputTypes> = ({ label, type = 'text', name, value, o
       onChange={onChange}
       type={type}
       required
+      size={inputsize}
       {...rest}
       {...(error && { error: true, helperText: error })}
     />
