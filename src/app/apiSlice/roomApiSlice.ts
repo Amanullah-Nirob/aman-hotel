@@ -27,6 +27,10 @@ export const roomApi=createApi({
             },
             providesTags: ["Room"],
         }),
+        roomGetById: builder.query<[], any>({ 
+            query: (roomId)=>`/${roomId}`,
+            providesTags: ["Room"],
+        }),
     }),
  
 
@@ -34,5 +38,6 @@ export const roomApi=createApi({
 
 export const {
     useRoomGetByFilteredQuery,
+    useRoomGetByIdQuery,
 } = roomApi;
   

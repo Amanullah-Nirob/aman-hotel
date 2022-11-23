@@ -2,6 +2,7 @@ import { useMediaQuery } from "@mui/material";
 import declOfNum from "./declOfNum";
 import { useEffect, useState } from 'react';
 
+
 export const guestsLabelGet = (adults: number, children: number, babies: number) => {
     const guests = [Number(adults), Number(children), Number(babies)];
     const countGuests = guests.reduce((acc, cur) => acc + cur, 0);

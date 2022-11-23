@@ -1,0 +1,38 @@
+.roomSingle_main_area{
+    .single_Room_All_Content {
+       .single_room_info{
+        h1{
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        .room_price{
+            margin: 0;
+            margin-bottom: 8px;
+            font-size: 16px;
+            span{
+                color: rgb(92, 152, 242);
+            }
+        }
+        .room_facilities_conditions{
+            h3{
+                margin: 0;
+                margin-bottom: 10px;
+            }
+            .facilities_main{
+                margin-bottom: 8px;
+                &:last-child{
+                    margin-bottom: 0;
+                }
+                .facilities_info_icon{
+                    display: flex;   
+                    p{
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+     
+       
+       }
+    }
+}

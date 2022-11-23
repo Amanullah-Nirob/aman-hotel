@@ -69,7 +69,7 @@ const RoomsMain = () => {
                 <RoomDisplayShow count={pageSize} setCount={handleChangePageSize} options={setPageSizeOptions} ></RoomDisplayShow>
               </div>
               <div className="roomMainContent">
-              {isLoading ? <RoomsListSkeleton pageSize={pageSize} /> : <RoomContent rooms={roomListSliceByPagination.slice(0,1) as any}  />}
+              {isLoading ? <RoomsListSkeleton pageSize={pageSize} /> : <RoomContent rooms={roomListSliceByPagination as any}  />}
                
               </div>
              </div>

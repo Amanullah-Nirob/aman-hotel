@@ -12,7 +12,7 @@ const defaultSettings = {
   slidesToScroll: 1,
 };
 
-function NextButton({ onClick }: CustomArrowProps) {
+export function NextButton({ onClick }: CustomArrowProps) {
   return (
     <button className='slick-arrow slick-arrow--next' onClick={onClick}>
       <ChevronRightIcon />
@@ -20,7 +20,7 @@ function NextButton({ onClick }: CustomArrowProps) {
   );
 }
 
-function PrevButton({ onClick }: CustomArrowProps) {
+export function PrevButton({ onClick }: CustomArrowProps) {
   return (
     <button className='slick-arrow slick-arrow--before' onClick={onClick}>
       <ChevronLeftIcon />

@@ -1,6 +1,6 @@
 .slick-list,.slick-slider,.slick-track{
   position:relative;
-  display:block
+  display:block;
 }
 .slick-loading .slick-slide,.slick-loading .slick-track{
   visibility:hidden
@@ -45,7 +45,8 @@
   content:''
 }
 .slick-track:after{
-  clear:both
+  clear:both;
+  height: auto !important;
 }
 .slick-slide{
   display:none;
