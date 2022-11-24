@@ -1,0 +1,33 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+    li{
+        margin-right: 10px;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        &.active{
+            background-color: rgb(92, 152, 242);
+            color: #fff;
+        }
+        a{
+            width: 29px;
+            display: block;
+            height: 28px;
+            padding: 2px 9px;
+        }
+        &.previous{
+            a{
+                width: 43px;
+                height: 28px;
+                padding: 4px 10px;
+            }
+        }
+        &.next{
+            a{
+                width: 43px;
+                height: 28px;
+                padding: 4px 11px;
+            }
+        }
+    }
+}

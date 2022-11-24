@@ -20,6 +20,7 @@ import SwitchToggle from '../element/SwitchToggle';
 import { Container, useMediaQuery } from '@mui/material';
 import { dmFont, dmSansFont } from '../../utils/nextFont';
 import { useRouter } from 'next/router';
+import Search from '../search/Search';
 
 
 // intenal imports
@@ -140,7 +141,9 @@ const Header = (props: Props) => {
                     </Button>
                   ))}
                 </Box>
-
+                <Box>
+                  <Search></Search>
+                </Box>
             {/* login btn dark switch*/}
                 <Box sx={{display: { xs: 'none', sm: 'flex'}}}>
                 <SwitchToggle></SwitchToggle>

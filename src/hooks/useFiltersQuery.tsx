@@ -1,7 +1,6 @@
 import qs from 'query-string';
 import { useCallback, useMemo } from 'react';
 import omit from 'lodash.omit';
-import { useRouter } from 'next/router';
 import { useClientRouter } from "use-client-router";
 import { NextRouter } from 'next/router';
 
@@ -39,7 +38,7 @@ const useFiltersQuery = () => {
         const newFilter = { ...searchFilters, [name]: value };
         return clearFilter({ target });
       }
-      const newFilter = { ...searchFilters, [name]: value };
+      const newFilter = { ...searchFilters, [name]: value,['page']:1 };
       return setSearchQuery(newFilter);
     },
 
@@ -49,7 +48,7 @@ const useFiltersQuery = () => {
     router.replace({});
   }, [router]);
 
-  return { searchFilters, handleChangeFilter, handleResetSearchFilters };
+  return { searchFilters, handleChangeFilter, handleResetSearchFilters,setSearchQuery };
 };
 
 export default useFiltersQuery;
