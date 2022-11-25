@@ -14,16 +14,17 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
+import { Container, useMediaQuery } from '@mui/material';
+import { useRouter } from 'next/router';
+// intenal imports
 import { useAppSelector } from '../../app/hooks';
 import { selectTheme } from '../../app/slices/theme/ThemeSlice';
 import SwitchToggle from '../element/SwitchToggle';
-import { Container, useMediaQuery } from '@mui/material';
 import { dmFont, dmSansFont } from '../../utils/nextFont';
-import { useRouter } from 'next/router';
 import Search from '../search/Search';
+import SearchIcon from '@mui/icons-material/Search';
 
 
-// intenal imports
 
 
 interface Props {
@@ -44,7 +45,7 @@ const Header = (props: Props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const router=useRouter()
-  const isRoomOpen=router.pathname==='/rooms'
+  const isRoomSearchOpen=router.pathname==='/'
 
   
   const handleDrawerToggle = () => {
@@ -77,7 +78,7 @@ const Header = (props: Props) => {
   const container = window !== undefined ? () => window().document.body : undefined;
   const mediaTab=useMediaQuery('(max-width:768px)')
     return (
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex' }} className='header'>
       <AppBar component="nav" 
           sx={{
           backgroundColor:theme==='light'?'transparent':'#000',
@@ -108,6 +109,13 @@ const Header = (props: Props) => {
             
           {/* mobile menu icon */}
           <Box sx={{display: { sm: 'none',xs:'flex' }, }}>
+          <IconButton
+                color="inherit"
+                edge="start"
+                sx={{ ml: 1, display: { sm: 'none' } }}
+            >
+            <SearchIcon/>
+            </IconButton>
            <SwitchToggle></SwitchToggle>
               <IconButton
                 color="inherit"
@@ -141,7 +149,7 @@ const Header = (props: Props) => {
                     </Button>
                   ))}
                 </Box>
-                <Box>
+                <Box sx={{display:!isRoomSearchOpen?{md:'block',xs:'none'}:'none'}}>
                   <Search></Search>
                 </Box>
             {/* login btn dark switch*/}
@@ -154,7 +162,6 @@ const Header = (props: Props) => {
                   backgroundColor:'#5c98f2',
                   borderRadius:'10px',
                   fontSize:'14px',
-
                   marginLeft: '12px'
                   }}
                 >

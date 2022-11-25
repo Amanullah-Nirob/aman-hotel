@@ -5,6 +5,9 @@ import { useDebounce } from '../../utils/appUtils';
 import CircularProgress from '@mui/material/CircularProgress';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchView from './SearchView';
+import SearchIcon from '@mui/icons-material/Search';
+import { Box } from '@mui/material';
+
 
 const Search = () => {
     const inputEl = useRef(null);
@@ -25,13 +28,13 @@ const Search = () => {
                     fetch(`${process.env.NEXT_PUBLIC_APIURL}/api/room/search?search=${keyword}`)
                     .then(res=>res.json())
                     .then(data=>{
-                        if(data){
-                            console.log(data);
-                            
-                            setLoading(false);
+                        if(data){       
+                           setLoading(false);
                             setSearchResult(data);
                             setIsSearch(true);
                         }
+                    }).catch((error)=>{
+                        console.log(error);
                     })   
                 } else {
                     setIsSearch(false);
@@ -65,7 +68,7 @@ const Search = () => {
              key={room._id} />
         ));
     } else {
-        roomsItemsView = <p>No User found.</p>;
+        roomsItemsView = <p>Room Not Found</p>;
     }
     if (keyword !== '') {
         clearTextView = (
@@ -81,33 +84,48 @@ const Search = () => {
       </span>
   );
 }
+const handleBlur=()=>{
+    setIsSearch(false);
+}
+const handleFocus=()=>{
+    if(searchResult && searchResult.length > 0){
+        setIsSearch(true);
+    }
+}
+
 
     return (
-        <div>
+        <Box className='searchRoom' sx={{width:{lg:'37vh'}}}>
         <form className="search-area-main">
-            <div className="search-input">    
+            <div className="search-input">  
+            <div className="searchIcon">
+            <SearchIcon />
+            </div>  
             <input
                     ref={inputEl}
                     type="text"
                     value={keyword}
-                    placeholder='Search room number' style={{backgroundColor:theme==='light'?'#fff':'rgb(56 56 56 / 64%)',color:theme==='light'?'#000':'#fff',borderColor:theme==='light'?'#f5f5f6':'#333'}}
+                    placeholder='Search room number' style={{backgroundColor:theme==='light'?'#fff':'rgb(56 56 56 / 64%)',color:theme==='light'?'#000':'#fff',borderColor:theme==='light'?'rgb(228 228 231)':'#333'}}
                     onChange={(e) => setKeyword(e.target.value)}
+                    onBlur={handleBlur}
+                    onFocus={handleFocus}
                 />
                 {clearTextView}
                 {loadingView}
             </div>
 
-            <div className={`search-result${ isSearch ? ' active ' : ''}`}
+            <div className={`search-result${isSearch ? ' active ' : ''}`}
              style={{
              backgroundColor:theme==='light'?'#fff':'#242526',
              boxShadow:theme==='light'?'rgb(0 0 0 / 16%) 1px 5px 9px':'rgb(0 0 0 / 16%) 1px 5px 9pxx'
              }}>
-
-                <div className="userListMain">{roomsItemsView}</div>
+                <div className="roomListMain">
+                    {roomsItemsView}
+                </div>
 
             </div>
         </form>
-        </div>
+        </Box>
     );
 };
 
