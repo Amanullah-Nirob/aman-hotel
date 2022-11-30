@@ -2,7 +2,7 @@ import { useMediaQuery } from "@mui/material";
 import declOfNum from "./declOfNum";
 import { useEffect, useState } from 'react';
 
-
+// guestsLabelGet
 export const guestsLabelGet = (adults: number, children: number, babies: number) => {
     const guests = [Number(adults), Number(children), Number(babies)];
     const countGuests = guests.reduce((acc, cur) => acc + cur, 0);
@@ -32,7 +32,7 @@ export const guestsLabelGet = (adults: number, children: number, babies: number)
         </>
     )
 };
-
+// useDebounce hook
 export function useDebounce(value:string, delay:number) {
   const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
@@ -48,12 +48,30 @@ export function useDebounce(value:string, delay:number) {
 
   return debouncedValue;
 }
-
+// memoize
+export const memoize = (func:Function) => {
+    const cachedResults:any = {};
+    return (...args:any) => {
+      const argsKey = JSON.stringify(args);
+      // Retrieve result from cache if present, else calculate
+      const result = cachedResults[argsKey] || func(...args);
+      // If result isn't saved in cache, save it for later use
+      if (!cachedResults[argsKey]) cachedResults[argsKey] = result;
+      return result;
+    };
+  };
+  
+  
+// Truncate a sentence/string
+export const truncateString = memoize((str:string, limit:number, index:number) => {
+    if (!str || !limit || !index) return "";
+    return str.length > limit ? `${str.substring(0, index)}...` : str;
+});
   
 
 
+// initialState url
 const oneDayMs = 86000000;
-
 export const initialState = {
   arrivalDate: Date.now(),
   departureDate: Date.now() + oneDayMs,

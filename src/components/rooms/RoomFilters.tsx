@@ -58,7 +58,7 @@ const RoomFilters = ({filteredData}:any) => {
             <CheckBoxList title='Room Type' filteredData={roomsTypeFilter}>
                 <Checkbox label='Standard' name='standard'/>
                 <Checkbox label='Moderate' name='moderate'/>
-                <Checkbox label='Deluxe' name='deluxe'/>
+                <Checkbox label='Deluxe' name='fancy'/>
                 <Checkbox label='Suite' name='suite'/>
             </CheckBoxList>
             {/* price range */}

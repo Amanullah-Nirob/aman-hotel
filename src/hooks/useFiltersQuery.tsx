@@ -2,11 +2,7 @@ import qs from 'query-string';
 import { useCallback, useMemo } from 'react';
 import omit from 'lodash.omit';
 import { useClientRouter } from "use-client-router";
-import { NextRouter } from 'next/router';
 
-export function isRouterReady(router: NextRouter) {
-  return router.asPath !== router.route;
-}
 const useFiltersQuery = () => {
   const router= useClientRouter()
   const searchQuery= router.asPath.slice(7)

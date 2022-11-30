@@ -22,10 +22,8 @@ const Search = () => {
         useEffect(() => {
             if (debouncedSearchTerm) {
                 setLoading(true);
-                if (keyword) {
-                    console.log(keyword);
-                    
-                    fetch(`${process.env.NEXT_PUBLIC_APIURL}/api/room/search?search=${keyword}`)
+                if (keyword) {             
+                   fetch(`${process.env.NEXT_PUBLIC_APIURL}/room/search?search=${keyword}`)
                     .then(res=>res.json())
                     .then(data=>{
                         if(data){       

@@ -39,7 +39,6 @@ const navItems = [
 ];
 
 
-
 const Header = (props: Props) => {
   const theme=useAppSelector(selectTheme)
   const { window } = props;

@@ -1,7 +1,6 @@
 import React, { useCallback, } from 'react';
 import {Container,Button, Box} from '@mui/material'
 import useFiltersQuery from '../../hooks/useFiltersQuery';
-import { useRoomGetByFilteredQuery } from '../../app/apiSlice/roomApiSlice';
 import useSort from '../../hooks/useSort';
 import {Grid} from '@mui/material'
 import RoomFilters from '../../components/rooms/RoomFilters';
@@ -16,27 +15,25 @@ import RoomsListSkeleton from '../../components/rooms/roomsMainContent/roomList/
 import ReactPaginate from 'react-paginate';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
+import RoomServices from '../../services/RoomServices';
 
 export const setPageSizeOptions = [
-  { name: '9', value: 9 },
   { name: '12', value: 12 },
+  { name: '15', value: 15 },
   { name: '18', value: 18 }, 
   { name: '24', value: 24 },
 ];
 
-
-const RoomsMain = () => {
+const RoomsMain= ({data}:any)=> {
   const theme=useAppSelector(selectTheme)
   const { searchFilters, handleResetSearchFilters,setSearchQuery } = useFiltersQuery();
-  const { data, error, isLoading,isError }:any = useRoomGetByFilteredQuery(searchFilters); 
   const { sortedItems, sortBy, setSortBy } = useSort(data?.data || [], { path: 'roomNumber', order: 'desc' } as any);
 
   const breadCrumb = [
     {text:'Home',url: '/'},
     {text: 'Rooms'}
   ];
-
-
 
   const handlePageChange = ({ selected,pageLimit }: { selected: number,pageLimit?:number }) => {
     const currentPage = selected + 1;
@@ -53,7 +50,6 @@ const RoomsMain = () => {
   const handleSort = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setSortBy(JSON.parse(event.target.value));
-      handlePageChange({selected: 1}); 
     },
     [setSortBy]
   );
@@ -79,8 +75,8 @@ const RoomsMain = () => {
                 <RoomDisplayShow count={data?.pageSize || setPageSizeOptions[0].value } setCount={handlePageSizeChange} options={setPageSizeOptions} ></RoomDisplayShow>
               </div>
               <div className="roomMainContent">
-              {isLoading ? <RoomsListSkeleton pageSize={12} /> : <RoomContent rooms={sortedItems as any}  />}
-              </div>
+              {sortedItems.length===0 ? <RoomsListSkeleton pageSize={data.pageSize} /> : <RoomContent rooms={sortedItems as any}  />}
+              </div> 
 
               <div className="room_pagination">
               <ReactPaginate
@@ -105,5 +101,15 @@ const RoomsMain = () => {
 
     );
 };
+
+
+export async function getServerSideProps({query }: GetServerSidePropsContext): Promise<GetServerSidePropsResult<{}>> { 
+  const rooms = await RoomServices.getRooms(query);
+  return {
+    props: {
+      data:rooms
+    }
+  }
+}
 
 export default RoomsMain; 

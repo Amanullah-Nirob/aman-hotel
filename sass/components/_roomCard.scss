@@ -1,5 +1,4 @@
 .roomCard{
-    padding: 15px 13px;
     margin: 12px;
     .imageSlider{
         position: relative;
@@ -15,6 +14,7 @@
             outline: none;
         }
         .roomType {
+            display: none;
             position: absolute;
             bottom: 15px;
             left: 13px;
@@ -29,11 +29,22 @@
         
     }
     .roomDetails_area{
-        margin-top: 10px;
+        padding: 3px 12px 19px;
         .roomDetailsTop {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
+            p{  
+                color: rgb(92, 152, 242);
+                font-size: 14px;
+            }
+        }
+        .roomDetailsInfo{
+            h3{
+                margin: 0;
+                text-transform: capitalize;
+                margin-bottom: 3px;
+            }
+            p{
+                color: #41ddb8;
+            }
         }
     }
  

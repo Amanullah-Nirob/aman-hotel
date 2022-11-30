@@ -1,6 +1,8 @@
 export type RoomType = {
   _id: string;
   roomNumber: number | string;
+  title: string;
+  description: string;
   countReviews?: number;
   rate?: number;
   images?: Array<string>;

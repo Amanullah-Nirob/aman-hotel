@@ -4,7 +4,7 @@ import { RootState } from "../store";
 export const roomApi=createApi({
     reducerPath: "roomApi",
     baseQuery:fetchBaseQuery({
-        baseUrl:`${process.env.NEXT_PUBLIC_APIURL}/api/room`,
+        baseUrl:`${process.env.NEXT_PUBLIC_APIURL}/room`,
         prepareHeaders:(headers,{getState})=>{
         // By default, if we have a token in the store, let's use that for authenticated requests
         // const token = (getState() as RootState).auth?.loggedInUser?.token;
