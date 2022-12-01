@@ -69,7 +69,7 @@ const SingleRoomInfo = ({data}:any) => {
        <Paper variant="outlined" className='roomFacilities'>
          <div className='facilitiesTitle'>
             <h1 className={dmSansFont.className}>Facilities</h1>
-            <p>About the spaces's facilities and services</p>
+            <p>About the room facilities and services</p>
             <Divider sx={{width:'130px'}} />
          </div>
          <div className="roomFacilitiesMain">
