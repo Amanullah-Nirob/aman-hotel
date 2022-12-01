@@ -2,6 +2,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import { persistReducer,FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER,} from "redux-persist";
+import storageSession from 'redux-persist/lib/storage/session'
 
 // internal imports
 import storage from "./sync-storage";
@@ -10,6 +11,7 @@ import { userApi } from "./apiSlice/useApiSlice";
 import { roomApi } from "./apiSlice/roomApiSlice";
 import authSliceReducer from './slices/auth/authSlice'
 import toastReducer from './slices/ToastSlice'
+import roomSearchReducer from './slices/roomSearch/RoomSearch'
 
 const persistConfig = {
     key: "root",
@@ -17,11 +19,13 @@ const persistConfig = {
     storage,
     whitelist: ["theme"],
 }; 
+const roomSearchPersistConfig = { key: 'room', version: 1, storage:storageSession };
 
 const rootReducer = combineReducers({
   [userApi.reducerPath]: userApi.reducer,
   [roomApi.reducerPath]: roomApi.reducer,
   theme:themReducer,
+  roomSearch:persistReducer(roomSearchPersistConfig,roomSearchReducer),
   auth:authSliceReducer,
   ToastData:toastReducer,
 

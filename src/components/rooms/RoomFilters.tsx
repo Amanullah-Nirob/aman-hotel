@@ -21,7 +21,7 @@ const RoomFilters = ({filteredData}:any) => {
     const conditionFilter=filteredData?.map((filter:any)=>filter.conditions)
     const roomsTypeFilter=filteredData?.map((filter:any)=>filter.type)
     const data = { ...initialState, ...searchFilters };
-    
+     
     return (
         <div className='roomFilters'>
            <div className="filterTitle" style={{borderColor:theme==='light'?'rgb(233, 226, 226)':'rgb(68, 66, 66)'}}>

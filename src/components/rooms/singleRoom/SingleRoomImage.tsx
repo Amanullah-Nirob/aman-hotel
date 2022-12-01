@@ -5,7 +5,7 @@ import ImageNext from '../../element/nextImage/ImageNext';
 const SingleRoomImage = ({images}:any) => {
 
     return (
-        <div className='singleRoomImage'>
+        <div className='singleRoomImage' style={{marginBottom:'25px'}}>
           <Grid container spacing={1}>
             <Grid item sm={6} xs={8}>
              <Box sx={{position:'relative',width:'100%',height:{lg:'470px',md:'430px',sm:'310px',xs:'270px'}}}>

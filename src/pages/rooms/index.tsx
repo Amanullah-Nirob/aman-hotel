@@ -1,4 +1,4 @@
-import React, { useCallback, } from 'react';
+import React, { useCallback, useEffect, } from 'react';
 import {Container,Button, Box} from '@mui/material'
 import useFiltersQuery from '../../hooks/useFiltersQuery';
 import useSort from '../../hooks/useSort';
@@ -6,7 +6,7 @@ import {Grid} from '@mui/material'
 import RoomFilters from '../../components/rooms/RoomFilters';
 import Head from 'next/head';
 import BreadCrumb from '../../components/element/BreadCrumb';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectTheme } from '../../app/slices/theme/ThemeSlice';
 import RoomSort from '../../components/rooms/roomsMainContent/roomMainContentHeader/RoomSort';
 import RoomDisplayShow from '../../components/rooms/roomsMainContent/roomMainContentHeader/RoomDisplayShow';
@@ -17,6 +17,7 @@ import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutl
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import RoomServices from '../../services/RoomServices';
+import { setRoomSearchQuery } from '../../app/slices/roomSearch/RoomSearch';
 
 export const setPageSizeOptions = [
   { name: '12', value: 12 },
@@ -29,7 +30,7 @@ const RoomsMain= ({data}:any)=> {
   const theme=useAppSelector(selectTheme)
   const { searchFilters, handleResetSearchFilters,setSearchQuery } = useFiltersQuery();
   const { sortedItems, sortBy, setSortBy } = useSort(data?.data || [], { path: 'roomNumber', order: 'desc' } as any);
-
+  const dispatch=useAppDispatch()
   const breadCrumb = [
     {text:'Home',url: '/'},
     {text: 'Rooms'}
@@ -53,7 +54,10 @@ const RoomsMain= ({data}:any)=> {
     },
     [setSortBy]
   );
-
+  
+  useEffect(() => {
+    dispatch(setRoomSearchQuery(searchFilters));
+  }, [searchFilters]); 
 
     return (
       <>

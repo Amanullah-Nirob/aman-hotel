@@ -17,7 +17,6 @@ export const themeSlice = createSlice({
   initialState,
   reducers: {
     switchTheme: (state,action) => {
-      // içermiyorsa izin verme
       if(!state.allow.includes(action.payload)) return;
       state.theme = action.payload;
     }

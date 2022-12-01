@@ -97,7 +97,7 @@ const handleFocus=()=>{
         <form className="search-area-main">
             <div className="search-input">  
             <div className="searchIcon">
-            <SearchIcon />
+            <SearchIcon sx={{stroke: theme==='light'?"#f5f5f5":'#484848'}} />
             </div>  
             <input
                     ref={inputEl}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useClientRouter } from "use-client-router";
-import {Container} from '@mui/material'
+import {Container,Paper} from '@mui/material'
 import Head from 'next/head';
 import BreadCrumb from '../../components/element/BreadCrumb';
 import {Grid,CircularProgress} from '@mui/material'
@@ -10,6 +10,8 @@ import { useAppSelector } from '../../app/hooks';
 import SingleRoomInfo from '../../components/rooms/singleRoom/SingleRoomInfo';
 import RoomServices from '../../services/RoomServices';
 import SingleRoomImage from '../../components/rooms/singleRoom/SingleRoomImage';
+import BookingForm from '../../components/booking/BookingForm';
+import { dmSansFont } from '../../utils/nextFont';
 
 const RoomSingle = ({data}:any) => {
     const theme=useAppSelector(selectTheme)
@@ -30,9 +32,18 @@ const RoomSingle = ({data}:any) => {
                 <div className="single_Room_All_Content">
                 <BreadCrumb breacrumb={breadCrumb} />
                 <SingleRoomImage images={data.images}></SingleRoomImage>
-                <Grid container spacing={3}>
-                    <Grid item lg={6} md={6}>
-                   <SingleRoomInfo data={data}></SingleRoomInfo>
+                <Grid container spacing={5}>
+                  <Grid item lg={8} md={8} sm={12} xs={12}>
+                    <SingleRoomInfo data={data}></SingleRoomInfo>
+                  </Grid>
+                    <Grid item lg={4} md={4} sm={12} xs={12}>
+                     <Paper elevation={2} className='bookingFormMain' sx={{padding: {lg:'24px 29px 37px',md:'15px',sm:'25px 30px'}}}>
+                      <h2 className={dmSansFont.className +" bookMTitle"} >Book with your information</h2>
+                     <div className='bookingHeader'>
+                      <h3 className={dmSansFont.className}>Start from <span>&#2547; {data.price}</span> /Night </h3>
+                    </div>
+                      <BookingForm roomId={data?._id} price={data?.price}></BookingForm>
+                     </Paper>
                     </Grid>
                 </Grid>
                 </div>

@@ -1,0 +1,89 @@
+.bookingFormMain{
+    border-radius: 1rem !important;
+    margin-bottom: 40px;
+    position: sticky;
+    top: -60px;
+}
+.bookingFilterDate {
+    margin-top: 12px;
+    .MuiPaper-root {
+        .dateOfStay{
+            &.Check_in {
+                margin-right: 20px;
+            }
+        }
+    }
+}
+.guest_count{
+    &.gbooking {
+        margin-top: 18px;
+    }
+}
+
+
+.pricing {
+    padding: 13px 0;
+    h2 {
+        margin: 0;
+        font-size: 20px;
+        padding-bottom: 7px;
+    }
+}
+.bookingPrice {
+    margin-top: 16px;
+    text-transform: capitalize;
+    .priceBox {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3px;
+    }
+.totalPrice {
+    display: flex;
+    justify-content: space-between;
+    h3 {
+        margin: 0;
+        font-size: 23px;
+    }
+    h4 {
+        margin: 0;
+        font-size: 21px;
+    }
+}
+}
+.form_enter_error{
+    text-align: center;
+    margin-top: 10px;
+    text-transform: capitalize;
+    color: green;
+    font-weight: 700;
+}
+
+.bookingHeader {
+    h3 {
+        margin: 0;
+        font-size: 22px;
+        span{
+            color: #41ddb8;
+        }
+    }
+}
+.bookMTitle{
+    display: none;
+}
+@media screen and (max-width:'600px') {
+    .bookingFormMain{
+        border: none;
+        border-radius: 0;
+        margin-bottom: 40px;
+        box-shadow: none !important;
+    }
+    .bookingHeader h3 {
+        font-size: 20px;
+    }
+    .bookMTitle{
+        display: block;
+        margin: 0;
+        margin-bottom: 3px;
+        color: rgb(92, 152, 242);
+    }
+}

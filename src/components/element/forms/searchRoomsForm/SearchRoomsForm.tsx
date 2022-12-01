@@ -9,9 +9,10 @@ import Router from 'next/router';
 import queryString from 'query-string';
 import { guestsLabelGet } from '../../../../utils/appUtils';
 import GuestCount from '../../../menus/GuestCount';
-import { useAppSelector } from '../../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
 import { selectTheme } from '../../../../app/slices/theme/ThemeSlice';
 import PersonIcon from '@mui/icons-material/Person';
+import { setRoomSearchQuery } from '../../../../app/slices/roomSearch/RoomSearch';
 
 const oneDayMs = 86000000;
 const initialState = {
@@ -20,22 +21,24 @@ const initialState = {
   adults: 1,
   children: 0,
   babies: 0, 
-};
+}; 
 
 const SearchRoomsForm = () => {
     const { data, errors, handleInputChange, handleKeyDown, validate, handleResetForm } = useForm(initialState,true,roomSearchValidatorConfig);
     const [guestCountMenuAnchor, setGuestCountMenuAnchor] = useState<any | null>(null);
     const theme=useAppSelector(selectTheme)
     const mediaTab=useMediaQuery('(max-width:768px)')
+    const dispatch=useAppDispatch()
 
     const handleSubmit = (event: React.FormEvent<HTMLButtonElement>) => {
       event.preventDefault();
       if (validate(data)) {
-        const queryParams = queryString.stringify(data);        
+        const queryParams = queryString.stringify(data);   
+        dispatch(setRoomSearchQuery(queryParams))   
         Router.push(`/rooms?${queryParams}`);
       }
     };
- 
+  
     return (
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown as any}>
         <DateOfStay data={data} onChange={handleInputChange} errors={errors} />

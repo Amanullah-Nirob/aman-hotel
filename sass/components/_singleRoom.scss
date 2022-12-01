@@ -1,39 +1,258 @@
 .roomSingle_main_area{
     .single_Room_All_Content {
-       .single_room_info{
-        h1{
-            margin: 0;
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-        .room_price{
-            margin: 0;
-            margin-bottom: 8px;
-            font-size: 16px;
-            span{
-                color: rgb(92, 152, 242);
-            }
-        }
-        .room_facilities_conditions{
-            h3{
-                margin: 0;
-                margin-bottom: 10px;
-            }
-            .facilities_main{
-                margin-bottom: 8px;
-                &:last-child{
-                    margin-bottom: 0;
+        .single_room_info{
+            border-radius: 1rem;
+            padding: 20px 31px 30px;
+            .roomInfoTileBoxMain{
+                .rtTop{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .data_room_type{
+                        .rtType {
+                            padding: 5px 17px 5px 15px;
+                            border-radius: 30px;
+                            color: #41ddb8;
+                            font-size: 17px;
+                            text-transform: capitalize;
+                        }
+                    }
                 }
-                .facilities_info_icon{
-                    display: flex;   
-                    p{
-                        margin-left: 10px;
+                .rtTitleMain {
+                    margin-bottom: 15px;
+                    margin-top: 18px;
+                    h1 {
+                        margin: 0px 0px 9px;
+                        line-height: 38px;
+                        font-size: 36px;
+                    }
+                    .moreInfo{
+                        display: flex;
+                        align-items: center;
+                        .rating {
+                            display: flex;
+                            align-items: flex-end;
+                            p {
+                                font-size: 15px;
+                                margin-top: 3px;
+                                margin-left: 3px;
+                            }
+                        }
+                        .roomNumber {
+                            display: flex;
+                            align-items: center;
+                            margin-left: 45px;
+                            p{
+                                margin-left: 5px;
+                            }
+                        }
+
+                    }
+                }
+                .rtTitleBottom {
+                    margin-top: 17px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    .guestInfoRoom {
+                        display: flex;
+                        align-items: flex-end;
+                        p {
+                            margin-left: 10px;
+                            font-size: 16px;
+                        }
                     }
                 }
             }
         }
+        .singleRoomDescription {
+            border-radius: 1rem;
+            padding: 13px 31px 23px;
+            margin: 35px 0;
+            h1{
+                margin: 0px 0px 9px;
+                font-size: 23px;
+            }
+            p{
+                margin-top: 14px;
+            }
+        }
+        .roomFacilities{
+            border-radius: 1rem;
+            padding: 20px 31px 30px;
+            .facilitiesTitle {
+                h1 {
+                    margin: 0;
+                    font-size: 23px;
+                }
+                p {
+                    margin-bottom: 8px;
+                }
+            }
+            .roomFacilitiesMain {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                margin-top: 15px;
+                .facilities_info_icon {
+                    text-align: center;
+                }
+            }
+        }
      
-       
-       }
+        .thingToKnow{
+            border-radius: 1rem;
+            padding: 13px 31px 23px;
+            margin: 30px 0px;
+            h1{
+                margin: 0;
+                font-size: 23px;
+                margin-bottom: 10px;
+            }
+            .Required_Main {
+                h2 {
+                    margin: 8px 0;
+                    font-size: 20px;
+                }
+                .required-box {
+                    display: flex;
+                    margin-bottom: 9px;
+                    p {
+                        margin-left: 10px;
+                    }
+                }
+                &.Cancellation {
+                    margin: 11px 0;
+                }
+            }
+            
+        }
+        .Availability {
+            margin: 15px 0;
+            h2 {
+            margin: 0;
+            font-size: 23px;
+            margin-bottom: 11px;
+          }
+            .Availability_box {
+            display: flex;
+            justify-content: space-between;
+            width: 55%;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-top: 6px;
+        }
+        }
+        .roomRules {
+            .roomRulesTitle {
+                h2 {
+                    margin: 10px 0;
+                }  
+            }
+            .roomRulesMain {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                margin-top: 15px;
+                text-align: center;
+            }
+        }
+        .Special {
+            h2 {
+                margin: 10px 0;
+            }
+            .specialNotsBox {
+                display: flex;
+                margin-bottom: 7px;
+                p {
+                    margin-left: 7px;
+                }
+            }
+            
+        }
+    
     }
 }
+
+@media screen and (max-width:'600px') {
+    .roomSingle_main_area{
+        .single_Room_All_Content {
+            .single_room_info{
+                border: none;
+                padding:0;
+                .roomInfoTileBoxMain{
+                    .rtTitleMain {
+                        h1 {
+                            margin: 0px 0px 9px;
+                            line-height: 29px;
+                            font-size: 26px;
+                        }
+                    }
+                }
+
+            }
+            .singleRoomDescription {
+                border:none;
+                padding: 0;
+                margin: 20px 0;
+                h1{
+                    margin: 0px 0px 9px;
+                    font-size: 23px;
+                }
+                p{
+                    line-height: 20px;
+                }
+            }
+            .roomFacilities {
+                border: none;
+                padding: 0;
+                margin: 15px 0;
+                .roomFacilitiesMain {
+                    justify-content: space-around;
+                    .facilities_info_icon {
+                        text-align: center;
+                    }
+                }
+            }
+            .thingToKnow{
+                border: none;
+                padding:0;
+                margin: 30px 0px;
+                h1{
+                    margin: 0;
+                    font-size: 23px;
+                    margin-bottom: 10px;
+                }
+                .Required_Main {
+                    h2 {
+                        margin: 8px 0;
+                        font-size: 20px;
+                    }
+                    .required-box {
+                        display: flex;
+                        margin-bottom: 9px;
+                        p {
+                            margin-left: 10px;
+                        }
+                    }
+                }
+            }
+            .Availability {
+                .Availability_box {
+                width: 100%;
+            }
+            }
+            
+            .roomRules {
+                .roomRulesMain {
+                    justify-content: space-around;
+
+                }
+            }
+        }
+    }
+}
+
