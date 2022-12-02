@@ -1,6 +1,6 @@
 // external imports
-import React, { useCallback } from 'react';
-import AppBar from '@mui/material/AppBar';
+import React, { useCallback, useState } from 'react';
+import {AppBar,Avatar} from '@mui/material';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
@@ -23,6 +23,8 @@ import SwitchToggle from '../element/SwitchToggle';
 import { dmFont, dmSansFont } from '../../utils/nextFont';
 import Search from '../search/Search';
 import SearchIcon from '@mui/icons-material/Search';
+import { selectCurrentUser } from '../../app/slices/auth/authSlice';
+import ProfileMenu from '../menus/ProfileMenu';
 
 
 
@@ -45,8 +47,9 @@ const Header = (props: Props) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const router=useRouter()
   const isRoomSearchOpen=router.pathname==='/'
+  const loggedInUser=useAppSelector(selectCurrentUser)
+  const [profileSettingsMenuAnchor, setProfileSettingsMenuAnchor] = useState<any | null>(null);
 
-  
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -154,7 +157,12 @@ const Header = (props: Props) => {
             {/* login btn dark switch*/}
                 <Box sx={{display: { xs: 'none', sm: 'flex'}}}>
                 <SwitchToggle></SwitchToggle>
-                <Link href='/login' style={{color:'#fff',textDecoration:'none'}}>
+                {loggedInUser? (
+                  <IconButton sx={{ color: "#999999",marginRight:'15px'}} onClick={(e) => setProfileSettingsMenuAnchor(e.target)}>
+                      <Avatar src={loggedInUser?.profilePic} alt="User Profile Photo" />
+                 </IconButton>
+                ):(
+                  <Link href='/login' style={{color:'#fff',textDecoration:'none'}}>
                   <Button variant="contained"
                   sx={{padding:'9px 26px',
                   textTransform:'capitalize',
@@ -167,6 +175,8 @@ const Header = (props: Props) => {
                   Login
                   </Button>
                   </Link>
+                )}
+
                 
                 </Box>
         </Container>
@@ -189,7 +199,10 @@ const Header = (props: Props) => {
             {drawer}
           </Drawer>
         </Box>
-     
+      <ProfileMenu
+         anchor={profileSettingsMenuAnchor}
+         setAnchor={setProfileSettingsMenuAnchor}
+     ></ProfileMenu>
     </Box>
     );
 };

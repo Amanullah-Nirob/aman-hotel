@@ -10,6 +10,8 @@ import { useLoginMutation } from '../../app/apiSlice/useApiSlice';
 import InputField from '../element/feilds/InputField/InputField';
 import { LoginRequest } from '../../app/interface/userinterface';
 import { displayToast } from '../../app/slices/ToastSlice';
+import { setLoggedInUser } from '../../app/slices/auth/authSlice';
+import Router from 'next/router';
 
 
 const initialData: SignInDataType = {
@@ -27,8 +29,13 @@ const LoginForm = () => {
        try {
         if (validate(data)) {
             const loginData=await login(data as LoginRequest).unwrap()
-            console.log(loginData);
             handleResetForm(e); 
+            dispatch(setLoggedInUser(loginData))
+            dispatch(  
+                displayToast({ title: "Successful loggedIn", message:'Thank you for logging in to Aman-Hotel', type: "success", duration: 3000, positionVert: "top",
+                  positionHor: "center",
+            }))
+            Router.push('/')
         }
        } catch (error:any) {
           dispatch(  

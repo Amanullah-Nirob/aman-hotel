@@ -13,6 +13,9 @@ import withPassword from '../element/feilds/HOC/withPassword';
 import { useRegisterUserMutation } from '../../app/apiSlice/useApiSlice';
 import { RegisterRequest } from '../../app/interface/userinterface';
 import { displayToast } from '../../app/slices/ToastSlice';
+import {setLoggedInUser} from '../../app/slices/auth/authSlice'
+import Router  from 'next/router';
+
 
 const genderItems = [
     { id: 'male', title: 'male' },
@@ -31,10 +34,9 @@ const initialData: UserType = {
   };
 
 const Register = () => {
-    const { data, errors, handleInputChange, handleKeyDown, validate } = useForm(initialData, true, registerValidatorConfig);
+    const { data, errors, handleInputChange, handleKeyDown, validate,handleResetForm } = useForm(initialData, true, registerValidatorConfig);
     const dispatch=useAppDispatch()
     const [registerUser,{ isLoading, isError, error }]=useRegisterUserMutation()
-
     const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
         try {
@@ -49,7 +51,13 @@ const Register = () => {
               subscribe:data.subscribe
             } 
             const userData= await registerUser(registerInputValue as RegisterRequest).unwrap()
-            console.log(userData);
+            dispatch(setLoggedInUser(userData))
+            dispatch(  
+              displayToast({ title: "Successful Registration", message:'Welcome to Aman-Hotel', type: "success", duration: 3000, positionVert: "top",
+                positionHor: "center",
+            }))
+            Router.push('/')
+            handleResetForm(e)
           }
         } catch (error:any) {
           dispatch(  
@@ -67,13 +75,14 @@ const Register = () => {
          <InputField name='secondName' label='Last name' />
         <InputField name='email' label='Email' />
         <InputFieldWithPassword name='password' label='password' type='password' />
-        <DatePickerField
+        <DatePickerField 
           value={data.birthYear}
           onChange={handleInputChange}
           openTo='year'
           label='Date of Birth'
           name='birthYear'
           minDate={new Date('1950-01-01')}
+          btnvariant='outlined'
           error={errors?.birthYear && errors?.birthYear}
           renderInput={(params: JSX.IntrinsicAttributes) => (
             <TextField {...params} {...(errors?.birthYear && { error: true, helperText: errors?.birthYear })} />

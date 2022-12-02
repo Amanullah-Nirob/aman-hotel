@@ -17,7 +17,7 @@ const persistConfig = {
     key: "root",
     version: 1,
     storage,
-    whitelist: ["theme"],
+    whitelist: ["theme","auth"],
 }; 
 const roomSearchPersistConfig = { key: 'room', version: 1, storage:storageSession };
 

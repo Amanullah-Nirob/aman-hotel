@@ -227,3 +227,11 @@ ul.breadcrumb {
         }
     }
 }
+
+.profile_menu__item {
+  &.MuiMenuItem-root {
+    & .MuiSvgIcon-root {
+      margin-right: 5px;
+    }
+  }
+}

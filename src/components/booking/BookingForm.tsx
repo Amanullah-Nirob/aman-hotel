@@ -48,9 +48,9 @@ const BookingForm = ({roomId,price}:any) => {
         }
     };
 
-    useEffect(()=>{
-        dispatch(setRoomSearchQuery(data))
-    },[data])
+    // useEffect(()=>{
+    //     dispatch(setRoomSearchQuery(data))
+    // },[data])
     return (
         <>
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown as any}>
