@@ -10,12 +10,11 @@ export const userApi=createApi({
         baseUrl:`${process.env.NEXT_PUBLIC_APIURL}/user`,
         prepareHeaders:(headers,{getState})=>{
         // By default, if we have a token in the store, let's use that for authenticated requests
-        // const token = (getState() as RootState).auth?.loggedInUser?.token;
+        const token = (getState() as RootState).auth?.loggedInUser?.token;
 
-        // if (token) { 
-        //   headers.set("Authorization", `Bearer ${token}`);
-        // }
-         headers.set("Content-Type", `application/json`);
+        if (token) { 
+          headers.set("Authorization", `Bearer ${token}`);
+        }
          return headers;
     }
     }),
@@ -25,6 +24,7 @@ export const userApi=createApi({
             query:(data)=>({
                 url: "/register",
                 method: "POST",
+                headers:{ "Content-Type":"application/json"},
                 body: JSON.stringify(data),
             }),
             invalidatesTags: ["User"],
@@ -34,7 +34,16 @@ export const userApi=createApi({
             query: (data) => ({
               url: "/login",
               method: "POST",
+              headers:{ "Content-Type":"application/json"},
               body: JSON.stringify(data),
+            }),
+            invalidatesTags: ["User"],
+        }),
+        profilePhotoUpdate: builder.mutation<{}, FormData>({
+            query: (data) => ({
+              url: "/update/profile-pic",
+              method: "put",
+              body: data,
             }),
             invalidatesTags: ["User"],
         }),
@@ -46,5 +55,6 @@ export const userApi=createApi({
 export const {
     useRegisterUserMutation,
     useLoginMutation,
+    useProfilePhotoUpdateMutation
 } = userApi;
   

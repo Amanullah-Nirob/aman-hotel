@@ -16,6 +16,8 @@ const ProfileMenu = ({anchor,setAnchor}:any) => {
     const loggedinUser=useAppSelector(selectCurrentUser)
     const dispatch=useAppDispatch()
     const theme=useAppSelector(selectTheme)
+
+    
     const handleClickSettingsMenu = (path: string) => {
         Router.push(path);
         setAnchor(null)
@@ -40,10 +42,10 @@ const ProfileMenu = ({anchor,setAnchor}:any) => {
             <AccountCircleOutlinedIcon/>
             Profile
           </MenuItem>
-          {loggedinUser?.role === 'admin' && (
+          {loggedinUser?.role !== 'admin' && (
             <MenuItem
               className='profile_menu__item'
-              onClick={() => handleClickSettingsMenu(`/profile/dashboard`)}
+              onClick={() => handleClickSettingsMenu(`/account/admin`)}
             >
               <AdminPanelSettingsIcon/>
               Admin Panel

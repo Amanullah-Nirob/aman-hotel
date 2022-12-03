@@ -1,0 +1,23 @@
+.account_main{
+    .account_all_content{
+        transform: translate(0px, 136px);
+        .sideBar_main{
+            border-right: 1px solid #ddd;
+            .sidebar_all_menu{
+                .sidebar_menu_item{ 
+                    margin-bottom: 4px;
+                    &.active{
+                      background-color: green;
+                      color: #fff;
+                    //   border-top-left-radius: 100px;
+                    //   border-bottom-left-radius: 100px;
+                    }
+                  }
+            }
+
+        }
+    }
+}
+
+@import 'dashboard';
+@import 'profile';

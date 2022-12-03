@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Paper } from '@mui/material';
+import { Box, Button, Paper } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectRoomSearchQuery, setRoomSearchQuery } from '../../app/slices/roomSearch/RoomSearch';
@@ -54,19 +54,20 @@ const BookingForm = ({roomId,price}:any) => {
     return (
         <>
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown as any}>
-        <Box sx={{'.MuiPaper-root':{backgroundColor:'',display:'flex',padding:'10px'}}} className='bookingFilterDate'>
-        <DateOfStay data={data} onChange={handleInputChange} errors={errors} />
-        </Box>  
-        <Paper elevation={0} className='guest_count gbooking' onClick={(e) => setGuestCountMenuAnchor(e.target)} 
-            sx={{backgroundColor:theme==='light'?'#dddddd5e':'#121212',padding:'9px 9px',cursor:'pointer'}}>
+          <Paper variant="outlined" sx={{marginTop:'15px'}}>
+          <Box sx={{'.MuiPaper-root':{backgroundColor:'transparent',display:'flex',padding:'10px'}}} className='bookingFilterDate' >
+          <DateOfStay data={data} onChange={handleInputChange} errors={errors} />
+          </Box>  
+          </Paper>
+  
+        <Paper variant="outlined" className='guest_count gbooking' onClick={(e) => setGuestCountMenuAnchor(e.target)} 
+            sx={{padding:'9px 9px',cursor:'pointer'}}>
             <p className={dmSansFont.className +' guestTitle'}>Guests</p>
             <div className="guestContent">
             <div className='guestMain'>{guestsLabelGet(data?.adults,data?.children,data?.babies)}</div>
             </div>
         </Paper>
         <Box className='pricing'>
-        <h2 className={dmSansFont.className}>Pricing</h2>
-        <Divider sx={{width:'130px'}} />
         <BookingFormPricing price={price} countDays={countDays} setTotalPrice={setTotalPrice} totalPrice={totalPrice}></BookingFormPricing>
         </Box>
         <Button

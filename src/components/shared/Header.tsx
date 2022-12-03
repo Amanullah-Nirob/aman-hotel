@@ -85,7 +85,7 @@ const Header = (props: Props) => {
           sx={{
           backgroundColor:theme==='light'?'transparent':'#000',
           color:theme==='light'?'#000':'',
-          padding:{lg:'27px 0px 22px',sx:'5px 0',xs:'19px 0 18px'},
+          padding:{lg:'27px 0px 8px',sx:'5px 0',xs:'19px 0 18px'},
           position:'absolute',
           boxShadow:'none',
           backgroundImage:'none'

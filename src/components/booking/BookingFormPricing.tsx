@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { dmSansFont } from '../../utils/nextFont';
+import {Divider} from '@mui/material'
 
 type Props = {
     price: number;
@@ -26,17 +27,25 @@ const BookingFormPricing : React.FC<Props> = ({ price, countDays, setTotalPrice,
     return (
         <div className='bookingPrice'>
            <div className='priceBox'>
-             <p>{price} x {countDays} day</p>
+             <p>&#2547; {price} <span>x</span> {countDays} night</p>
              <p>&#2547; {PRICE_RENT}</p>
            </div>
+           <Divider  sx={{margin:'11px 0'}}/>
            <div className='priceBox'>
-            <p>Discount: {DISCOUNT_PERCENT}% </p>
+            <p className='subtotal'>Sub Total:</p>
+            <p>&#2547; {PRICE_RENT}</p>
+           </div>
+
+           <div className='priceBox'>
+            <p>Discount: ({DISCOUNT_PERCENT}%) </p>
             <p>&#2547; {PRICE_RENT_WITH_DISCOUNT}</p>
            </div>
+
            <div className='priceBox'>
-           <p>extra services</p>
+           <p>Service charge </p>
            <p>&#2547; {PRICE_SERVICE}</p>
            </div>
+           <Divider  sx={{margin:'11px 0'}}/>
            <div className={"totalPrice"}>
              <h3 className={dmSansFont.className}>Total:</h3>
              <h4 className={dmSansFont.className}>&#2547; {totalPrice}</h4>
