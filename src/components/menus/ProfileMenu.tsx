@@ -8,9 +8,12 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import { selectTheme } from '../../app/slices/theme/ThemeSlice';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 
 const ProfileMenu = ({anchor,setAnchor}:any) => {
     const loggedinUser=useAppSelector(selectCurrentUser)
@@ -38,11 +41,17 @@ const ProfileMenu = ({anchor,setAnchor}:any) => {
             transformOrigin={{ vertical: "top", horizontal: "right" }}
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           >
-          <MenuItem onClick={() => handleClickSettingsMenu(`/dashboard`)} className='profile_menu__item'>
-            <AccountCircleOutlinedIcon/>
-            Profile
-          </MenuItem>
-          {loggedinUser?.role !== 'admin' && (
+          <MenuItem onClick={() => handleClickSettingsMenu(`/account/dashboard`)} className='profile_menu__item'>
+            <ArticleOutlinedIcon/>
+             Dashboard
+          </MenuItem> 
+
+          <MenuItem onClick={() => handleClickSettingsMenu(`/account/profile`)} className='profile_menu__item'>
+            <PersonOutlineIcon/>
+             Profile
+          </MenuItem> 
+
+          {loggedinUser?.role === 'admin' && (
             <MenuItem
               className='profile_menu__item'
               onClick={() => handleClickSettingsMenu(`/account/admin`)}
@@ -51,21 +60,29 @@ const ProfileMenu = ({anchor,setAnchor}:any) => {
               Admin Panel
             </MenuItem>
           )}
+
           <MenuItem
             className='profile_menu__item'
-            onClick={() => handleClickSettingsMenu(`/profile/booking`)}
+            onClick={() => handleClickSettingsMenu(`/account/booking`)}
           >
-            <StarBorderOutlinedIcon/>
-            My Bookings
+            <EventNoteOutlinedIcon/>
+            Bookings
           </MenuItem>
           <MenuItem
             className='profile_menu__item'
-            onClick={() => handleClickSettingsMenu(`/profile/likes`)}
+            onClick={() => handleClickSettingsMenu(`/account/review`)}
           >
-            <FavoriteBorderIcon />
+            <StarBorderIcon />
+            Reviews
+          </MenuItem>
+          <MenuItem
+            className='profile_menu__item'
+            onClick={() => handleClickSettingsMenu(`/account/like`)}
+          >
+            <ThumbUpOutlinedIcon />
             Liked
           </MenuItem>
-          <MenuItem onClick={() => handleClickSettingsMenu(`/profile/favorites`)} className='profile_menu__item'>
+          <MenuItem onClick={() => handleClickSettingsMenu(`/account/favorites`)} className='profile_menu__item'>
             <BookmarkBorderIcon />
             Favorites
           </MenuItem>

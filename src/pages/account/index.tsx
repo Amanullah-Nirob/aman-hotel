@@ -38,7 +38,7 @@ const Account = ({children}:LayoutProps) => {
         dispatch(setLoggedInUser(null))
         Router.push('/')
     }
-
+ 
     return (
     <>
     <Box className='account_main'>
