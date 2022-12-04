@@ -90,7 +90,7 @@ const Profile = () => {
          <div className='profile_main'>
           <div className="profile_title">
             <h2 className={dmSansFont.className}>Profile</h2>
-            <p style={{color:theme==='light'?'#707070':'#b1b1b1'}}>This information will be private and secure so don't worry about it.</p>
+            <p style={{color:theme==='light'?'#707070':'#b1b1b1'}}>This information will be private and secure so don&apos;t worry about it.</p>
          </div>  
          <Grid container>
             <Grid item xs={12}>
