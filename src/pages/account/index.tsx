@@ -131,4 +131,4 @@ const Account = ({children}:LayoutProps) => {
     );
 };
 
-export default Account;
+export default  Account;

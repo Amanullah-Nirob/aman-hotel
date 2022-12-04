@@ -47,14 +47,24 @@ export const userApi=createApi({
             }),
             invalidatesTags: ["User"],
         }),
+        profileInfoUpdate: builder.mutation<{}, {}>({
+            query: (newUserInfo) => ({
+              url: "/update/profileInfo",
+              method: "put",
+              headers:{"Content-Type":"application/json"},
+              body: JSON.stringify(newUserInfo),
+            }),
+            invalidatesTags: ["User"],
+         }),
     }),
  
 
-}) 
+})  
 
 export const {
     useRegisterUserMutation,
     useLoginMutation,
-    useProfilePhotoUpdateMutation
+    useProfilePhotoUpdateMutation,
+    useProfileInfoUpdateMutation
 } = userApi;
   

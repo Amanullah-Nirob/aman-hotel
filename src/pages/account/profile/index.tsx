@@ -2,15 +2,18 @@ import Head from 'next/head';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { selectCurrentUser, setLoggedInUser } from '../../../app/slices/auth/authSlice';
-import {Avatar,Button} from '@mui/material'
-import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import {Avatar,Grid} from '@mui/material'
 import { isImageFile, TWO_MB } from '../../../utils/appUtils';
 import { displayToast } from '../../../app/slices/ToastSlice';
 import { useProfilePhotoUpdateMutation } from '../../../app/apiSlice/useApiSlice';
 import LoadingButton from '@mui/lab/LoadingButton';
+import ProfileEditForm from '../../../components/account/profile/ProfileEditForm';
+import { dmSansFont, roboto } from '../../../utils/nextFont';
+import { selectTheme } from '../../../app/slices/theme/ThemeSlice';
 
 const Profile = () => {
     const loggedInUser=useAppSelector(selectCurrentUser)
+    const theme=useAppSelector(selectTheme)
     const dispatch=useAppDispatch()
     const [profilePhotoUpdate,{isLoading,error,isError}]=useProfilePhotoUpdateMutation()
 
@@ -27,6 +30,19 @@ const Profile = () => {
           })
         );
     };
+    // success display
+    const displaySuccess = (message:string) => {
+        dispatch(
+          displayToast({
+            message,
+            type: "success",
+            duration: 3000,
+            positionVert: "top",
+            positionHor:'center'
+          })
+        );
+    };
+      
     // photo update 
     const handleChange = async (e:any) => {
         const file = e.target.files[0];
@@ -53,9 +69,15 @@ const Profile = () => {
                 expiryTime: loggedInUser.expiryTime,
             }
             dispatch(setLoggedInUser(updateUser));
-
-           } catch (error) {
-              console.log(error);
+            displaySuccess("ProfilePhoto Updated Successfully");
+           } catch (error:any) {
+            dispatch(  
+                displayToast({ 
+                     title:"profile photo uploaded Failed", 
+                     message: error?.data.message? error?.data.message : 'profile photo uploaded Failed', 
+                     type: "error", duration: 3000, positionVert: "top",
+                     positionHor: "center",
+            }))
               
            }
         }
@@ -67,21 +89,33 @@ const Profile = () => {
         </Head>
          <div className='profile_main'>
           <div className="profile_title">
-            <h1>Profile</h1>
-            <p>This information will be displayed publicly so be careful what you share.</p>
+            <h2 className={dmSansFont.className}>Profile</h2>
+            <p style={{color:theme==='light'?'#707070':'#b1b1b1'}}>This information will be private and secure so don't worry about it.</p>
          </div>  
-         <div className="profile_image">
-            <Avatar src={loggedInUser?.profilePic} sx={{width:'150px',height:'150px'}} />
-            <div className="profile_icon">
-
-
-            <LoadingButton loading={isLoading?true:false} variant="outlined" component="label"> 
-             Upload File
-            <input type="file" hidden onChange={handleChange}/>
-            </LoadingButton>
-            </div>
-         </div>
-
+         <Grid container>
+            <Grid item xs={12}>
+            <div className="profile_image">
+                <h3 className={dmSansFont.className}>Photo</h3>
+                <div className="profile_image_content">
+                <Avatar src={loggedInUser?.profilePic} sx={{width:'150px',height:'150px',margin:'auto'}} />
+                <div className="profile_icon">
+                <LoadingButton loading={isLoading?true:false} variant="outlined" component="label"> 
+                Upload File
+                <input type="file" hidden onChange={handleChange}/>
+                </LoadingButton>
+                </div>
+                </div>
+           </div>
+           </Grid>
+            <Grid item xs={12}>
+                <div className="profile_edit_form">
+                    <h3 className={dmSansFont.className}>Profile Info</h3>
+                    <div className="editFormContent">
+                    <ProfileEditForm></ProfileEditForm>
+                    </div>
+                </div>
+            </Grid>
+         </Grid>
          </div>
         </>
     );

@@ -41,8 +41,12 @@ export type UserType = {
   avatarPhoto?: string;
   email?: string;
   password?: string;
-  role: 'user' | 'admin';
-  gender: 'male' | 'female';
+  role: 'user' | 'admin'  | string;
+  gender: 'male' | 'female'| string ;
+};
+
+export type updateProfileInfo = {
+  name: string;
 };
 
 export type SignInDataType = {

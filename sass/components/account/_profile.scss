@@ -1,0 +1,96 @@
+.profile_main{
+    .profile_title{
+        margin-bottom: 20px;
+        h2{
+            margin: 0;
+        }
+        p{
+            font-size: 15px;
+        }
+    }
+    .profile_image {
+        h3 {
+            margin: 0;
+            margin-bottom: 11px;
+        }
+        .profile_image_content{
+           text-align: center;
+           .profile_icon {
+            margin-top: 20px;
+          }
+        }
+    }
+    .profile_edit_form{
+        .editFormContent {
+             form{
+                 .MuiFormControl-root {
+                     margin-bottom: 10px;
+                 }
+                 >div:first-child {
+                     width: 48%;
+                     margin-right: 9px;
+                 }
+                 >div:nth-child(2) {
+                     width: 50%;
+                 }
+                 >div:nth-child(3) {
+                     width: 48%;
+                     border: 0.1rem solid #c3baba;
+                     border-radius: 4px;
+                     margin-bottom: 0;
+                     .MuiFormGroup-root {
+                         margin-left: 12px;
+                         >label{
+                            >span{
+                                padding: 7px;
+                            }
+                         }     
+                     }
+                     margin-right: 9px;
+                 }
+                 >div:nth-child(4) {
+                     width: 50%;
+                     >div{
+                        >input{
+                            height: 7px;
+                        }
+                     }
+                 }
+                 >div:nth-child(7) {width: 100%;}
+             }
+         }
+    }
+}
+
+
+@media screen and (max-width:'600px'){
+    .profile_main{
+        .profile_edit_form{
+            .editFormContent {
+                 form{
+                     >div:first-child {
+                         width: 100%;
+                         margin-right: 0px;
+                     }
+                     >div:nth-child(2) {
+                         width: 100%;
+                     }
+                     >div:nth-child(3) {
+                         width: 100%;
+                         border: 0.1rem solid #c3baba;
+                         border-radius: 4px;
+                         margin-bottom: 10px;
+                         margin-right: 0px;
+                     }
+                     >div:nth-child(4) {
+                         width: 100%;
+                     }
+                 }
+             }
+        }
+    }
+    
+}
+
+
+
