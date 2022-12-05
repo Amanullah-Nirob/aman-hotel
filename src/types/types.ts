@@ -1,3 +1,4 @@
+
 export type RoomType = {
   _id: string;
   roomNumber: number | string;
@@ -10,6 +11,7 @@ export type RoomType = {
   type?: 'standard' | 'moderate' | 'deluxe'| 'suite';
   comforts?: Array<string>;
   bookings?: Array<string> | null;
+  reviews?: Array<string> | null;
   hasConditioner: boolean,
   hasWifi: boolean,
   hasWashingMachine: boolean,
@@ -52,4 +54,14 @@ export type updateProfileInfo = {
 export type SignInDataType = {
   email: string;
   password: string;
+};
+
+export type ReviewType = {
+  _id?: string;
+  content: string;
+  rating: number;
+  roomId: string;
+  userId?: string;
+  created_at?: Date | string;
+  updated_at?: Date | string;
 };

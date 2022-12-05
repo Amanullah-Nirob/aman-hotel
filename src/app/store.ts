@@ -9,6 +9,8 @@ import storage from "./sync-storage";
 import themReducer from './slices/theme/ThemeSlice'
 import { userApi } from "./apiSlice/useApiSlice";
 import { roomApi } from "./apiSlice/roomApiSlice";
+import { reviewApi } from "./apiSlice/reviewApiSlice";
+
 import authSliceReducer from './slices/auth/authSlice'
 import toastReducer from './slices/ToastSlice'
 import roomSearchReducer from './slices/roomSearch/RoomSearch'
@@ -24,6 +26,7 @@ const roomSearchPersistConfig = { key: 'room', version: 1, storage:storageSessio
 const rootReducer = combineReducers({
   [userApi.reducerPath]: userApi.reducer,
   [roomApi.reducerPath]: roomApi.reducer,
+  [reviewApi.reducerPath]: reviewApi.reducer,
   theme:themReducer,
   roomSearch:persistReducer(roomSearchPersistConfig,roomSearchReducer),
   auth:authSliceReducer,
@@ -42,6 +45,7 @@ export const store = configureStore({
       }) 
       .concat(userApi.middleware)
       .concat(roomApi.middleware)
+      .concat(reviewApi.middleware)
 
 });
 

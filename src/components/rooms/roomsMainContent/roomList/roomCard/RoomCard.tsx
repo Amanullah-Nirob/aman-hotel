@@ -6,11 +6,18 @@ import { roboto,dmSansFont,dmFont } from '../../../../../utils/nextFont';
 import { Card, Divider } from '@mui/material';
 import Link from 'next/link';
 import { truncateString } from '../../../../../utils/appUtils';
+import Rating from '../../../../common/rating/Rating';
+import declOfNum from '../../../../../utils/declOfNum';
 
 
 
 
-const RoomCard: React.FC<RoomType> = ({ _id, roomNumber, price, type, images, comforts,title,description }) => {
+const RoomCard: React.FC<RoomType> = ({ _id, roomNumber, price, type, images, comforts,title,description,reviews }) => {
+   const countReviews = reviews ? reviews.length : 0;
+   // @ts-ignore
+   const rating = countReviews > 0 ? reviews.reduce((acc, cur) => acc + cur.rating, 0) : 0;
+
+   
     return (
     <Link href={`/rooms/${_id}`} style={{textDecoration:'none',color:''}}>
      <Card 
@@ -41,6 +48,12 @@ const RoomCard: React.FC<RoomType> = ({ _id, roomNumber, price, type, images, co
           <div className={dmSansFont.className+" roomDetailsInfo"}>
             <h3>{truncateString(title,23,23)}</h3>
             <p> <span style={{color:''}}>From:</span> &#2547; {price}</p>
+            <div className="star_rating">
+            <Rating name='read-only' value={rating} totalCount={countReviews} readOnly />
+            </div>
+            <div className="total_review">
+            <span className='room-card__reviews-count'>{`${countReviews} ${declOfNum(countReviews, ['Review','Reviews','Reviews',])}`}</span>
+            </div>
           </div>
         </div>
 
