@@ -26,12 +26,21 @@ export const reviewApi=createApi({
             }), 
             invalidatesTags: ["Review"],
         }),
+        reviewUpdate: builder.mutation<{}, {}>({
+            query: (data:any) => ({
+              url: `/${data?._id}`,
+              method: "put",
+              body: data,
+            }),
+            invalidatesTags: ["Review"],
+        }),
     }),
  
 
 }) 
 
 export const {
-  useReviewCreateMutation
+  useReviewCreateMutation,
+  useReviewUpdateMutation
 } = reviewApi;
   

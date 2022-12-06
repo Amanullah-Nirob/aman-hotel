@@ -6,6 +6,7 @@ import reviewValidateConfig from '../../../utils/validator/validatorConfig/revie
 import RatingField from '../../element/feilds/InputField/RatingField';
 import TextAreaField from '../../element/feilds/InputField/TextAreaField';
 import { useReviewCreateMutation } from '../../../app/apiSlice/reviewApiSlice';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const ReviewForm = ({singleRoomData,setSingleRoomData}:any) => {
 
@@ -37,9 +38,10 @@ const ReviewForm = ({singleRoomData,setSingleRoomData}:any) => {
         <Form data={reviewData} errors={errors} handleChange={handleInputChange}>
             <TextAreaField label='Leave feedback' name='content' />
             <RatingField name='rating' label='your mark:' size='large' />
-            <Button variant='contained' sx={{width:'100%',marginBottom:'15px'}} onClick={handleSubmit} type='submit'>
+            <LoadingButton variant="contained" type='submit' loading={isLoading?true:false}
+               sx={{width:'100%',marginBottom:'15px'}} onClick={handleSubmit}>
               Submit
-            </Button>
+            </LoadingButton>
         </Form>
     );
 };

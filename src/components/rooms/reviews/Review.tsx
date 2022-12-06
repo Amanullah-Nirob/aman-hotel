@@ -8,8 +8,7 @@ import ReviewList from './ReviewList';
 
 const Review = ({singleRoomData,setSingleRoomData}:any) => {
     const loggedInUser=useAppSelector(selectCurrentUser)
-    const sortedReviews = singleRoomData?.reviews.sort((a:any, b:any) => String(b.created_at).localeCompare(String(a.created_at)));
-    const totalReviewsCount = sortedReviews.length;
+    const totalReviewsCount = singleRoomData?.reviews.length;
 
     return (
         <div className='review_main'>
@@ -18,7 +17,7 @@ const Review = ({singleRoomData,setSingleRoomData}:any) => {
                 <p>{`${totalReviewsCount} ${declOfNum(totalReviewsCount, ['review', 'reviews', 'reviews'])}`}</p>
             </div>
              <div className="review_list_main">
-             {totalReviewsCount > 0 && <ReviewList reviews={sortedReviews} setSingleRoomData={setSingleRoomData}></ReviewList>}
+             {totalReviewsCount > 0 && <ReviewList singleRoomData={singleRoomData} setSingleRoomData={setSingleRoomData}></ReviewList>}
              </div>
 
              <div className="review_form">
