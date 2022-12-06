@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {Grid} from '@mui/material'
 import ReviewListCard from './ReviewListCard';
-import { useReviewUpdateMutation } from '../../../app/apiSlice/reviewApiSlice';
+import { useReviewUpdateMutation,useReviewDeleteMutation} from '../../../app/apiSlice/reviewApiSlice';
 
 const ReviewList = ({singleRoomData,setSingleRoomData}:any) => {
     const sortedReviews = singleRoomData?.reviews.sort((a:any, b:any) => String(b.created_at).localeCompare(String(a.created_at)));
@@ -9,18 +9,13 @@ const ReviewList = ({singleRoomData,setSingleRoomData}:any) => {
     const [openReviewAction,setOpenReviewAction]=useState(null)
     const [editReviewOpen,setEditReviewOpen]=useState(false)
     const [reviewUpdate,{isLoading,isError}]=useReviewUpdateMutation()
-     
+    const [reviewDelete,{isLoading:loading}]=useReviewDeleteMutation()
 
     const handleClickEditReview=()=>{
       setEditReviewOpen(true)
       setOpenReviewAction(null)
     }
-    const handleDeleteReview=()=>{
-      console.log(`delete review`);
-      setOpenReviewAction(null)
-    }
 
-    
     const handleSubmitEditReview=async(updateReview: any)=>{
        try {
         const updateContent = { 
@@ -41,6 +36,25 @@ const ReviewList = ({singleRoomData,setSingleRoomData}:any) => {
          console.log(error);
        }
     }
+   
+    
+    const handleDeleteReview=async(reviewId:any,roomId:any)=>{
+       try {
+          const {data}:any=await reviewDelete({reviewId,roomId})
+          if(data.message==='success'){
+            const filterNewReviews=singleRoomData.reviews.filter((review:any)=>review._id !== reviewId)
+            const updateNewReviews={
+              ...singleRoomData,
+              reviews:filterNewReviews
+            }
+            setSingleRoomData(updateNewReviews)
+          }
+       } catch (error) {
+        console.log(error);
+       }
+      setOpenReviewAction(null)
+    }
+
     return (
         <div className='review_list_contents'>
             <Grid container spacing={2}>

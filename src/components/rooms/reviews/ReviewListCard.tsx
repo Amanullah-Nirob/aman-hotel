@@ -73,6 +73,7 @@ const ReviewListCard = ({
                         handleDeleteReview={handleDeleteReview}
                         isAuthorOrAdmin={isAuthorOrAdmin}
                         isAuthor={isAuthor}
+                        review={review}
                         />
                         </div>
                     ):(
