@@ -20,7 +20,7 @@ const ReviewAction = ({openReviewAction,setOpenReviewAction,handleClickEditRevie
         </MenuItem>
         )}
         {isAuthorOrAdmin &&(
-          <MenuItem onClick={()=>handleDeleteReview(review._id,review?.roomId)}>
+          <MenuItem onClick={()=>handleDeleteReview(review._id,review?.roomId,review?.rating)}>
           <ListItemIcon>
             <Delete />
           </ListItemIcon>

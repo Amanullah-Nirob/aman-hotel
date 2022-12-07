@@ -11,6 +11,7 @@ import TextAreaField from '../../element/feilds/InputField/TextAreaField';
 import RatingField from '../../element/feilds/InputField/RatingField';
 import { Form, useForm } from '../../../hooks/useForm';
 import reviewValidateConfig from '../../../utils/validator/validatorConfig/reviewValidateConfig';
+import ReviewLike from './ReviewLike';
 
 const ReviewListCard = ({
     review,
@@ -20,7 +21,8 @@ const ReviewListCard = ({
     setOpenReviewAction,
     editReviewOpen,
     handleSubmitEditReview,
-    setEditReviewOpen
+    setEditReviewOpen,
+    onToggleLikeSubmit
 }:any) => {
     const loggedInUser=useAppSelector(selectCurrentUser)
     const theme=useAppSelector(selectTheme)
@@ -58,6 +60,7 @@ const ReviewListCard = ({
                         </div>
                         <div className="timeAndLike_area">
                         <span className='review_date'>{displayReviewData()}</span>
+                        <ReviewLike review={review} onToggleLikeSubmit={onToggleLikeSubmit}></ReviewLike>
                         </div>
                         {isAuthorOrAdmin && (
                             <>

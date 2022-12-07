@@ -59,6 +59,7 @@ const RoomsMain= ({data}:any)=> {
     dispatch(setRoomSearchQuery(searchFilters));
   }, [searchFilters]); 
 
+  
     return (
       <>
     <Head>

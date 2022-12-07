@@ -10,7 +10,7 @@ import Rating from '../../../../common/rating/Rating';
 import declOfNum from '../../../../../utils/declOfNum';
 
 
-
+ 
 
 const RoomCard: React.FC<RoomType> = ({ _id, roomNumber, price, type, images, comforts,title,description,reviews }) => {
    const countReviews = reviews ? reviews.length : 0;
@@ -42,7 +42,7 @@ const RoomCard: React.FC<RoomType> = ({ _id, roomNumber, price, type, images, co
         </div>  
         <div className={"roomDetails_area"} >
           <div className={"roomDetailsTop" }>
-            <p className={dmSansFont.className}>Room No. {roomNumber}</p>
+            <p className={dmSansFont.className}>Room No. {roomNumber}</p> 
           </div>
           {/* <Divider /> */}
           <div className={dmSansFont.className+" roomDetailsInfo"}>
