@@ -11,20 +11,13 @@ import { useRoomReviewAndRatingUpdateMutation } from '../../../app/apiSlice/room
 const ReviewList = ({singleRoomData,setSingleRoomData}:any) => {
     const sortedReviews = singleRoomData?.reviews.sort((a:any, b:any) => String(b.created_at).localeCompare(String(a.created_at)));
     const loggedInUser=useAppSelector(selectCurrentUser)
-    const [openReviewAction,setOpenReviewAction]=useState(null)
-    const [editReviewOpen,setEditReviewOpen]=useState(false)
     const [reviewUpdate,{isLoading,isError}]=useReviewUpdateMutation()
     const [reviewDelete,{isLoading:loading}]=useReviewDeleteMutation()
     const [likeCreate]=useLikeCreateMutation()
     const [likeDelete]=useLikeDeleteMutation()
     const [roomReviewAndRatingUpdate]=useRoomReviewAndRatingUpdateMutation()
 
-    const handleClickEditReview=()=>{
-      setEditReviewOpen(true)
-      setOpenReviewAction(null)
-    }
-
-    const handleSubmitEditReview=async(updateReview: any)=>{
+    const handleSubmitEditReview=async(updateReview: any,prevRating:any)=>{
        try {
         const updateContent = { 
             _id: updateReview._id, 
@@ -34,12 +27,22 @@ const ReviewList = ({singleRoomData,setSingleRoomData}:any) => {
         };
         const {data}:any=await reviewUpdate(updateContent)
         const reviewFilter = singleRoomData?.reviews.filter((review:any) => review._id !== data._id);
-        const updateSingleRoomData={
-            ...singleRoomData,
-            reviews:[...reviewFilter,data]
+   
+        const updateRoomReviewAndRate={
+          roomId:singleRoomData._id,
+          countReviews: Number(singleRoomData?.countReviews),
+          rate: Number(singleRoomData?.rate - prevRating) + data.rating
         }
-        setSingleRoomData(updateSingleRoomData)
-        setEditReviewOpen(false)
+        const {data:updateRoomRate}:any=await roomReviewAndRatingUpdate(updateRoomReviewAndRate)
+
+        const updateSingleRoomData={
+          ...singleRoomData,
+          reviews:[...reviewFilter,data],
+          countReviews:updateRoomRate.countReviews,
+          rate:updateRoomRate.rate
+         }
+         setSingleRoomData(updateSingleRoomData)
+
        } catch (error) {
          console.log(error);
        }
@@ -51,25 +54,27 @@ const ReviewList = ({singleRoomData,setSingleRoomData}:any) => {
           const {data}:any=await reviewDelete({reviewId,roomId})
           if(data.message==='success'){
             const filterNewReviews=singleRoomData.reviews.filter((review:any)=>review._id !== reviewId)
-            const updateNewReviews={
-              ...singleRoomData,
-              reviews:filterNewReviews
-            }
-            setSingleRoomData(updateNewReviews)
-            
+      
             const updateRoomReviewAndRate={
               roomId:singleRoomData._id,
               countReviews: Number(singleRoomData?.countReviews) - 1,
               rate: Number(singleRoomData?.rate) - rating,
             }
           const {data:updateRoomRate}:any=await roomReviewAndRatingUpdate(updateRoomReviewAndRate)
-          console.log(updateRoomRate);
+
+          const updateNewReviews={
+            ...singleRoomData,
+            reviews:filterNewReviews,
+            countReviews:updateRoomRate.countReviews,
+            rate:updateRoomRate.rate
+          }
+          setSingleRoomData(updateNewReviews)
+
            
           }
        } catch (error) {
         console.log(error);
        }
-      setOpenReviewAction(null)
     }
 
     
@@ -121,13 +126,8 @@ const ReviewList = ({singleRoomData,setSingleRoomData}:any) => {
         <div className='review_list_contents'>
             <Grid container spacing={2}>
              {sortedReviews?.map((review:any)=> <ReviewListCard key={review?._id} review={review} 
-              handleClickEditReview={handleClickEditReview}
               handleDeleteReview={handleDeleteReview}
-              openReviewAction={openReviewAction}
-              setOpenReviewAction={setOpenReviewAction}
-              editReviewOpen={editReviewOpen}
               handleSubmitEditReview={handleSubmitEditReview}
-              setEditReviewOpen={setEditReviewOpen}
               onToggleLikeSubmit={onToggleLikeSubmit}
              />)}
             </Grid>

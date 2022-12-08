@@ -3,7 +3,8 @@ import Menu from '../../utils/Menu';
 import { ListItemIcon, MenuItem } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
 
-const ReviewAction = ({openReviewAction,setOpenReviewAction,handleClickEditReview,handleDeleteReview,isAuthorOrAdmin,isAuthor,review}:any) => {
+const ReviewAction = ({openReviewAction,setOpenReviewAction,handleEditReviewOpen,handleDeleteReview,isAuthorOrAdmin,isAuthor,review}:any) => {
+  
     return (
       <Menu
         menuAnchor={openReviewAction}
@@ -12,7 +13,7 @@ const ReviewAction = ({openReviewAction,setOpenReviewAction,handleClickEditRevie
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         {isAuthor && (
-          <MenuItem onClick={handleClickEditReview}>
+          <MenuItem onClick={handleEditReviewOpen}>
           <ListItemIcon>
             <Edit />
           </ListItemIcon>

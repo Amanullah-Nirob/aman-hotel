@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Grid,Avatar,IconButton,Button} from '@mui/material'
 import formatDate from '../../../utils/formatDate';
 import Rating from '../../common/rating/Rating';
@@ -13,15 +13,11 @@ import { Form, useForm } from '../../../hooks/useForm';
 import reviewValidateConfig from '../../../utils/validator/validatorConfig/reviewValidateConfig';
 import ReviewLike from './ReviewLike';
 
+
 const ReviewListCard = ({
     review,
-    handleClickEditReview,
     handleDeleteReview,
-    openReviewAction,
-    setOpenReviewAction,
-    editReviewOpen,
     handleSubmitEditReview,
-    setEditReviewOpen,
     onToggleLikeSubmit
 }:any) => {
     const loggedInUser=useAppSelector(selectCurrentUser)
@@ -29,6 +25,8 @@ const ReviewListCard = ({
     const isAdmin = loggedInUser?.role === 'admin';
     const isAuthor = review.userId?._id === loggedInUser?._id;
     const isAuthorOrAdmin= isAdmin || isAuthor;
+    const [editMode, setEditMode] = useState(false);
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const initialData = { 
         content: review?.content, 
@@ -44,6 +42,20 @@ const ReviewListCard = ({
         return formatDate(review?.created_at || '');
     };
     
+    const handleEditReviewOpen=()=>{
+        setEditMode(true)
+        setAnchorEl(null);
+    }
+
+    const submitEditReview=(updateReview:any,prevRating:any)=>{
+        handleSubmitEditReview(updateReview,prevRating)
+        setAnchorEl(null);
+        setEditMode(false)
+    }
+    const handleClose = () => {
+        setEditMode(false)
+        setAnchorEl(null);
+      };
 
     return (
         <Grid item xs={12} key={review?._id}>
@@ -52,7 +64,7 @@ const ReviewListCard = ({
                 <div className="review_user_avatar">
                     <Avatar src={review?.userId?.profilePic} alt='review user profile photo' sx={{width:'50px',height:'50px'}} />
                 </div>
-                    {!editReviewOpen? (
+                    {!editMode? (
                         <div className="review_content_info">
                         <div className="content" style={{backgroundColor:theme==='light'?'#f0f2f5':'#303030'}}>
                         <h4>{review?.userId?.name}</h4>
@@ -64,20 +76,21 @@ const ReviewListCard = ({
                         </div>
                         {isAuthorOrAdmin && (
                             <>
-                            <IconButton sx={{padding:'5px 7px 1px 7px'}} className='reviewOptionsIcon' onClick={(e)=>setOpenReviewAction(e.target as any)}>
+                            <IconButton sx={{padding:'5px 7px 1px 7px'}} className='reviewOptionsIcon' onClick={(event: React.MouseEvent<HTMLButtonElement>)=>setAnchorEl(event.currentTarget)}>
                             <span> <MoreHorizIcon sx={{marginTop:'1px'}} /></span>
                             </IconButton>
                             </>
                         )}
                         <ReviewAction 
-                        openReviewAction={openReviewAction} 
-                        setOpenReviewAction={setOpenReviewAction}
-                        handleClickEditReview={handleClickEditReview}
+                        openReviewAction={anchorEl} 
+                        setOpenReviewAction={setAnchorEl}
+                        handleEditReviewOpen={handleEditReviewOpen}
                         handleDeleteReview={handleDeleteReview}
                         isAuthorOrAdmin={isAuthorOrAdmin}
                         isAuthor={isAuthor}
                         review={review}
                         />
+
                         </div>
                     ):(
                         <div className='review_edit_form'>
@@ -85,11 +98,11 @@ const ReviewListCard = ({
                             <TextAreaField value={data.content} label='Leave feedback' name='content' />
                             <RatingField value={data.rating}  name='rating' label='your mark:' size='large' />
                             <Button disabled={data.content === ""}  variant='outlined' size='small' style={{ marginTop: '5px' }} 
-                            onClick={()=>handleSubmitEditReview({...review,content:data.content,rating:data.rating})}>
+                            onClick={()=>submitEditReview({...review,content:data.content,rating:data.rating},review?.rating)}>
                             update
                             </Button>
                             <Button variant='outlined' size='small' style={{ marginTop: '5px' }} 
-                            onClick={()=>setEditReviewOpen(false)}>
+                            onClick={handleClose}>
                             close
                             </Button>
                             </Form>

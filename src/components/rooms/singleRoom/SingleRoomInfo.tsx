@@ -15,6 +15,7 @@ import SingleRoomTitle from './singleRoomPart/SingleRoomTitle';
 import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import PanToolAltOutlinedIcon from '@mui/icons-material/PanToolAltOutlined';
+import Rating from '../../common/rating/Rating';
 
 const comfortIconsMap: { [x: string]: JSX.Element } = {
     hasWifi: <div className='facilities_info_icon'>
@@ -54,6 +55,8 @@ const conditionIconsMap: { [x: string]: JSX.Element } = {
 };
 const SingleRoomInfo = ({data}:any) => {
     const theme=useAppSelector(selectTheme)
+    const ratingValue = +(data?.rate / data?.countReviews).toFixed(2);
+    
     return (
         <>
         <SingleRoomTitle data={data} theme={theme}></SingleRoomTitle>
@@ -157,6 +160,21 @@ const SingleRoomInfo = ({data}:any) => {
             <p>No Indecent Behavior</p>
         </div>
        </div>
+       <div className='room-info__card'>
+      <h3 className='room-info__card-title'>room impressions</h3>
+      {data?.countReviews > 0 ? (
+        <>
+          <p className='room-info__card-rating__title'>
+          Overall rating: <span>{ratingValue} from 5</span>
+          </p>
+          <Rating value={ratingValue} name='rating' precision={0.1} readOnly size='large' />
+        </>
+      ) : (
+        <>
+          <h3>No reviews yet</h3>
+        </>
+      )}
+    </div>
 
        </Paper>
         
