@@ -47,7 +47,6 @@ const ReviewList = ({singleRoomData,setSingleRoomData}:any) => {
          console.log(error);
        }
     }
-   
     
     const handleDeleteReview=async(reviewId:any,roomId:any,rating:any)=>{
        try {
@@ -77,7 +76,6 @@ const ReviewList = ({singleRoomData,setSingleRoomData}:any) => {
        }
     }
 
-    
     const onToggleLikeSubmit=async(reviewId:any,isLiked:any)=>{
        try {
           if(isLiked){

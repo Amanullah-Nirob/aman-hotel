@@ -55,7 +55,6 @@ const conditionIconsMap: { [x: string]: JSX.Element } = {
 };
 const SingleRoomInfo = ({data}:any) => {
     const theme=useAppSelector(selectTheme)
-    const ratingValue = +(data?.rate / data?.countReviews).toFixed(2);
     
     return (
         <>
@@ -160,24 +159,7 @@ const SingleRoomInfo = ({data}:any) => {
             <p>No Indecent Behavior</p>
         </div>
        </div>
-       <div className='room-info__card'>
-      <h3 className='room-info__card-title'>room impressions</h3>
-      {data?.countReviews > 0 ? (
-        <>
-          <p className='room-info__card-rating__title'>
-          Overall rating: <span>{ratingValue} from 5</span>
-          </p>
-          <Rating value={ratingValue} name='rating' precision={0.1} readOnly size='large' />
-        </>
-      ) : (
-        <>
-          <h3>No reviews yet</h3>
-        </>
-      )}
-    </div>
-
        </Paper>
-        
         </>
      
     );
