@@ -42,6 +42,10 @@ export const reviewApi=createApi({
             }),
          invalidatesTags: ["Review"],
         }),
+        myReviewGetById: builder.query<[], any>({ 
+          query: (userId)=>`/myReview/${userId}`,
+          providesTags: ["Review"],
+      }),
     }),
  
 
@@ -50,6 +54,7 @@ export const reviewApi=createApi({
 export const {
   useReviewCreateMutation,
   useReviewUpdateMutation,
-  useReviewDeleteMutation
+  useReviewDeleteMutation,
+  useMyReviewGetByIdQuery
 } = reviewApi;
   

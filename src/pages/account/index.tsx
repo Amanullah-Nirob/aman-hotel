@@ -90,7 +90,7 @@ const Account = ({children}:LayoutProps) => {
                      Bookings
                   </CustomMenuLink>
 
-                  <CustomMenuLink  href={`/account/likes`} >
+                  <CustomMenuLink  href={`/account/review/${loggedinUser._id}`} >
                     <StarBorderIcon 
                     sx={{marginRight:'6px',fontSize:'26px',
                     stroke: theme==='light'?"#f5f5f5":'#000000'}} />

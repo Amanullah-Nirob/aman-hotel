@@ -11,6 +11,7 @@ import { userApi } from "./apiSlice/useApiSlice";
 import { roomApi } from "./apiSlice/roomApiSlice";
 import { reviewApi } from "./apiSlice/reviewApiSlice";
 import { likeApi } from "./apiSlice/likeApiSlice";
+import { bookingApi } from "./apiSlice/bookingApiSlice";
 
 import authSliceReducer from './slices/auth/authSlice'
 import toastReducer from './slices/ToastSlice'
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   [roomApi.reducerPath]: roomApi.reducer,
   [reviewApi.reducerPath]: reviewApi.reducer,
   [likeApi.reducerPath]: likeApi.reducer,
+  [bookingApi.reducerPath]: bookingApi.reducer,
   theme:themReducer,
   roomSearch:persistReducer(roomSearchPersistConfig,roomSearchReducer),
   auth:authSliceReducer,
@@ -49,6 +51,7 @@ export const store = configureStore({
       .concat(roomApi.middleware)
       .concat(reviewApi.middleware)
       .concat(likeApi.middleware)
+      .concat(bookingApi.middleware)
 
 });
 

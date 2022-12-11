@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useClientRouter } from "use-client-router";
-import {Container,Paper} from '@mui/material'
+import {Container,Paper,Alert} from '@mui/material'
 import Head from 'next/head';
 import BreadCrumb from '../../components/element/BreadCrumb';
 import {Grid,CircularProgress} from '@mui/material'
@@ -37,6 +37,9 @@ const RoomSingle = ({data}:any) => {
                 <SingleRoomImage images={singleRoomData.images}></SingleRoomImage>
                 <Grid container spacing={5}>
                   <Grid item lg={8} md={8} sm={12} xs={12}>
+                    {singleRoomData.bookings.length>0 &&(
+                      <Alert sx={{marginBottom:'10px',borderRadius:'1rem'}} severity="info">This room is already booked by someone</Alert>
+                    )}
                     <SingleRoomInfo data={singleRoomData}></SingleRoomInfo>
                      <Review singleRoomData={singleRoomData} setSingleRoomData={setSingleRoomData}></Review>
                   </Grid>

@@ -10,10 +10,14 @@ import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import Image from 'next/image';
 import bookingNotFound from '../../../../public/static/images/upcoming_not.svg'
 import Head from 'next/head';
+import { useBookingGetByUserIdQuery } from '../../../app/apiSlice/bookingApiSlice';
+import Link from 'next/link';
+import { selectTheme } from '../../../app/slices/theme/ThemeSlice';
 
 const Dashboard = () => {
     const loggedInUser=useAppSelector(selectCurrentUser)
-
+    const {data}:any=useBookingGetByUserIdQuery(loggedInUser._id)
+    const theme=useAppSelector(selectTheme)
     return (
       <>
         <Head>
@@ -28,11 +32,13 @@ const Dashboard = () => {
                    <Grid container spacing={5}>
                         <Grid item sm={3}>
                           <Paper className="box" elevation={2}>
+                            <Link href={`/account/booking`} style={{color:theme==='light'?'#000':'#fff'}}>
                             <DateRangeOutlinedIcon sx={{color:'rgb(92, 152, 242)',fontWeight:'bold',fontSize:'40px'}} />
                             <div className="box_info">
-                                <h1>0</h1>
+                                <h1>{data?.length>0?data.length : 0}</h1>
                                 <p>Bookings</p>
                             </div>
+                            </Link>
                           </Paper>
                         </Grid>
                         <Grid item sm={3}>

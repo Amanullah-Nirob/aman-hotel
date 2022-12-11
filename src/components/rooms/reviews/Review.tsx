@@ -11,7 +11,7 @@ import Rating from '../../common/rating/Rating';
 
 const Review = ({singleRoomData,setSingleRoomData}:any) => {
     const loggedInUser=useAppSelector(selectCurrentUser)
-    const totalReviewsCount = singleRoomData?.reviews.length;
+    const totalReviewsCount = singleRoomData?.reviews?.length;
     const theme=useAppSelector(selectTheme)
     const ratingValue = +(singleRoomData?.rate / singleRoomData?.countReviews).toFixed(2);
     return (

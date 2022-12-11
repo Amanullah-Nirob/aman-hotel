@@ -12,6 +12,8 @@ import GuestCount from '../menus/GuestCount';
 import BookingFormPricing from './BookingFormPricing';
 import { ArrowRight } from '@mui/icons-material';
 import { selectCurrentUser } from '../../app/slices/auth/authSlice';
+import { useBookingCreateMutation } from '../../app/apiSlice/bookingApiSlice';
+import { displayToast } from '../../app/slices/ToastSlice';
 
 const oneDayMs = 86_000_000;
 
@@ -22,6 +24,8 @@ const BookingForm = ({roomId,price}:any) => {
     const theme=useAppSelector(selectTheme)
     const dispatch=useAppDispatch()
     const loggedInUser=useAppSelector(selectCurrentUser)
+    const [bookingCreate,{isError,isLoading}]=useBookingCreateMutation()
+    
     const initialData = {
         arrivalDate: searchQueryData.arrivalDate || Date.now(),
         departureDate: searchQueryData.departureDate || Date.now() + oneDayMs,
@@ -37,15 +41,34 @@ const BookingForm = ({roomId,price}:any) => {
     useForm(initialData, false, bookingValidatorConfig);
     const countDays = Math.max(1, Math.round((data.departureDate - data.arrivalDate) / oneDayMs));
 
-    const handleSubmit = (event: React.FormEvent<HTMLButtonElement>) => {
+    const handleSubmit = async(event: React.FormEvent<HTMLButtonElement>) => {
         event.preventDefault();
+       try {
         if (validate(data)) {
           const bookingData = {
             ...data,
             totalPrice,
           };
-          console.log(bookingData);
+         const newBookingData=await bookingCreate(bookingData).unwrap()
+         dispatch(  
+          displayToast({ 
+          title: "Booking successfully completed", 
+          message:'You are welcome to book a room', 
+          type: "success", duration: 3000, positionVert: "top",
+          positionHor: "center"
+        }))
+         console.log(newBookingData);
         }
+       } catch (error:any) {
+        dispatch(  
+          displayToast({ 
+          title: "Booking Exist", 
+          message: error?.data.message? error?.data.message : 'This room is already booked', 
+          type: "warning", duration: 3000, positionVert: "top",
+          positionHor: "center"
+        }))
+         console.log(error);
+       }
     };
 
     // useEffect(()=>{

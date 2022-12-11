@@ -7,11 +7,11 @@ export const roomApi=createApi({
         baseUrl:`${process.env.NEXT_PUBLIC_APIURL}/room`,
         prepareHeaders:(headers,{getState})=>{
         // By default, if we have a token in the store, let's use that for authenticated requests
-        // const token = (getState() as RootState).auth?.loggedInUser?.token;
+        const token = (getState() as RootState).auth?.loggedInUser?.token;
 
-        // if (token) { 
-        //   headers.set("Authorization", `Bearer ${token}`);
-        // }
+        if (token) { 
+          headers.set("Authorization", `Bearer ${token}`);
+        }
          headers.set("Content-Type", `application/json`);
          return headers;
     }
@@ -41,7 +41,6 @@ export const roomApi=createApi({
         }),
     }),
  
-
 }) 
 
 export const {

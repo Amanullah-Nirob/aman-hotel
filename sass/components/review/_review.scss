@@ -51,79 +51,79 @@
     }
     .review_list_main {
         margin-bottom: 30px;
-        .review_list_contents{ 
-            .review_list{
-                .list_box {
-                    .list_content_top{
-                        display: flex;
-                        justify-content: space-between;
-                        margin-bottom: 19px;
-                        .review_user_avatar{
-                            display: flex;
-                            align-items: center;
-                            h4 {
-                                margin: 0;
-                                margin-left: 18px;
-                            }
-                        }
-                        .review_rating {
-                            span {
-                                line-height: 40px;
-                                display: inline-block;
-                            }
-                        }
+    }
+}
+.review_list_contents{ 
+    .review_list{
+        .list_box {
+            .list_content_top{
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 19px;
+                .review_user_avatar{
+                    display: flex;
+                    align-items: center;
+                    h4 {
+                        margin: 0;
+                        margin-left: 18px;
                     }
-                    .list_content_center{
-                        margin-bottom: 5px;
+                }
+                .review_rating {
+                    span {
+                        line-height: 40px;
+                        display: inline-block;
+                    }
+                }
+            }
+            .list_content_center{
+                margin-bottom: 5px;
+                p {
+                    font-size: 13px;
+                    font-size: 13px;
+                    span{
+                        color: #01875f;
+                        font-weight: 700;
+                    }
+                }
+            }
+            .review_content_info {
+                position: relative;
+                .name_content{
+                    padding: 10px 11px;
+                    display: inline-block;
+                    p{
+                        font-size: 0.875rem;
+                    }
+                }
+                .likes_main{
+                    margin-top: 10px;
+                    .likes_title{
                         p {
                             font-size: 13px;
-                            font-size: 13px;
-                            span{
-                                color: #01875f;
-                                font-weight: 700;
-                            }
                         }
                     }
-                    .review_content_info {
-                        position: relative;
-                        .name_content{
-                            padding: 10px 11px;
-                            display: inline-block;
-                            p{
-                                font-size: 0.875rem;
+                    .newLikesRequest_menu{
+                        display: flex;
+                        justify-content: space-between;
+                        .newLikesRequest {
+                            margin-top: 3px;
+                            display: flex;
+                            align-items: center;
+                            p {
+                                font-size: 13px;
+                                margin-right: 13px;
+                            }
+                            .like-button_content {
+                                display: flex;
+                                align-items: center;
+                                span{
+                                    margin-left: 7px;
+                                    font-size: 14px;
+                                }
                             }
                         }
-                        .likes_main{
-                            margin-top: 10px;
-                            .likes_title{
-                                p {
-                                    font-size: 13px;
-                                }
-                            }
-                            .newLikesRequest_menu{
-                                display: flex;
-                                justify-content: space-between;
-                                .newLikesRequest {
-                                    margin-top: 3px;
-                                    display: flex;
-                                    align-items: center;
-                                    p {
-                                        font-size: 13px;
-                                        margin-right: 13px;
-                                    }
-                                    .like-button_content {
-                                        display: flex;
-                                        align-items: center;
-                                        span{
-                                            margin-left: 7px;
-                                            font-size: 14px;
-                                        }
-                                    }
-                                }
-                                .reviewOptionsIcon{
-                                    
-                                }
-                            }
+                        .reviewOptionsIcon{
+                            
                         }
                     }
                 }
@@ -131,7 +131,6 @@
         }
     }
 }
-
 .reviewForm {
     form{
         .MuiFormControl-root{

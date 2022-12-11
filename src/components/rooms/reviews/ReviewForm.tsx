@@ -35,7 +35,7 @@ const ReviewForm = ({singleRoomData,setSingleRoomData}:any) => {
                 rate: Number(singleRoomData?.rate) + Number(data.rating),
             }
             const {data:updateRoomRate}:any=await roomReviewAndRatingUpdate(updateRoomReviewAndRate)
-
+            
             const updateSingleRoomData={
                 ...singleRoomData,
                 reviews:[...allReviews,data],

@@ -21,10 +21,20 @@ export const getRoom = async (id: string): Promise<RoomType> => {
     throw new Error(catchError(error as any));
   }
 };
+export const getMyReview = async (id: string): Promise<[]> => {
+  try {
+    const url = `/review/myReview/${id}`;
+    const { data } = await apiClient.get(url);
+    return data;
+  } catch (error) {
+    throw new Error(catchError(error as any));
+  }
+};
 
 const RoomServices = {
   getRooms,
   getRoom,
+  getMyReview
 };
 
 export default RoomServices;
