@@ -30,11 +30,21 @@ export const getMyReview = async (id: string): Promise<[]> => {
     throw new Error(catchError(error as any));
   }
 };
+export const getMyLikes = async (id: string): Promise<[]> => {
+  try {
+    const url = `/like/myLikes/${id}`;
+    const { data } = await apiClient.get(url);
+    return data;
+  } catch (error) {
+    throw new Error(catchError(error as any));
+  }
+};
 
 const RoomServices = {
   getRooms,
   getRoom,
-  getMyReview
+  getMyReview,
+  getMyLikes
 };
 
 export default RoomServices;

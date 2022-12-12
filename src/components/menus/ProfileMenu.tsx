@@ -70,14 +70,14 @@ const ProfileMenu = ({anchor,setAnchor}:any) => {
           </MenuItem>
           <MenuItem
             className='profile_menu__item'
-            onClick={() => handleClickSettingsMenu(`/account/review`)}
+            onClick={() => handleClickSettingsMenu(`/account/review/${loggedinUser._id}`)}
           >
             <StarBorderIcon />
             Reviews
           </MenuItem>
           <MenuItem
             className='profile_menu__item'
-            onClick={() => handleClickSettingsMenu(`/account/like`)}
+            onClick={() => handleClickSettingsMenu(`/account/likes/${loggedinUser._id}`)}
           >
             <ThumbUpOutlinedIcon />
             Liked

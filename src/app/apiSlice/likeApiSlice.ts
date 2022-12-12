@@ -34,6 +34,10 @@ export const likeApi=createApi({
             }),
          invalidatesTags: ["Like"],
         }),
+        myLikesGetById: builder.query<[], any>({ 
+            query: (userId)=>`/myLikes/${userId}`,
+            providesTags: ["Like"],
+        }),
     }),
  
 
@@ -41,6 +45,7 @@ export const likeApi=createApi({
 
 export const {
     useLikeCreateMutation,
-    useLikeDeleteMutation
+    useLikeDeleteMutation,
+    useMyLikesGetByIdQuery
 } = likeApi;
   

@@ -13,10 +13,11 @@ type DatePickerFieldProps = DatePickerProps<any,any> & {
   minDate: Date | number;
   name: string;
   error?: string;
-  btnvariant?:"standard" | "filled" | "outlined"
+  btnvariant?:"standard" | "filled" | "outlined",
+  readOnly?:boolean
 };
 
-const DatePickerField: React.FC<DatePickerFieldProps> = ({ label, name, value, minDate, onChange, error,btnvariant, ...rest }) => {
+const DatePickerField: React.FC<DatePickerFieldProps> = ({ label, name, value, minDate, onChange, error,btnvariant, readOnly }) => {
 
   const convertToDefEventParam = (name: string, value: Date | number | null) => ({
     target: {
@@ -37,6 +38,7 @@ const DatePickerField: React.FC<DatePickerFieldProps> = ({ label, name, value, m
         value={value}
         inputFormat="dd/MM/yyyy"
         minDate={minDate || Date.now()}
+        readOnly={readOnly}
         onChange={(date: number | Date | null) => {
           onChange(convertToDefEventParam(name, date));
         }}

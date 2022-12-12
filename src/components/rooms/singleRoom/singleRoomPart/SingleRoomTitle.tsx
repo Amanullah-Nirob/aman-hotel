@@ -3,15 +3,32 @@ import {Divider,Paper, Button} from '@mui/material'
 import { dmSansFont,dmFont,roboto } from '../../../../utils/nextFont';
 import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import NumbersIcon from '@mui/icons-material/Numbers';
 import KingBedOutlinedIcon from '@mui/icons-material/KingBedOutlined';
 import BathtubOutlinedIcon from '@mui/icons-material/BathtubOutlined';
 import MeetingRoomOutlinedIcon from '@mui/icons-material/MeetingRoomOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
+import { addFavorite, removeFavorite, selectFavorites } from '../../../../app/slices/favorites/Favorites';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import Rating from '../../../common/rating/Rating';
 
 const SingleRoomTitle = ({data,theme}:any) => {
+    const favoritesList=useAppSelector(selectFavorites)
+    const dispatch=useAppDispatch()
+    const countReviews = data.reviews ? data.reviews.length : 0;
+    // @ts-ignore
+    const rating = countReviews > 0 ? data.reviews.reduce((acc, cur) => acc + cur.rating, 0) : 0;
+
+    const isRoomInFavoritesList = favoritesList?.some((favorite:any) => favorite._id === data._id);
+    const handleWishlistChange=(room:any)=>{
+      if(isRoomInFavoritesList){
+         dispatch(removeFavorite(room))
+      }else{
+        dispatch(addFavorite(room))
+      }
+    }
     return (
         <Paper variant="outlined"  className="single_room_info">
         <div className="roomInfoTileBoxMain">
@@ -21,15 +38,17 @@ const SingleRoomTitle = ({data,theme}:any) => {
                </div>
                <div className="data_room_share_save">
                <Button sx={{textTransform:'capitalize'}} variant="text" startIcon={<IosShareOutlinedIcon />}>Share</Button>
-               <Button sx={{textTransform:'capitalize'}} variant="text" startIcon={<FavoriteBorderOutlinedIcon />}>Save</Button>
+               <Button sx={{textTransform:'capitalize'}} variant="text" startIcon={isRoomInFavoritesList?<FavoriteIcon/>:<FavoriteBorderOutlinedIcon />} onClick={()=>handleWishlistChange(data)}>Save</Button>
                </div>
             </div>
             <div className="rtTitleMain">
                  <h1 className={dmSansFont.className}>{data?.title}</h1>
                 <div className={dmSansFont.className+" moreInfo"}>
                 <div className='rating'>
-                    <StarBorderIcon sx={{fontSize:'27px',color:'#faaf00'}}/> 
-                    <p>N/A ({data?.countReviews})</p>
+                  <div className="starRating">
+                  <Rating name='read-only' value={rating} totalCount={countReviews} readOnly />
+                  </div>
+                    <p>({data?.countReviews})</p>
                 </div>
                 <div className="roomNumber">
                    <NumbersIcon sx={{color:'#388e3c'}}/> 

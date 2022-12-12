@@ -14,6 +14,8 @@ import { ArrowRight } from '@mui/icons-material';
 import { selectCurrentUser } from '../../app/slices/auth/authSlice';
 import { useBookingCreateMutation } from '../../app/apiSlice/bookingApiSlice';
 import { displayToast } from '../../app/slices/ToastSlice';
+import { setBookingPendingData } from '../../app/slices/BookingPending';
+import Router from 'next/router';
 
 const oneDayMs = 86_000_000;
 
@@ -49,15 +51,9 @@ const BookingForm = ({roomId,price}:any) => {
             ...data,
             totalPrice,
           };
-         const newBookingData=await bookingCreate(bookingData).unwrap()
-         dispatch(  
-          displayToast({ 
-          title: "Booking successfully completed", 
-          message:'You are welcome to book a room', 
-          type: "success", duration: 3000, positionVert: "top",
-          positionHor: "center"
-        }))
-         console.log(newBookingData);
+          console.log(bookingData);
+          dispatch(setBookingPendingData(bookingData))
+          Router.push('/confirmBooking')
         }
        } catch (error:any) {
         dispatch(  

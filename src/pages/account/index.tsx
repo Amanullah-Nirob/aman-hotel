@@ -96,7 +96,7 @@ const Account = ({children}:LayoutProps) => {
                     stroke: theme==='light'?"#f5f5f5":'#000000'}} />
                     Reviews
                   </CustomMenuLink>
-                  <CustomMenuLink  href={`/account/likes`} >
+                  <CustomMenuLink  href={`/account/likes/${loggedinUser._id}`} >
                     <ThumbUpOutlinedIcon 
                     sx={{marginRight:'6px',fontSize:'26px',
                     stroke: theme==='light'?"#f5f5f5":'#000000'}} />

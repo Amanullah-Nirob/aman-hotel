@@ -1,0 +1,63 @@
+.myReview_main {
+    .review_list_contents {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        .review_list {
+            .list_box {
+                .review_content_info {
+                    .likes_main {
+                        margin-top: 10px;
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+            .MuiDivider-root{
+                display: none;
+            }
+        }
+    }
+    .review_room_card_main{
+        .roomCard {
+            .imageSlider{
+                .room_card_gallery_image {
+                    height: 175px;
+                }
+            }
+            .roomDetails_area {
+                padding: 0px 12px 12px;
+                .roomDetailsInfo {
+                    h3 {
+                        margin-bottom: 0px;
+                        font-size: 16px;
+                    }
+                }
+                .star_rating {
+                    line-height: 0;
+                    span {
+                        font-size: 20px;
+                    }
+                }
+                .rating_total {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+            }
+
+        }
+    }
+    .myReview_content {
+        padding: 26px 21px 23px;
+        margin-top: 12px;
+    }
+}
+.favorite_box {
+    position: relative;
+    .favCancel {
+        position: absolute;
+        right: 21px;
+        bottom: 7px;
+    }
+    
+}

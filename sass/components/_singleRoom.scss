@@ -31,11 +31,12 @@
                         align-items: center;
                         .rating {
                             display: flex;
-                            align-items: flex-end;
+                            align-items: center;
                             p {
-                                font-size: 15px;
-                                margin-top: 3px;
                                 margin-left: 3px;
+                            }
+                            .starRating {
+                                line-height: 17px;
                             }
                         }
                         .roomNumber {

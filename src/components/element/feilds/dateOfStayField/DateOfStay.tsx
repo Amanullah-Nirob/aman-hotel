@@ -11,9 +11,10 @@ type DateOfStayProps = {
   errors?: { [x: string]: string };
   onChange: (target: any) => void;
   title?: string;
+  readOnly?:boolean
 };
 
-const DateOfStay: React.FC<DateOfStayProps> = ({ onChange, data, errors }) => {
+const DateOfStay: React.FC<DateOfStayProps> = ({ onChange, data, errors,readOnly=false }) => {
   const { arrivalDate, departureDate } = data;
   const theme=useAppSelector(selectTheme)
 
@@ -28,6 +29,7 @@ const DateOfStay: React.FC<DateOfStayProps> = ({ onChange, data, errors }) => {
           onChange={onChange}
           error={errors?.arrivalDate && errors?.arrivalDate}
           value={+arrivalDate}
+          readOnly={readOnly}
           btnvariant="standard"
           renderInput={(params) => (
             <TextField 

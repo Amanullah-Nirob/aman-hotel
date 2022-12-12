@@ -31,6 +31,10 @@ export type BookingType = {
   roomId: string;
   userId: string;
   totalPrice: number;
+  name?: string;
+  email?: string;
+  phone?: string;
+  paymentMethod?: string;
   expires_at?: number;
 };
 

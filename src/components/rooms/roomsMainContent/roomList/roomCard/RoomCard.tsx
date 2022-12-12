@@ -48,11 +48,13 @@ const RoomCard: React.FC<RoomType> = ({ _id, roomNumber, price, type, images, co
           <div className={dmSansFont.className+" roomDetailsInfo"}>
             <h3>{truncateString(title,23,23)}</h3>
             <p> <span style={{color:''}}>From:</span> &#2547; {price}</p>
+            <div className='rating_total'>
             <div className="star_rating">
             <Rating name='read-only' value={rating} totalCount={countReviews} readOnly />
             </div>
             <div className="total_review">
             <span className='room-card__reviews-count'>{`${countReviews} ${declOfNum(countReviews, ['Review','Reviews','Reviews',])}`}</span>
+            </div>
             </div>
           </div>
         </div>

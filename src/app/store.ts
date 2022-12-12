@@ -16,14 +16,17 @@ import { bookingApi } from "./apiSlice/bookingApiSlice";
 import authSliceReducer from './slices/auth/authSlice'
 import toastReducer from './slices/ToastSlice'
 import roomSearchReducer from './slices/roomSearch/RoomSearch'
+import favoritesReducer from './slices/favorites/Favorites'
+import bookingPendingReducer from './slices/BookingPending'
 
 const persistConfig = {
     key: "root",
     version: 1,
     storage,
-    whitelist: ["theme","auth"],
+    whitelist: ["theme","auth","favorites"],
 }; 
 const roomSearchPersistConfig = { key: 'room', version: 1, storage:storageSession };
+const bookingPendingDataPersistConfig = { key: 'bookingPending', version: 1, storage:storageSession };
 
 const rootReducer = combineReducers({
   [userApi.reducerPath]: userApi.reducer,
@@ -35,6 +38,8 @@ const rootReducer = combineReducers({
   roomSearch:persistReducer(roomSearchPersistConfig,roomSearchReducer),
   auth:authSliceReducer,
   ToastData:toastReducer,
+  favorites:favoritesReducer,
+  bookingPendingData:persistReducer(bookingPendingDataPersistConfig,bookingPendingReducer),
 
 });
 
