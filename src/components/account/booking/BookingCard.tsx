@@ -3,19 +3,20 @@ import {Box,Alert,Grid,Button} from '@mui/material'
 import formatDate, { getDateDDMMYYYY } from '../../../utils/formatDate';
 import RoomCard from '../../rooms/roomsMainContent/roomList/roomCard/RoomCard';
 import { useBookingDeleteMutation } from '../../../app/apiSlice/bookingApiSlice';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { displayToast } from '../../../app/slices/ToastSlice';
 import BookingFormPricing from '../../booking/BookingFormPricing';
 import { dmSansFont } from '../../../utils/nextFont';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import BookingStatusBar from './BookingStatusBar';
+import { selectTheme } from '../../../app/slices/theme/ThemeSlice';
 
 const oneDayMs = 86_000_000;
 const BookingCard = ({booking}:any) => {
     const [bookingDelete]=useBookingDeleteMutation()
     const dispatch=useAppDispatch()
     const [total,setTotalPrice]=useState(0)
-
+    const theme=useAppSelector(selectTheme)
     const arrivalDate = new Date(booking.arrivalDate);
     const departureDate = new Date(booking.departureDate);
     const countDays = Math.max(1, Math.round((departureDate.valueOf() - arrivalDate.valueOf()) / oneDayMs));
@@ -43,6 +44,21 @@ const BookingCard = ({booking}:any) => {
         }
     }
 
+    const bookingStatusAlert=(status:string)=>{
+        if(booking.status === 'requested'){
+            return 'Please wait a moment, if your booking request is accepted then you can make payment.'
+          } else if(booking.status === 'accepted'){
+            return 'Your booking accepted. please pay for the booking'
+          } else if(booking.status === 'confirmed'){
+            return 'Your booking is confirmed. You are invited very soon'
+          } else if(booking.status === 'to review'){
+            return 'Welcome to our hotel. enjoy the room and extra facilities'
+          } else if(booking.status === 'completed'){
+            return 'Hope you enjoyed and invite you in advance to come again'
+          } else if(booking.status === 'denied'){
+            return 'your booking denied!'
+          }
+    }
     return (
 
         <Grid item sm={12}>
@@ -62,7 +78,7 @@ const BookingCard = ({booking}:any) => {
             <span>Booking placed: </span> {formatDate(booking?.created_at || '')}
             {displayReviewData()}
             </div>
-          <Alert severity="info">Please wait a moment, if your booking request is accepted then you can make payment.</Alert>
+          <Alert severity="info">{bookingStatusAlert(booking.status)}</Alert>
         {/* booking table */}
          <div className='Booking_Information'>
           <h3 className={dmSansFont.className}>Booking Information</h3> 
@@ -81,10 +97,10 @@ const BookingCard = ({booking}:any) => {
                             </td>
                         </tr>
                         <tr className='booking-info__item'>
-                            <td>Number Of guest:- </td>
+                            <td>Number Of guest: </td>
                             <td>
-                            <span>adults: {booking.adults}</span>
-                            <span>children: {booking.children}</span>
+                            <span>adults: {booking.adults} | </span>
+                            <span>children: {booking.children} | </span>
                             <span>babies: {booking.babies}</span>
                             </td>
                         </tr>
@@ -104,7 +120,8 @@ const BookingCard = ({booking}:any) => {
         
         </div>
          {/* booking details */}
-        <div className='price_and_details'>
+         <h3 style={{margin:'0'}} className={dmSansFont.className}>Booking Details</h3> 
+        <div className='price_and_details' style={{backgroundColor:theme==='light'?'#fafafa':'rgb(28 28 28)'}}>
             <div className='Billing_Address_payment_method'>
                 <div className='billing_main'>
                 <div className='billing_content'>

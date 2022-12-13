@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import {Box,Paper} from '@mui/material';
 import { dmSansFont } from '../../../utils/nextFont';
 import formatDate from '../../../utils/formatDate';
 import Stepper from '@mui/material/Stepper';
@@ -22,7 +22,7 @@ function LinearProgressWithLabel(props:any) {
     return (
         <>
         <Box sx={{ display: 'flex', alignItems: 'center',justifyContent:'space-between',marginBottom:'10px' }}>
-        <p className={dmSansFont.className}>Booking {props.booking.status} on {displayReviewData()}</p>
+        <h3 className={dmSansFont.className}>Booking {props.booking.status} on <span style={{color:'rgb(92, 152, 242)',fontWeight:'600'}}>{displayReviewData()}</span></h3>
         <Box sx={{ minWidth: 35 }}>
           <Typography variant="body2" color="text.secondary">{`${Math.round(
             props.value,
@@ -88,7 +88,7 @@ const BookingStatusBar = ({booking}:any) => {
     }
 
     return (
-        <div>
+        <div >
          <Box sx={{ width: '100%' }}>
         <LinearProgressWithLabel value={progress} booking={booking} color={booking.status ==='denied'? 'error':'primary'} />
 
