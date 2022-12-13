@@ -28,9 +28,10 @@ const Account = ({children}:LayoutProps) => {
     const theme=useAppSelector(selectTheme)
     const dispatch=useAppDispatch()
 
+
     const breadCrumb = [
       {text:'Home',url: '/'},
-      {text: 'Dashboard > '+Router.pathname.slice(11)}
+      {text: 'Account > '+ Router.pathname.split('/')[2]}
     ];
 
     // logout area
@@ -44,9 +45,9 @@ const Account = ({children}:LayoutProps) => {
     <Box className='account_main'>
         <Container maxWidth="xl">
           <div className="account_all_content" style={{transform: theme==='light'?'translate(0px, 77px)':'translate(0px, 95px)'}}>
-          <BreadCrumb breacrumb={breadCrumb} />
+          <div className='account_breadCrumb'><BreadCrumb breacrumb={breadCrumb} /></div>
 
-          <Grid container spacing={5}>
+          <Grid container spacing={3}>
             <Grid item sm={2.5}>
          <Box className='sideBar_main'>
      

@@ -5,11 +5,11 @@ import { selectCurrentUser } from '../../../app/slices/auth/authSlice';
 import {Box,CircularProgress,Grid} from '@mui/material'
 import BookingCard from '../../../components/account/booking/BookingCard';
 import { useAppSelector } from '../../../app/hooks';
+import { dmSansFont } from '../../../utils/nextFont';
 
 const Booking = () => {
     const loggedInUser=useAppSelector(selectCurrentUser)
     const { data, error, isLoading, isSuccess } =useBookingGetByUserIdQuery(loggedInUser._id)
-    console.log(data);
     
     return (
         <>
@@ -17,9 +17,6 @@ const Booking = () => {
             <title>Booking - Account | Aman-Hotel</title>
         </Head>
          <div className='myBooking_main'>
-            <div className='myBooking_title'>
-                <h2>My Booking</h2>
-            </div>
             {!isLoading?(
             <Grid container spacing={2}>
                 {data?.map((booking:any)=>(

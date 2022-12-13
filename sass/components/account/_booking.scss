@@ -1,0 +1,66 @@
+ .myBooking_main{
+    .myBooking_title{
+        display: flex;
+        justify-content: space-between;
+        h2{
+            margin: 0;
+        }
+    }
+}
+.booking_content{
+     .myBooking_content_box{
+        .bookingTimes{
+            margin-bottom: 15px;
+        }
+        .Booking_Information {
+            margin-bottom: 20px;
+            h3 {
+                margin: 0;
+                margin-top: 16px;
+                margin-bottom: 7px;
+            }
+            .booking_status_bar {
+                margin: 20px 0;
+                .booking_status_list {
+                    margin-top: 15px;
+                }
+            }
+        }
+        .price_and_details {
+            display: flex;
+            justify-content: space-between;
+
+            .booking_pricing {
+                width: 50%;
+                h3{
+                    margin: 0;
+                    margin-bottom: 9px;
+                }
+                .bookingPrice {
+                    margin-top: 0px;
+                }
+            }
+            .Billing_Address_payment_method {
+                .billing_main {
+                    .billing_content{
+                        h3 {
+                            margin: 0;
+                            margin-bottom: 9px;
+                        }
+                        p {
+                            margin-bottom: 2px;
+                        }
+                    } 
+                    .paymentMethod {
+                        h3 {
+                            margin: 0;
+                            margin-top: 11px;
+                            margin-bottom: 7px;
+                        } 
+                    }                
+                }
+            }
+        }
+     
+     }   
+}

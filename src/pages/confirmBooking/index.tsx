@@ -28,7 +28,8 @@ const ConfirmBooking = () => {
 
     const paymentMethodItems = [
         { id: 'SSLCOMMERZ', title: 'SSLCOMMERZ' },
-        { id: 'other', title: 'other' },
+        { id: 'cash', title: 'cash' },
+        { id: 'other', title: 'other' }
     ];
     const initialData = {
         arrivalDate: bookingPendingData.arrivalDate,
@@ -100,8 +101,8 @@ const ConfirmBooking = () => {
                      <div className="Booking_information_form">
                         <h2>Booking Information</h2>
                         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown as any}>
-                           <InputField autoFocus name='name' label='Full Name' />
-                           <InputField name='phone' label='Phone' />
+                           <InputField name='name' label='Full Name' />
+                           <InputField autoFocus name='phone' label='Phone' />
                            <InputField name='email' label='Email' />
                            <RadioGroupField name='paymentMethod' items={paymentMethodItems} />
                            <LoadingButton variant="outlined" type='submit' 
