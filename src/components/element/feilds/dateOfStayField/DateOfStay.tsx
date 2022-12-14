@@ -47,6 +47,7 @@ const DateOfStay: React.FC<DateOfStayProps> = ({ onChange, data, errors,readOnly
           minDate={+arrivalDate + oneDayMs}
           onChange={onChange}
           value={+departureDate}
+          readOnly={readOnly}
           error={errors?.departureDate && errors?.departureDate}
           btnvariant="standard"
           renderInput={(params) => (

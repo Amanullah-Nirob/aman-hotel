@@ -48,9 +48,8 @@ const Account = ({children}:LayoutProps) => {
           <div className='account_breadCrumb'><BreadCrumb breacrumb={breadCrumb} /></div>
 
           <Grid container spacing={3}>
-            <Grid item sm={2.5}>
+            <Grid item md={2.5} sm={3} xs={12} sx={{display:{sm:'block',xs:'none'}}}>
          <Box className='sideBar_main'>
-     
             <div className="sidebar_all_menu">
                 <CustomMenuLink href={`/`}>
                     <HomeOutlinedIcon 
@@ -119,7 +118,7 @@ const Account = ({children}:LayoutProps) => {
 
                 </Box>
             </Grid>
-            <Grid item sm={9.5}>
+            <Grid item  md={9.5} sm={9}  xs={12}>
               {children}
             </Grid>
           </Grid>

@@ -31,14 +31,14 @@ const MyLikes = ({data}:any) => {
         <div className='myReview_main'>
             <Grid container>
             {likesData.map((review:any)=>(
-                <Grid item sm={12} key={review._id}>
+                <Grid item xs={12} key={review._id}>
                     <Grid container spacing={2}>
-                        <Grid item sm={8}>
+                        <Grid item sm={8} xs={12}>
                         <Paper className='myReview_content' variant="outlined">
                         <ReviewList singleRoomData={review.reviewId.roomId} setSingleRoomData={updateReviews}></ReviewList>
                         </Paper>
                         </Grid> 
-                        <Grid item sm={4}>
+                        <Grid item sm={4} xs={12}>
                         <div className='review_room_card_main'>
                         <RoomCard {...review.reviewId.roomId}></RoomCard>
                         </div>

@@ -61,10 +61,10 @@ const BookingCard = ({booking}:any) => {
     }
     return (
 
-        <Grid item sm={12}>
+        <Grid item xs={12}>
         <div className='booking_content'>
         <Grid container spacing={2}>
-        <Grid item sm={8}>
+        <Grid item lg={8} md={8} xs={12}>
         <div className='myBooking_title'>
                 <h2 className={dmSansFont.className}>My Booking</h2>
                 <div className="booking_status">
@@ -144,7 +144,7 @@ const BookingCard = ({booking}:any) => {
 
         </div> 
         </Grid>
-        <Grid item sm={4}>
+        <Grid item lg={4} md={4} xs={12}>
         <div className="my_booking_card_main">
         <RoomCard {...booking.roomId}></RoomCard>
             <Button variant="outlined" fullWidth onClick={()=>handleDeleteBooking(booking._id,booking.roomId._id)}>Cancel booking</Button>

@@ -1,14 +1,167 @@
 .confirm_booking_main{
   .confirm_booking_all_content{
+    .confirm_booking_title.mobile{
+      display: none;
+    }
     .confirmForm_main{
         border-radius: 1rem;
         padding: 15px 25px;
         .confirm_booking_title{
+          margin-bottom: 20px;
             h1{
-                margin: 0;
-                margin-bottom: 12px;
+              margin: 0;
+              margin-bottom: 5px;
+              font-size: 27px;
             }
         }
+        .confirm_data_guest {
+          h2 {
+            margin: 0;
+            font-size: 21px;
+            margin-bottom: 15px;
+          }
+          .guestData_main {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 22px;
+            border-radius: 21px;
+            .confirm_date{
+              .date h4 {
+                 margin: 0;
+                 >span {
+                  font-weight: 100;
+              }
+             }
+            }
+            .confirm_guest h4 {
+              margin: 0;
+              font-weight: 100;
+           }
+          }
+        }
+    }
+    .Booking_information_form {
+      margin: 35px 0;
+      h2 {
+        font-size: 21px;
+      }
+      form{
+        .MuiFormControl-root {
+            margin-bottom: 20px;
+        }
+        >div:first-child {
+            width: 48%;
+            margin-right: 9px;
+        }
+        >div:nth-child(2) {
+            width: 50%;
+        }
+        >div:nth-child(3) {
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        >div:nth-child(4) {
+            width: 100%;
+            border-radius: 4px;
+            margin-bottom: 0;
+            .MuiFormGroup-root {
+                margin: 8px 15px;
+                transform: translate(0px, 0px);   
+            }
+        }
+        >div:nth-child(7) {width: 100%;}
+      }
+    }
+
+    .choose_room_card{
+      padding: 25px 22px;
+      .RoomCard{
+        .MuiPaper-root{
+          box-shadow: none;
+          background-image: none;
+          background-color: transparent;
+        }
+        .roomDetails_area {
+          padding: 0;
+          margin-top: 9px;
+          .roomDetailsInfo{
+            .rating_total {
+              display: flex;
+              justify-content: space-between;
+           }
+          }
+        }
+      }
+      .roomPrice {
+        h2 {
+          margin: 0;
+          margin-top: 15px;
+          font-size: 22px;
+      }
+          .bookingPrice {
+            margin-top: 8px;
+            text-transform: capitalize;
+        }
+      } 
     }
   }
+} 
+
+@media screen and (max-width:'600px'){
+  .confirm_booking_main{
+    .confirm_booking_all_content{
+      .confirm_booking_title.mobile{
+        display: block;
+        margin-bottom: 16px;
+        h1{
+          margin: 0;
+          font-size: 23px;
+          margin-bottom: 20px;
+          line-height: 4px;
+        }
+      }
+      .confirmBookingMainGrid {
+        display: flex;
+        flex-direction: column-reverse;
+     }
+      .confirmForm_main{
+          border-radius: 0;
+          border: none;
+          padding: 0;
+          .confirm_booking_title{
+             display: none;
+          }
+      }
+      .Booking_information_form {
+        form{
+          .MuiFormControl-root {
+              margin-bottom: 14px;
+          }
+          >div:first-child {
+              width: 100%;
+              margin-right: 0px;
+          }
+          >div:nth-child(2) {
+              width: 100%;
+          }
+          >div:nth-child(3) {
+              width: 100%;
+              margin-bottom: 0;
+          }
+  
+          >div:nth-child(4) {
+              width: 100%;
+              border-radius: 4px;
+          }
+        }
+      }
+      .choose_room_card {
+        padding: 0;
+        box-shadow: none;
+        background-image: none;
+      }
+      
+    }
+  } 
 }

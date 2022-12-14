@@ -50,7 +50,7 @@ const RoomSingle = ({data}:any) => {
                      <div className='bookingHeader'>
                       <h3 className={dmSansFont.className}>Start from <span>&#2547; {singleRoomData.price}</span> /Night </h3>
                     </div>
-                      <BookingForm roomId={singleRoomData?._id} price={singleRoomData?.price}></BookingForm>
+                      <BookingForm roomId={singleRoomData?._id} room={singleRoomData} price={singleRoomData?.price}></BookingForm>
                      </Paper>
                     </Grid>
                 </Grid>

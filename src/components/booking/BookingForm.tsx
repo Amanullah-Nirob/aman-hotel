@@ -17,9 +17,9 @@ import { displayToast } from '../../app/slices/ToastSlice';
 import { setBookingPendingData } from '../../app/slices/BookingPending';
 import Router from 'next/router';
 
-const oneDayMs = 86_000_000;
+export const oneDayMs = 86_000_000;
 
-const BookingForm = ({roomId,price}:any) => {
+const BookingForm = ({roomId,price,room}:any) => {
     const searchQueryData=useAppSelector(selectRoomSearchQuery)
     const [totalPrice, setTotalPrice] = useState(0);
     const [guestCountMenuAnchor, setGuestCountMenuAnchor] = useState<any | null>(null);
@@ -37,6 +37,7 @@ const BookingForm = ({roomId,price}:any) => {
         userId: loggedInUser?._id,
         roomId: roomId,
         totalPrice: 0,
+        room:room
     };
 
     const { data, errors, enterError, setEnterError, handleInputChange, handleResetForm, handleKeyDown, validate } =

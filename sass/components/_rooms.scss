@@ -8,6 +8,10 @@
                 display: flex;
                 justify-content: flex-end;
             }
+            .roomMainContent {
+                margin-left: 15px;
+                margin-top: 15px;
+            }
         }
 
 
@@ -98,5 +102,48 @@
     .guestTitle{
         margin: 0;
         margin-bottom: 5px;
+    }
+}
+
+@media screen and (max-width:'600px'){
+    .rooms_area_main {
+        .room_main_grid {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        .rooms_all_content {
+            .roomMainAllContent{
+                .roomMainContent {
+                    margin-left: 0px;
+                    margin-top: 0px;
+                }
+            }    
+            .roomFilters{
+                form.filters_form {
+                    border-right: 0;
+                    .filters_item {
+                        .checkbox-list{
+                            padding: 0 0px 0 0;
+                         }                     
+                    }
+                }
+
+            }
+            .roomMainAllContent{
+                .roomMainContentHeader {
+                    border-bottom: 0.1rem solid;
+                    display: flex;
+                    justify-content: space-between;
+                    padding-bottom: 16px;
+                    margin-bottom: 19px;
+                }
+            }
+        }
+    }
+    .filterDate{
+        margin-right: 0px;
+    }
+    .priceRangeMainArea {
+        margin: 0px 10px 0 0;
     }
 }

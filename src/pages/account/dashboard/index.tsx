@@ -27,6 +27,7 @@ const Dashboard = () => {
     const {data:myLikes}:any=useMyLikesGetByIdQuery(loggedInUser._id)
     const favoriteCount=useAppSelector(selectFavorites)
     const theme=useAppSelector(selectTheme)
+
     
     return (
       <>
@@ -39,8 +40,8 @@ const Dashboard = () => {
                     <h2 className={dmSansFont.className}>Hello, {loggedInUser?.name}! <span className='wave'>👋</span></h2>
                 </div>
                 <div className="dashboard_main_content_box">
-                   <Grid container spacing={5}>
-                        <Grid item sm={3}>
+                   <Grid container spacing={2}>
+                        <Grid item sm={3} xs={6}>
                           <Paper className="box" elevation={2}>
                             <Link href={`/account/booking`} style={{color:theme==='light'?'#000':'#fff'}}>
                             <DateRangeOutlinedIcon sx={{color:'rgb(92, 152, 242)',fontWeight:'bold',fontSize:'40px'}} />
@@ -51,7 +52,7 @@ const Dashboard = () => {
                             </Link>
                           </Paper>
                         </Grid>
-                        <Grid item sm={3}>
+                        <Grid item sm={3} xs={6}>
                           <Paper className="box" elevation={2}>
                           <Link href={`/account/review/${loggedInUser._id}`} style={{color:theme==='light'?'#000':'#fff'}}>
                             <StarOutlineIcon sx={{color:'rgb(92, 152, 242)',fontWeight:'bold',fontSize:'40px'}} />
@@ -62,7 +63,7 @@ const Dashboard = () => {
                             </Link>
                           </Paper>
                         </Grid>
-                        <Grid item sm={3}>
+                        <Grid item sm={3} xs={6}>
                           <Paper className="box" elevation={2}>
                           <Link href={`/account/favorites`} style={{color:theme==='light'?'#000':'#fff'}}>
                           <FavoriteBorderIcon sx={{color:'rgb(92, 152, 242)',fontWeight:'bold',fontSize:'40px'}} />
@@ -73,7 +74,7 @@ const Dashboard = () => {
                           </Link>
                           </Paper>
                         </Grid>
-                        <Grid item sm={3}>
+                        <Grid item sm={3} xs={6}>
                           <Paper className="box" elevation={2}>
                           <Link href={`/account/likes/${loggedInUser._id}`} style={{color:theme==='light'?'#000':'#fff'}}>
                             <ThumbUpOutlinedIcon sx={{color:'rgb(92, 152, 242)',fontWeight:'bold',fontSize:'40px'}} />
@@ -93,9 +94,10 @@ const Dashboard = () => {
                     {data?.length>0?(
                     <div className="upcoming_booking_content">
                       <Grid container spacing={2}>
-                        {data.map((booking:any)=>(
+                        {/* {data.map((booking:any)=>(
                             <BookingCard key={booking._id} booking={booking}/>
-                        ))}
+                        ))} */}
+                            <BookingCard  booking={data.slice(-1)[0]}/>
                       </Grid>
                     </div>
                     ):(
@@ -105,7 +107,7 @@ const Dashboard = () => {
                         sizes="(max-width: 768px) 100vw,
                         (max-width: 1200px) 50vw,
                         10vw"
-                        placeholder="blur" blurDataURL={`/_next/image?url=${bookingNotFound}&w=16&q=1`} />
+                         />
                         </div>
                         <h2 className={dmSansFont.className}>You have no upcoming bookings!</h2>
                     </div>

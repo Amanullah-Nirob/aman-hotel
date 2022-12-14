@@ -7,7 +7,8 @@ import React from 'react';
 // internal imports
 import { useAppSelector } from '../../app/hooks';
 import { selectTheme } from '../../app/slices/theme/ThemeSlice';
-import homeBannerImage from '../../../public/static/images/homebanner1.jpg'
+// import homeBannerImage from '../../../public/static/images/homebanner1.jpg'
+import homeBannerImage from '../../../public/static/images/home2.jpg'
 import SearchRoomsForm from '../element/forms/searchRoomsForm/SearchRoomsForm';
 import { dmFont, dmSansFont } from '../../utils/nextFont';
 import { useTheme } from '@mui/material/styles';
@@ -47,7 +48,7 @@ const HomeBanner = () => {
           <Grid item xl={5} lg={5} md={5} sx={{display:{sm:'none',xs:'none',xl:'block',lg:'block',md:'block'}}}>
             <div className="homeRightArea">
                 <div className="homeRightImage">
-                  <Image src={homeBannerImage} alt='home banner image' style={{width:'100%',height:'100%'}} priority placeholder="blur"/>
+                  <Image src={homeBannerImage} alt='home banner image' style={{width:'100%',height:'635px'}} priority placeholder="blur"/>
                 </div>
             </div>
           </Grid>

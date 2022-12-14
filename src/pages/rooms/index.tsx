@@ -69,7 +69,7 @@ const RoomsMain= ({data}:any)=> {
          <Container maxWidth="xl">
          <Box className="rooms_all_content" sx={{transform:theme==='light'?{sm:'translate(0px, 8vh)',xs:'translate(0px, 9vh)'}:'translate(0px, 10vh)'}}>
          <BreadCrumb breacrumb={breadCrumb} />
-          <Grid container spacing={0}>
+          <Grid container spacing={0} className='room_main_grid'>
             <Grid item xl={2} lg={2.5} md={3} sm={4} xs={12}>
               <RoomFilters filteredData={data?.allData}></RoomFilters>
             </Grid>

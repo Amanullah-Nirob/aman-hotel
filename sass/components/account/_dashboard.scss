@@ -58,3 +58,16 @@ a{
     }
 }
 
+@media screen and (max-width:'600px') {
+    .Dashboard_main{
+        .dashboard_all_content{
+            .dashboard_title{
+                h2{
+                    margin: 0;
+                    font-size: 23px;
+                }
+            }
+
+        }
+    }
+}

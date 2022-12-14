@@ -1,4 +1,4 @@
-import { Box ,styled} from '@mui/material';
+import { Box ,styled,useMediaQuery} from '@mui/material';
 import React from 'react';
 import SelectField from '../../../element/feilds/selectField/SelectField';
 
@@ -27,11 +27,12 @@ const MuiBox = styled(Box)(({ theme }) => ({
 }));
 
 const RoomSort:React.FC<RoomsSortProps> = ({ sortBy, onSort }) => {
+    const mobileMatches = useMediaQuery('(max-width:600px)');
     return (
         <MuiBox className='roomSort'>
         <SelectField
             name='roomSort'
-            style={{ minWidth: '200px' }}
+            style={{ minWidth: mobileMatches?'165px':'200px' }}
             label='Sort'
             value={JSON.stringify(sortBy)}
             onChange={onSort}

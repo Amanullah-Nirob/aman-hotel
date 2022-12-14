@@ -3,7 +3,7 @@ import { RoomType } from '../../../../../types/types';
 import ImageSlider from '../../../../element/imageSlider/ImageSlider';
 import Image from 'next/image';
 import { roboto,dmSansFont,dmFont } from '../../../../../utils/nextFont';
-import { Card, Divider } from '@mui/material';
+import { Card, Divider, useMediaQuery } from '@mui/material';
 import Link from 'next/link';
 import { truncateString } from '../../../../../utils/appUtils';
 import Rating from '../../../../common/rating/Rating';
@@ -16,7 +16,7 @@ const RoomCard: React.FC<RoomType> = ({ _id, roomNumber, price, type, images, co
    const countReviews = reviews ? reviews.length : 0;
    // @ts-ignore
    const rating = countReviews > 0 ? reviews.reduce((acc, cur) => acc + cur.rating, 0) : 0;
-
+   const mobileMatches = useMediaQuery('(max-width:600px)');
    
     return (
     <Link href={`/rooms/${_id}`} style={{textDecoration:'none',color:''}}>
@@ -50,7 +50,7 @@ const RoomCard: React.FC<RoomType> = ({ _id, roomNumber, price, type, images, co
             <p> <span style={{color:''}}>From:</span> &#2547; {price}</p>
             <div className='rating_total'>
             <div className="star_rating">
-            <Rating name='read-only' value={rating} totalCount={countReviews} readOnly />
+            <Rating name='read-only' value={rating} totalCount={countReviews} readOnly size={mobileMatches?'small':'medium'}/>
             </div>
             <div className="total_review">
             <span className='room-card__reviews-count'>{`${countReviews} ${declOfNum(countReviews, ['Review','Reviews','Reviews',])}`}</span>

@@ -75,10 +75,9 @@
 }
 @media screen and (max-width:'600px') {
     .bookingFormMain{
-        border: none;
         border-radius: 0;
         margin-bottom: 40px;
-        box-shadow: none !important;
+        padding: 21px 13px;
     }
     .bookingHeader h3 {
         font-size: 20px;

@@ -13,9 +13,9 @@ const Favorites = () => {
     }
     return (
         <div>
-            <Grid container >
+            <Grid container spacing={2}>
                 {favorites.map((favorite:any)=>(
-                    <Grid item sm={4} key={favorite._id}>
+                    <Grid item lg={3} md={4} sm={6} xs={6} key={favorite._id}>
                         <div className="favorite_box">
                         <RoomCard {...favorite}></RoomCard>
                         <Button className='favCancel' startIcon={<FavoriteIcon/>} onClick={()=>handleCancelFavorite(favorite)}>cancel</Button>

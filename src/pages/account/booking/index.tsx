@@ -5,7 +5,6 @@ import { selectCurrentUser } from '../../../app/slices/auth/authSlice';
 import {Box,CircularProgress,Grid} from '@mui/material'
 import BookingCard from '../../../components/account/booking/BookingCard';
 import { useAppSelector } from '../../../app/hooks';
-import { dmSansFont } from '../../../utils/nextFont';
 
 const Booking = () => {
     const loggedInUser=useAppSelector(selectCurrentUser)

@@ -99,8 +99,11 @@ const BookingStatusBar = ({booking}:any) => {
               sx={{
                 '& .MuiStepLabel-label.MuiStepLabel-alternativeLabel':
                   {
-                    marginTop: '8px'
+                    marginTop: '8px',
+                    fontSize:{sm:'',xs:'11px'}
                   },
+                  paddingLeft:'0',
+                  paddingRight:'0'
               }}
             >
                 <StepLabel>{label}</StepLabel>
