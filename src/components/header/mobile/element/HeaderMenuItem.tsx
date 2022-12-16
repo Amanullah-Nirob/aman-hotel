@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { hasChildren } from '../shared/utils/menuutils';
+import { hasChildren } from '../../../shared/utils/menuutils';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Link from 'next/link'
@@ -8,8 +8,8 @@ import ListItemText from "@mui/material/ListItemText";
 import {Collapse,Box} from "@mui/material";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useAppSelector } from "../../app/hooks";
-import { selectTheme } from "../../app/slices/theme/ThemeSlice";
+import { useAppSelector } from "../../../../app/hooks";
+import { selectTheme } from "../../../../app/slices/theme/ThemeSlice";
 import ListItemButton from '@mui/material/ListItemButton';
 
 const HeaderMenuItem = ({item}:any) => {

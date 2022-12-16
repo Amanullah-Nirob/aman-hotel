@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useClientRouter } from "use-client-router";
 import {Container,Paper,Alert} from '@mui/material'
 import Head from 'next/head';
@@ -22,7 +22,10 @@ const RoomSingle = ({data}:any) => {
         {text: 'Rooms',url: '/rooms'},
         {text: 'Room No. '+singleRoomData?.roomNumber}
     ];
-   
+
+    useEffect(()=>{
+      setSingleRoomData(data)
+    },[data])
 
     if(Object.keys(singleRoomData).length!==0){
         return (                                                              

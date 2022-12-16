@@ -1,0 +1,31 @@
+.search_drawer_main{
+    .search_drawer_header{
+        display: flex;
+        align-items: center;
+        padding: 15px 15px;
+        position: relative;
+        .search_drawer_main_search{
+            width:100%;
+            .search-area-main {
+                position: inherit;
+                .search-result {
+                    box-shadow: none !important;
+                    padding: 0;
+                    .roomListMain {
+                        margin-top: 0px;
+                        padding: 8px 15px;
+                    }
+                }
+                .search-history {
+                    position: absolute;
+                    top: 100%;
+                    width: 100%;
+                    left: 0;
+                    .MuiPaper-root{
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+}

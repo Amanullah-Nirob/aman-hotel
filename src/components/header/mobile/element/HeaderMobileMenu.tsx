@@ -3,12 +3,13 @@ import HeaderMenuItem from './HeaderMenuItem';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { selectTheme, switchTheme } from '../../app/slices/theme/ThemeSlice';
+import { selectTheme, switchTheme } from '../../../../app/slices/theme/ThemeSlice';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LanguageIcon from '@mui/icons-material/Language';
 import ListItem from '@mui/material/ListItem';
-import { displayToast } from '../../app/slices/ToastSlice';
+import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
+import { displayToast } from '../../../../app/slices/ToastSlice';
+
 
 const HeaderMobileMenu = () => {
     const theme=useAppSelector(selectTheme)

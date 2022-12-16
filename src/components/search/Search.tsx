@@ -1,22 +1,35 @@
 import React,{useRef,useState,useEffect} from 'react';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectTheme } from '../../app/slices/theme/ThemeSlice';
 import { useDebounce } from '../../utils/appUtils';
 import CircularProgress from '@mui/material/CircularProgress';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchView from './SearchView';
 import SearchIcon from '@mui/icons-material/Search';
-import { Box } from '@mui/material';
+import { Box, Paper,useMediaQuery,Divider} from '@mui/material';
+import { removeAllHistory, selectRecentHistorySearch } from '../../app/slices/RecentHistorySearch';
 
 
-const Search = () => {
+const Search = ({open,setOpen}:any) => {
     const inputEl = useRef(null);
     const [keyword, setKeyword] = useState('');
     const [searchResult, setSearchResult] = useState<any | null>(null);
     const theme=useAppSelector(selectTheme)
     const [isSearch, setIsSearch] = useState(false);
-    const debouncedSearchTerm = useDebounce(keyword, 300);
+    const debouncedSearchTerm = useDebounce(keyword, 100);
     const [loading, setLoading] = useState(false);
+    const [isFocus,setIsFocus]=useState(false)
+    const mediaMobile=useMediaQuery('(max-width:600px)')
+    const recentHistory=useAppSelector(selectRecentHistorySearch)
+    const dispatch=useAppDispatch()
+    
+    function handleClearKeyword() {
+        setKeyword('');
+        setSearchResult(null)
+        setIsSearch(false);
+        setLoading(false);
+      
+    }
 
 // search area =========================================
         useEffect(() => {
@@ -35,6 +48,7 @@ const Search = () => {
                         console.log(error);
                     })   
                 } else {
+                    setSearchResult(null)
                     setIsSearch(false);
                     setKeyword('');
                 }
@@ -42,31 +56,33 @@ const Search = () => {
                     setIsSearch(false);
                 }
             } else {
+                setSearchResult(null)
                 setLoading(false);
                 setIsSearch(false);
             }
         }, [debouncedSearchTerm]);
         
-        
-        function handleClearKeyword() {
-            setKeyword('');
-            setIsSearch(false);
-            setLoading(false);
+        const handleHistoryBlur=()=>{
+
         }
 
 // show element
   let roomsItemsView,
   clearTextView,
-  loadingView
+  loadingView,
+  resentHistory
   if (!loading) {
     if (searchResult && searchResult.length > 0) {
         roomsItemsView = searchResult.map((room:any) => (
-            <SearchView
+            <SearchView 
+            isMobileOpenTrue={open}
+            setIsMobileSet={setOpen}
+            isFocus={isFocus}
              room={room}
              key={room._id} />
         ));
     } else {
-        roomsItemsView = <p>Room Not Found</p>;
+       keyword !=='' && (roomsItemsView = <p>Room Not Found</p>)
     }
     if (keyword !== '') {
         clearTextView = (
@@ -82,13 +98,62 @@ const Search = () => {
       </span>
   );
 }
+
+if((mediaMobile || isFocus && !isSearch && recentHistory.length >0)){
+    if(recentHistory && recentHistory.length >0){
+        resentHistory= (
+            <Paper sx={{
+                maxHeight:mediaMobile?'100%':'56vh',
+                overflowY:'scroll',
+                overflow:"auto",
+                scrollbarWidth: 'thin',
+                '&::-webkit-scrollbar': {
+                  width: '4px',
+                },
+                '&::-webkit-scrollbar-track': {
+                  background: theme==='light'?"#ddd":'#333',
+                },
+                '&::-webkit-scrollbar-thumb': {
+                  backgroundColor: theme==='light'?'#888':'#ddd',
+                },
+                '&::-webkit-scrollbar-thumb:hover': {
+                  background: '#555'
+                }
+
+                }}>
+              <div className='historySearch_Title'>
+                <h4>Recent Search</h4>
+                <p onClick={()=>dispatch(removeAllHistory([]))}>Clear all</p>
+              </div>
+            {recentHistory.map((historyItem:any)=>(
+                <SearchView 
+                isMobileOpenTrue={open}
+                setIsMobileSet={setOpen}
+                searchHistory={true}
+                key={historyItem._id} 
+                room={historyItem}/>
+            ))}
+            </Paper>
+           
+        )
+    }else{
+        resentHistory= <p style={{textAlign:'center'}}> No Recent History</p>
+    }
+  
+}
+
+
 const handleBlur=()=>{
     setIsSearch(false);
+    isFocus&&  setTimeout(() => {
+        setIsFocus(false)
+    }, 100);
 }
 const handleFocus=()=>{
-    if(searchResult && searchResult.length > 0){
+    if(searchResult && searchResult.length > 0 ){
         setIsSearch(true);
     }
+    setIsFocus(true)
 }
 
 
@@ -111,17 +176,22 @@ const handleFocus=()=>{
                 {clearTextView}
                 {loadingView}
             </div>
-
             <div className={`search-result${isSearch ? ' active ' : ''}`}
              style={{
              backgroundColor:theme==='light'?'#fff':'#242526',
              boxShadow:theme==='light'?'rgb(0 0 0 / 16%) 1px 5px 9px':'rgb(0 0 0 / 16%) 1px 5px 9pxx'
              }}>
+              {mediaMobile && <Divider />}
                 <div className="roomListMain">
                     {roomsItemsView}
                 </div>
-
             </div>
+           {!isSearch && (
+             <div className='search-history'>
+                  {resentHistory}
+             </div>
+           )}
+            
         </form>
         </Box>
     );

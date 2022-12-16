@@ -18,12 +18,13 @@ import toastReducer from './slices/ToastSlice'
 import roomSearchReducer from './slices/roomSearch/RoomSearch'
 import favoritesReducer from './slices/favorites/Favorites'
 import bookingPendingReducer from './slices/BookingPending'
+import recentHistorySearchReducer from './slices/RecentHistorySearch'
 
 const persistConfig = {
     key: "root",
     version: 1,
     storage,
-    whitelist: ["theme","auth","favorites"],
+    whitelist: ["theme","auth","favorites","recentHistorySearch"],
 }; 
 const roomSearchPersistConfig = { key: 'room', version: 1, storage:storageSession };
 const bookingPendingDataPersistConfig = { key: 'bookingPending', version: 1, storage:storageSession };
@@ -40,6 +41,7 @@ const rootReducer = combineReducers({
   ToastData:toastReducer,
   favorites:favoritesReducer,
   bookingPendingData:persistReducer(bookingPendingDataPersistConfig,bookingPendingReducer),
+  recentHistorySearch:recentHistorySearchReducer
 
 });
 

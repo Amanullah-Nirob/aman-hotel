@@ -8,7 +8,7 @@ import type { RootState } from "../../store";
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    loggedInUser: {}as AuthResponse,
+    loggedInUser: null,
   },
   reducers: {
     setLoggedInUser: (state, action) => {

@@ -1,21 +1,19 @@
 import { Box,Divider,List,ListItem,ListItemButton } from '@mui/material';
 import React from 'react';
-import { useAppSelector } from '../../app/hooks';
-import { selectCurrentUser } from '../../app/slices/auth/authSlice';
-import { navItems } from '../shared/Header';
-import HeaderMobileMenu from './HeaderMobileMenu';
+import { useAppSelector } from '../../../app/hooks';
+import { selectCurrentUser } from '../../../app/slices/auth/authSlice';
+import { navItems } from '../../shared/Header';
+import HeaderMobileMenu from './element/HeaderMobileMenu';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import LoginIcon from '@mui/icons-material/Login';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Link from 'next/link';
 
 
-const MobileDrawer = ({setMobileOpen,mobileOpen}:any) => {
+const MobileDrawer = ({handleDrawerToggle}:any) => {
   const loggedInUser=useAppSelector(selectCurrentUser)
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+
     return (
     <>
      <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
