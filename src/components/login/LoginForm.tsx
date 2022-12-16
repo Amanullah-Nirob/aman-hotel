@@ -11,7 +11,7 @@ import InputField from '../element/feilds/InputField/InputField';
 import { LoginRequest } from '../../app/interface/userinterface';
 import { displayToast } from '../../app/slices/ToastSlice';
 import { setLoggedInUser } from '../../app/slices/auth/authSlice';
-import Router from 'next/router';
+import {useRouter} from 'next/router';
 
 
 const initialData: SignInDataType = {
@@ -23,7 +23,7 @@ const LoginForm = () => {
     const { data, errors, enterError, handleInputChange, validate, handleResetForm } = useForm(initialData,false,loginvalidatorConfig);
     const dispatch=useAppDispatch()
     const [login,{ isLoading, isError, error }]=useLoginMutation()
-     
+    const router=useRouter()
     const handleSubmit=async(e: React.FormEvent<HTMLButtonElement>)=>{
         e.preventDefault();
        try {
@@ -35,7 +35,9 @@ const LoginForm = () => {
                 displayToast({ title: "Successful loggedIn", message:'Thank you for logging in to Aman-Hotel', type: "success", duration: 3000, positionVert: "top",
                   positionHor: "center",
             }))
-            Router.push('/')
+           if(!router.pathname.startsWith('/account/')) {
+             router.push('/')
+           }
         }
        } catch (error:any) {
           dispatch(  

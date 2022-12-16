@@ -18,12 +18,13 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
+import withAuth from '../../hooks/withAuth';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
-const Account = ({children}:LayoutProps) => {
+const Account = ({children}:any) => {
     const loggedinUser=useAppSelector(selectCurrentUser)
     const theme=useAppSelector(selectTheme)
     const dispatch=useAppDispatch()
@@ -131,4 +132,4 @@ const Account = ({children}:LayoutProps) => {
     );
 };
 
-export default  Account;
+export default withAuth(Account);

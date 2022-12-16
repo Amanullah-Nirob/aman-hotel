@@ -46,6 +46,7 @@ const MusterLayout = ({children}:LayoutProps) => {
         <CssBaseline />
         <Header></Header>
         {router.pathname.startsWith('/account/')?(
+          // @ts-ignore
           <Account>
             {children}
           </Account>
