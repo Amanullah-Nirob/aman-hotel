@@ -48,7 +48,7 @@ const Header = (props: Props) => {
               '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth ,},
             }}
           >
-           <MobileDrawer setMobileOpen={setMobileOpen} mobileOpen={mobileOpen}></MobileDrawer>
+           <MobileDrawer handleDrawerToggle={handleDrawerToggle}></MobileDrawer>
           </Drawer>
         </Box>
 

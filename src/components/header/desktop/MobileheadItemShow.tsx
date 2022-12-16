@@ -6,11 +6,14 @@ import { selectCurrentUser } from '../../../app/slices/auth/authSlice';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchDrawer from '../../mobileDrawer/SearchDrawer';
+import ProfileDrawer from '../../mobileDrawer/ProfileDrawer';
+import Link from 'next/link';
 
 const MobileheadItemShow = ({handleDrawerToggle}:any) => {
     const loggedInUser=useAppSelector(selectCurrentUser)
      // Search drawer state
       const [openSearchDrawer, setOpenSearchDrawer] = useState(false);
+      const [openProfileDrawer, setOpenProfileDrawer] = useState(false);
     return (
        <Box sx={{display: { sm: 'none',xs:'block' }, }}>
         <Box sx={{display: { sm: 'none',xs:'flex' }, }}>
@@ -18,9 +21,9 @@ const MobileheadItemShow = ({handleDrawerToggle}:any) => {
         <SearchIcon/>
         </IconButton>
         {loggedInUser?(
-        <Avatar src={loggedInUser.profilePic} sx={{ width: 32, height: 32,margin:'5px 10px' }} />
+        <Avatar src={loggedInUser.profilePic} sx={{ width: 32, height: 32,margin:'5px 10px' }} onClick={()=>setOpenProfileDrawer(true)}/>
         ):(
-        <Avatar sx={{ width: 32, height: 32,margin:'5px 10px'}}><PersonOutlineIcon /></Avatar>
+        <Avatar sx={{ width: 32, height: 32,margin:'5px 10px'}}><Link href='/login' style={{color:'inherit'}}><PersonOutlineIcon /></Link></Avatar>
         )}
             <IconButton
             color="inherit"
@@ -33,6 +36,7 @@ const MobileheadItemShow = ({handleDrawerToggle}:any) => {
             </IconButton>
         </Box>
         <SearchDrawer open={openSearchDrawer} setOpen={setOpenSearchDrawer}></SearchDrawer>
+        <ProfileDrawer open={openProfileDrawer} setOpen={setOpenProfileDrawer}></ProfileDrawer>
        </Box>
     );
 };

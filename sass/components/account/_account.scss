@@ -2,7 +2,9 @@
     .account_all_content{
         transform: translate(0px, 136px);
         .sideBar_main{
-            border-right: 1px solid #ddd;
+            height: 100vh;
+            position: sticky;
+            top: -75px;
             .sidebar_all_menu{
                 .sidebar_menu_item{ 
                     margin-bottom: 4px;

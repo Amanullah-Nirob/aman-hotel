@@ -1,4 +1,4 @@
-import { Box,Divider,List,ListItem,ListItemButton } from '@mui/material';
+import { Avatar, Box,Divider,List,ListItem,ListItemButton } from '@mui/material';
 import React from 'react';
 import { useAppSelector } from '../../../app/hooks';
 import { selectCurrentUser } from '../../../app/slices/auth/authSlice';
@@ -8,29 +8,33 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import LoginIcon from '@mui/icons-material/Login';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Link from 'next/link';
+import  Router from 'next/router';
 
 
 const MobileDrawer = ({handleDrawerToggle}:any) => {
   const loggedInUser=useAppSelector(selectCurrentUser)
 
-
+ 
     return (
     <>
      <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
        {!loggedInUser?(
             <Box sx={{display:'flex',justifyContent:'space-between',padding:'11px 40px',marginBottom:'3px'}}>
-              <div className='singInBtnHeader'>
+              <Link href='/login' style={{color:'inherit'}} className='singInBtnHeader'>
                 <AccountBoxIcon sx={{fontSize:'30px'}} />
                 <p>Sing up</p>
-              </div>
+              </Link>
               <Divider orientation="vertical"  flexItem />
-              <div className='singInBtnHeader'>
+              <Link href='/login' style={{color:'inherit'}} className='singInBtnHeader'>
               <LoginIcon />
                 <p>Login</p>
-              </div>
+              </Link>
             </Box>
        ):(
-        ''
+        <div className='profilePhoto'>
+        <Avatar src={loggedInUser?.profilePic} sx={{width:'65px',height:'65px',margin:'auto'}} />
+        <h3>{loggedInUser?.name}</h3>
+        </div>
        )}
       <Divider />
       <List>
