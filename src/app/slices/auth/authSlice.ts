@@ -3,13 +3,14 @@ import { AuthResponse } from "../../interface/userinterface";
 
 import type { RootState } from "../../store"; 
 
+const initialState:any = {
+  loggedInUser: null
+}
 
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    loggedInUser: {}as AuthResponse,
-  },
+  initialState,
   reducers: {
     setLoggedInUser: (state, action) => {
         state.loggedInUser = action.payload;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider ,createTheme} from '@mui/material/styles';
 import { selectTheme } from '../../app/slices/theme/ThemeSlice';
-import { CssBaseline } from '@mui/material';
+import { CssBaseline,Box,useMediaQuery } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Header from '../shared/Header';
 import AppToast from '../common/appToast/AppToast';
@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import Account from '../../pages/account';
 import { selectCurrentUser, setLoggedInUser } from '../../app/slices/auth/authSlice';
 import jwtDecode from 'jwt-decode'
+import MobileNavigation from '../header/mobile/mobileNavigation/MobileNavigation';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -20,6 +21,8 @@ const MusterLayout = ({children}:LayoutProps) => {
     const router=useRouter()
     const dispatch=useAppDispatch()
     const loggedInUser=useAppSelector(selectCurrentUser)
+    const matches = useMediaQuery('(max-width:600px)');
+
     const theme = React.useMemo(
         () =>
           createTheme({
@@ -55,6 +58,10 @@ const MusterLayout = ({children}:LayoutProps) => {
         )
         } 
           <AppToast></AppToast> 
+          {/* mobile navigation */}
+          <Box sx={{display:!matches?'none':'block'}}>
+          <MobileNavigation />
+          </Box>
         </ThemeProvider>
     );
 };

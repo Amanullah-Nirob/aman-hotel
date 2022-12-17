@@ -104,6 +104,7 @@ if((mediaMobile || isFocus && !isSearch && recentHistory.length >0)){
         resentHistory= (
             <Paper sx={{
                 maxHeight:mediaMobile?'100%':'56vh',
+                backgroundImage:open?'none':'',
                 overflowY:'scroll',
                 overflow:"auto",
                 scrollbarWidth: 'thin',

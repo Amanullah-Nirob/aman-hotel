@@ -51,7 +51,7 @@ const MobileDrawer = ({handleDrawerToggle}:any) => {
         '>.MuiSvgIcon-root':{marginRight:'10px'
         }}}>
             <ExitToAppIcon sx={{marginRight:'10px'}} />
-            <span style={{fontSize:'16px'}}>Logout</span>
+            <span style={{fontSize:'15px'}}>Logout</span>
         </ListItemButton>
       </List>
       <Divider />

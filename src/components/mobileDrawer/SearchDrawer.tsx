@@ -12,7 +12,7 @@ const SearchDrawer = ({open,setOpen}:any) => {
         <Box sx={{ display: 'flex' }}>
         <CssBaseline /> 
         <Drawer
-          sx={{ width: drawerWidth,flexShrink: 0, '& .MuiDrawer-paper': { width: drawerWidth,border:0,height: '91%'}, }}
+          sx={{ width: drawerWidth,flexShrink: 0, '& .MuiDrawer-paper': { width: drawerWidth,border:0,height: '92%'}, }}
           variant="persistent"
           anchor="right"
           open={open}

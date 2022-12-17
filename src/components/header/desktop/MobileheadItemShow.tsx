@@ -1,5 +1,5 @@
 import {Box,IconButton,Avatar} from '@mui/material';
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import { useAppSelector } from '../../../app/hooks';
 import { selectCurrentUser } from '../../../app/slices/auth/authSlice';
@@ -8,12 +8,17 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchDrawer from '../../mobileDrawer/SearchDrawer';
 import ProfileDrawer from '../../mobileDrawer/ProfileDrawer';
 import Link from 'next/link';
+import Router from 'next/router';
 
 const MobileheadItemShow = ({handleDrawerToggle}:any) => {
     const loggedInUser=useAppSelector(selectCurrentUser)
      // Search drawer state
       const [openSearchDrawer, setOpenSearchDrawer] = useState(false);
       const [openProfileDrawer, setOpenProfileDrawer] = useState(false);
+      useEffect(()=>{
+        setOpenSearchDrawer(false)
+        setOpenProfileDrawer(false)
+      },[Router.pathname])
     return (
        <Box sx={{display: { sm: 'none',xs:'block' }, }}>
         <Box sx={{display: { sm: 'none',xs:'flex' }, }}>
