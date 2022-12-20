@@ -6,6 +6,7 @@ import Router from 'next/router';
 import BreadCrumb from '../../components/element/BreadCrumb';
 import withAuth from '../../hooks/withAuth';
 import Sidebar from '../../components/account/Sidebar';
+import Head from 'next/head';
 
 
 const Account = ({children}:any) => {
@@ -18,6 +19,12 @@ const Account = ({children}:any) => {
 
     return (
     <>
+    <Head>
+     <meta 
+      name="theme-color" key="theme-color"
+      content={theme ==='light'?'#fff':'#000'}
+      />
+    </Head>
     <Box className='account_main'>
         <Container maxWidth="xl">
           <div className="account_all_content" style={{transform: theme==='light'?'translate(0px, 77px)':'translate(0px, 95px)'}}>

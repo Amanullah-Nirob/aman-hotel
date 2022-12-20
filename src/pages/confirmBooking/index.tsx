@@ -91,6 +91,10 @@ const ConfirmBooking = () => {
  <>
     <Head>
      <title>Room | AmanHotel</title>
+     <meta 
+      name="theme-color" key="theme-color"
+      content={theme ==='light'?'#fff':'#000'}
+      />
     </Head>
     <div className='confirm_booking_main'>
             <Container maxWidth="xl">

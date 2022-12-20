@@ -32,6 +32,10 @@ const RoomSingle = ({data}:any) => {
             <>
             <Head>
               <title>{ singleRoomData?.title? singleRoomData?.title :'Loading..'} | AmanHotel</title>
+              <meta 
+                name="theme-color" key="theme-color"
+                content={theme ==='light'?'#fff':'#000'}
+                />
             </Head>
             <Box className='roomSingle_main_area' sx={{transform:theme==='light'?{sm:'translate(0px, 8vh)',xs:'translate(0px, 9vh)'}:'translate(0px, 10vh)'}}>
               <Container maxWidth="xl">

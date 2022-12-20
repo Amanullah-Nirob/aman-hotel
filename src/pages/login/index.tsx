@@ -29,6 +29,10 @@ const Login = () => {
    <>
       <Head>
         <title>Login | AmanHotel</title>
+        <meta 
+          name="theme-color" key="theme-color"
+          content={theme ==='light'?'#fff':'#000'}
+          />
       </Head>
       <Box className='login_Area_main' style={{backgroundColor:theme==='light'?'#f8f8f8':'#000'}}>
            <Container sx={{zIndex:'1'}}>

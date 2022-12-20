@@ -103,3 +103,11 @@ export const ONE_KB = 1024;
 export const ONE_MB = 1048576;
 export const TWO_MB = 2097152;
 export const FIVE_MB = 5242880;
+
+
+export function toBoolean(env: string | undefined, initial: boolean) {
+  if (typeof env !== 'undefined') {
+    return env === 'true'
+  }
+  return initial
+}

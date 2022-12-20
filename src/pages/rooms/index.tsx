@@ -64,6 +64,10 @@ const RoomsMain= ({data}:any)=> {
       <>
     <Head>
      <title>Room | AmanHotel</title>
+     <meta 
+      name="theme-color" key="theme-color"
+      content={theme ==='light'?'#fff':'#000'}
+      />
     </Head>
     <div className='rooms_area_main'>
          <Container maxWidth="xl">

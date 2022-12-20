@@ -10,6 +10,9 @@ import Account from '../../pages/account';
 import { selectCurrentUser, setLoggedInUser } from '../../app/slices/auth/authSlice';
 import jwtDecode from 'jwt-decode'
 import MobileNavigation from '../header/mobile/mobileNavigation/MobileNavigation';
+import { usePWAInstall } from '../../hooks/usePWAInstall';
+import InstallBanner from '../pwa-prompt/InstallBanner';
+import { cookies, enablePWAInstallBanner } from '../../utils/pwaConfig';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -43,7 +46,11 @@ const MusterLayout = ({children}:LayoutProps) => {
             }
         }
       }
-
+      const [showInstallPrompt, installPWA, hideInstallPrompt] = usePWAInstall({
+        enable: enablePWAInstallBanner,
+        cookieName: cookies.pwaInstallDismissed.name
+     })
+    
     return (
         <ThemeProvider theme={theme}>
         <CssBaseline />
@@ -62,6 +69,12 @@ const MusterLayout = ({children}:LayoutProps) => {
           <Box sx={{display:!matches?'none':'block'}}>
           <MobileNavigation />
           </Box>
+          {}
+          <InstallBanner
+                onCancel={() => hideInstallPrompt(false)}
+                onOk={installPWA}
+                show={showInstallPrompt}
+         />
         </ThemeProvider>
     );
 };
