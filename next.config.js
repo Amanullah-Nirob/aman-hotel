@@ -6,6 +6,8 @@ const withPWA = require('next-pwa')({
 	register: true,
 	scope: '/',
 	sw: 'service-worker.js',
+  runtimeCaching,
+  buildExcludes: [/middleware-manifest.json$/]
   })
   
 module.exports = withPWA({
@@ -14,9 +16,5 @@ module.exports = withPWA({
     experimental:{appDir:true},
     images: {
       domains: ['res.cloudinary.com'],
-    },
-    pwa: {
-      runtimeCaching,
-      buildExcludes: [/middleware-manifest.json$/]
     },
 })
