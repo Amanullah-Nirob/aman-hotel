@@ -1,0 +1,90 @@
+{
+	"name": "Aman Hotel",
+	"short_name": "Aman Hotel",
+	"description": "Aman hotel is the best hotel service provided in Bangladesh",
+	"start_url": "/?source=pwa",
+	"background_color": "#fff",
+	"orientation": "portrait",
+	"display": "standalone",
+	"scope": "/",
+	"theme_color": "#fff",
+	"icons": [
+		{
+            "src": "app/pwa-icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "app/pwa-icons/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "app/pwa-icons/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "app/pwa-icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+			"purpose": "maskable"
+        }
+	],
+	"shortcuts": [
+		{
+		  "name": "Home",
+		  "short_name": "Home",
+		  "description": "Open home section of the applications",
+		  "url": "/",
+		  "icons": [
+			{ "src": "app/shortcuts/maskable1.png", "sizes": "192x192" }
+		  ]
+		},
+		{
+		  "name": "Rooms",
+		  "short_name": "Rooms",
+		  "description": "Open Rooms section of the applications",
+		  "url": "/rooms",
+		  "icons": [
+			{ "src": "app/shortcuts/maskable2.png", "sizes": "192x192" }
+		  ]
+		},
+		{
+		  "name": "Profile",
+		  "short_name": "Profile",
+		  "description": "Open Profile section of the applications",
+		  "url": "/account/profile",
+		  "icons": [
+			{ "src": "app/shortcuts/maskable3.png", "sizes": "192x192" }
+		  ]
+		}
+	  ],
+	  "screenshots": [
+		{
+		  "src": "app/promotion/homeLight.png",
+		  "sizes": "1080x2280",
+		  "type": "image/png"
+		},
+		{
+		  "src": "app/promotion/homeDark.png",
+		  "sizes": "1080x2280",
+		  "type": "image/png"
+		},
+		{
+		  "src": "app/promotion/roomLight.png",
+		  "sizes": "1080x2280",
+		  "type": "image/png"
+		},
+		{
+		  "src": "app/promotion/singleRoomLight.png",
+		  "sizes": "1080x2280",
+		  "type": "image/png"
+		},
+		{
+		  "src": "app/promotion/drawer.png",
+		  "sizes": "1080x2280",
+		  "type": "image/png"
+		}
+	  ]
+}
