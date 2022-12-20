@@ -6,6 +6,7 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
         <meta name="description" content="Amanullah Nirob Hotel application" />
+                <link rel="manifest" href="/manifest.json" />
                 <meta name="keywords" content="amanullah nirob, hotel, programmer, best hafej,best programmer" />
                 <link rel="shortcut icon" href={'/static/images/fav.png'} />
                 <link rel="icon" href={'/static/images/fav.png'} sizes="32x32" />
