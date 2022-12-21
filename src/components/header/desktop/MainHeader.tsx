@@ -25,7 +25,7 @@ const MainHeader = ({handleDrawerToggle}:any) => {
         <AppBar component="nav"
           sx={{ 
           backgroundColor:theme==='light'?'transparent':'#000',color:theme==='light'?'#000':'',
-          padding:{lg:'27px 0px 8px',sx:'5px 0',xs:!isRoomSearchOpen?'13px 0 13px':'19px 0 18px'},
+          padding:{lg:'27px 0px 8px',sx:'5px 0',xs:!isRoomSearchOpen?'13px 0 11px':'19px 0 18px'},
           position:'absolute',
           boxShadow:'none',
           backgroundImage:'none'

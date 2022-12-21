@@ -1,12 +1,18 @@
 .rooms_area_main {
     height: 100vh;
     .rooms_all_content {
-
         .roomMainAllContent{
             .roomMainContentHeader {
                 border-bottom: 0.1rem solid;
                 display: flex;
                 justify-content: flex-end;
+                .filterBox {
+                    border: 1px solid #ddd;
+                    padding: 13px 6px;
+                    border-radius: 4px;
+                    margin-left: 3px;
+                    font-size: 14px;
+                }
             }
             .roomMainContent {
                 margin-left: 15px;
@@ -112,6 +118,9 @@
             flex-direction: column-reverse;
         }
         .rooms_all_content {
+             .roomMainAllContent{
+                margin-bottom: 95px;
+             }
             .roomMainAllContent{
                 .roomMainContent {
                     margin-left: 0px;

@@ -37,7 +37,7 @@ const RoomSingle = ({data}:any) => {
                 content={theme ==='light'?'#fff':'#000'}
                 />
             </Head>
-            <Box className='roomSingle_main_area' sx={{transform:theme==='light'?{sm:'translate(0px, 8vh)',xs:'translate(0px, 9vh)'}:'translate(0px, 10vh)'}}>
+            <Box className='roomSingle_main_area' sx={{transform:theme==='light'?{sm:'translate(0px, 8vh)',xs:'translate(0px, 7vh)'}:'translate(0px, 10vh)'}}>
               <Container maxWidth="xl">
                 <div className="single_Room_All_Content">
                 <BreadCrumb breacrumb={breadCrumb} />

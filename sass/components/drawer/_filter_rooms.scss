@@ -1,0 +1,46 @@
+.filter_rooms_main{
+    padding: 13px 15px;
+    .filter_rooms_main_header{
+        display: flex;
+        justify-content: space-between;
+    }
+    .filterRoomMobileContent {
+        margin-top: 10px;
+        margin-bottom: 77px;
+        .roomFilters{
+            .filterTitle {
+                display: none;
+            }
+            form{
+                .filters_item {
+                    margin-bottom: 17px;
+                    legend.filters_item_title {
+                        margin-bottom: 2px;
+                    }
+                    ul.checkbox-list {
+                        margin: 0;
+                        .MuiFormControlLabel-root {
+                            .MuiTypography-root{
+                                .checkBoxLabel{
+                                    display: flex;
+                                    justify-content: space-between;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.filterAction {
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    width: 100%;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

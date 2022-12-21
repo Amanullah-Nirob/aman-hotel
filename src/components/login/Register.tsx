@@ -15,6 +15,7 @@ import { RegisterRequest } from '../../app/interface/userinterface';
 import { displayToast } from '../../app/slices/ToastSlice';
 import {setLoggedInUser} from '../../app/slices/auth/authSlice'
 import Router  from 'next/router';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 const genderItems = [
@@ -37,6 +38,7 @@ const Register = () => {
     const { data, errors, handleInputChange, handleKeyDown, validate,handleResetForm } = useForm(initialData, true, registerValidatorConfig);
     const dispatch=useAppDispatch()
     const [registerUser,{ isLoading, isError, error }]=useRegisterUserMutation()
+    const mobileMatches = useMediaQuery('(max-width:600px)');
     const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
         try {
@@ -71,10 +73,11 @@ const Register = () => {
     const InputFieldWithPassword = useMemo(() => withPassword(InputField), []);
     return (
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown as any}>
-         <InputField autoFocus name='firstName' label='First name' />
-         <InputField name='secondName' label='Last name' />
-        <InputField name='email' label='Email' />
-        <InputFieldWithPassword name='password' label='password' type='password' />
+         <InputField autoFocus name='firstName' label='First name' size={!mobileMatches?'medium':'small'} />
+         <InputField name='secondName' label='Last name' size={!mobileMatches?'medium':'small'}/>
+        <InputField name='email' label='Email' size={!mobileMatches?'medium':'small'}/>
+        <InputFieldWithPassword name='password' label='password' type='password' size={!mobileMatches?'medium':'small'}/>
+        
         <DatePickerField 
           value={data.birthYear}
           onChange={handleInputChange}

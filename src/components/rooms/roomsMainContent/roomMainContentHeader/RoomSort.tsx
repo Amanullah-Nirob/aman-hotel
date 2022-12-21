@@ -15,7 +15,6 @@ type RoomsSortProps = {
     onSort: (event: any) => void;
 };
 const MuiBox = styled(Box)(({ theme }) => ({
-    marginRight:'15px',
     '.MuiFormControl-root':{
        width:'100%',
        '.MuiInputBase-root':{
@@ -29,10 +28,10 @@ const MuiBox = styled(Box)(({ theme }) => ({
 const RoomSort:React.FC<RoomsSortProps> = ({ sortBy, onSort }) => {
     const mobileMatches = useMediaQuery('(max-width:600px)');
     return (
-        <MuiBox className='roomSort'>
+        <MuiBox className='roomSort' sx={{marginRight:{sm:'14px',xs:'4px'}}}>
         <SelectField
-            name='roomSort'
-            style={{ minWidth: mobileMatches?'165px':'200px' }}
+            name='roomSort' 
+            style={{ minWidth: mobileMatches?'130px':'200px' }}
             label='Sort'
             value={JSON.stringify(sortBy)}
             onChange={onSort}

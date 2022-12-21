@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, styled,SelectProps as MuiSelectProps } from '@mui/material';
+import { Box, styled,SelectProps as MuiSelectProps, useMediaQuery } from '@mui/material';
 import SelectField, { OptionsItemType } from '../../../element/feilds/selectField/SelectField';
 
 type RoomsDisplayCountProps = MuiSelectProps & {
@@ -19,10 +19,11 @@ type RoomsDisplayCountProps = MuiSelectProps & {
     }
 }));
 const RoomDisplayShow: React.FC<RoomsDisplayCountProps>  = ({ count, setCount, options }) => {
+    const mobileMatches = useMediaQuery('(max-width:600px)');
     return (
         <MuiBox className='roomDisplay'>
             <SelectField
-                style={{ minWidth: '140px' }}
+                style={{ minWidth: mobileMatches?'100px':'140px' }}
                 name='pageSize'
                 autoWidth={true}
                 label='Display by'

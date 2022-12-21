@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, } from 'react';
+import React, { useCallback, useEffect,useState } from 'react';
 import {Container,Button, Box} from '@mui/material'
 import useFiltersQuery from '../../hooks/useFiltersQuery';
 import useSort from '../../hooks/useSort';
@@ -18,6 +18,7 @@ import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutl
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import RoomServices from '../../services/RoomServices';
 import { setRoomSearchQuery } from '../../app/slices/roomSearch/RoomSearch';
+import FilterRooms from '../../components/mobileDrawer/FilterRooms';
 
 export const setPageSizeOptions = [
   { name: '12', value: 12 },
@@ -30,6 +31,7 @@ const RoomsMain= ({data}:any)=> {
   const theme=useAppSelector(selectTheme)
   const { searchFilters, handleResetSearchFilters,setSearchQuery } = useFiltersQuery();
   const { sortedItems, sortBy, setSortBy } = useSort(data?.data || [], { path: 'roomNumber', order: 'desc' } as any);
+  const [filterRoomOpen,setFilterRoomOpen]=useState(false)
   const dispatch=useAppDispatch()
   const breadCrumb = [
     {text:'Home',url: '/'},
@@ -71,10 +73,10 @@ const RoomsMain= ({data}:any)=> {
     </Head>
     <div className='rooms_area_main'>
          <Container maxWidth="xl">
-         <Box className="rooms_all_content" sx={{transform:theme==='light'?{sm:'translate(0px, 8vh)',xs:'translate(0px, 8vh)'}:'translate(0px, 10vh)'}}>
+         <Box className="rooms_all_content" sx={{transform:theme==='light'?{sm:'translate(0px, 8vh)',xs:'translate(0px, 7vh)'}:'translate(0px, 10vh)'}}>
          <BreadCrumb breacrumb={breadCrumb} />
           <Grid container spacing={0} className='room_main_grid'>
-            <Grid item xl={2} lg={2.5} md={3} sm={4} xs={12}>
+            <Grid item xl={2} lg={2.5} md={3} sm={4} xs={12} sx={{display:{sm:'block',xs:'none'}}}>
               <RoomFilters filteredData={data?.allData}></RoomFilters>
             </Grid>
             <Grid item xl={10} lg={9.5} md={9} sm={8} xs={12}>
@@ -82,6 +84,11 @@ const RoomsMain= ({data}:any)=> {
               <div className="roomMainContentHeader" style={{borderColor:theme==='light'?'rgb(233, 226, 226)':'rgb(68, 66, 66)'}}>
                 <RoomSort sortBy={sortBy} onSort={handleSort}></RoomSort>
                 <RoomDisplayShow count={data?.pageSize || setPageSizeOptions[0].value } setCount={handlePageSizeChange} options={setPageSizeOptions} ></RoomDisplayShow>
+                <Box sx={{display:{sm:'none',xs:'block'}}}>
+                <div className="filterBox" onClick={()=>setFilterRoomOpen(true)} style={{cursor:'pointer'}}>
+                     More filter
+                  </div>
+                </Box>
               </div>
               <div className="roomMainContent">
               {sortedItems.length===0 ? <RoomsListSkeleton pageSize={data.pageSize} /> : <RoomContent rooms={sortedItems as any}  />}
@@ -104,8 +111,14 @@ const RoomsMain= ({data}:any)=> {
             </Grid>
           </Grid>
          </Box> 
+         <FilterRooms
+        open={filterRoomOpen}
+        setOpen={setFilterRoomOpen}
+        data={data?.allData}
+        />
          </Container>
       </div>
+     
       </>
 
     );

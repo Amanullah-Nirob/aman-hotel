@@ -12,6 +12,7 @@ import { LoginRequest } from '../../app/interface/userinterface';
 import { displayToast } from '../../app/slices/ToastSlice';
 import { setLoggedInUser } from '../../app/slices/auth/authSlice';
 import {useRouter} from 'next/router';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 const initialData: SignInDataType = {
@@ -24,6 +25,7 @@ const LoginForm = () => {
     const dispatch=useAppDispatch()
     const [login,{ isLoading, isError, error }]=useLoginMutation()
     const router=useRouter()
+    const mobileMatches = useMediaQuery('(max-width:600px)');
     const handleSubmit=async(e: React.FormEvent<HTMLButtonElement>)=>{
         e.preventDefault();
        try {
@@ -52,8 +54,8 @@ const LoginForm = () => {
     return (
         <>
              <Form data={data} errors={errors} handleChange={handleInputChange}>
-             <InputField name='email' label='Email' autoFocus />
-             <InputFieldWithPassword name='password' label='password' type='password'/>
+             <InputField name='email' label='Email' autoFocus size={!mobileMatches?'medium':'small'} />
+             <InputFieldWithPassword name='password' label='password' type='password' size={!mobileMatches?'medium':'small'}/>
              <Button  variant="contained" sx={{marginY:'auto'}} onClick={handleSubmit} fullWidth type='submit'>login</Button>
              </Form>
         </>
