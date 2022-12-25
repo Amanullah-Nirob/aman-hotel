@@ -5,10 +5,12 @@ import WestIcon from '@mui/icons-material/West';
 import RoomFilters from '../rooms/RoomFilters';
 import { dmSansFont } from '../../utils/nextFont';
 import Router  from 'next/router';
+import { useAppSelector } from '../../app/hooks';
+import { selectTheme } from '../../app/slices/theme/ThemeSlice';
 
 const drawerWidth = '100%';
 const FilterRooms = ({open,setOpen,data}:any) => {
-
+const theme=useAppSelector(selectTheme)
   const handleReset=()=>{
     setOpen(false)
     Router.push('/rooms')
@@ -33,7 +35,7 @@ const FilterRooms = ({open,setOpen,data}:any) => {
         <RoomFilters filteredData={data}></RoomFilters>
         </div>
         </div>
-        <div className='filterAction'>
+        <div className='filterAction' style={{backgroundColor:theme==='light'?'#fff':'#000',borderTop:theme==='light'?'1px solid #ddd':'1px solid rgb(56 56 56)'}}>
          <p className={dmSansFont.className}>Filter ({data?.length})</p>
           <Button variant='contained' onClick={()=>setOpen(false)}>Show Result</Button>
         </div>

@@ -14,14 +14,19 @@ const Favorites = () => {
     return (
         <div>
             <Grid container spacing={2}>
-                {favorites.map((favorite:any)=>(
-                    <Grid item lg={3} md={4} sm={6} xs={6} key={favorite._id}>
-                        <div className="favorite_box">
-                        <RoomCard {...favorite}></RoomCard>
-                        <Button className='favCancel' startIcon={<FavoriteIcon/>} onClick={()=>handleCancelFavorite(favorite)}>cancel</Button>
-                        </div>
-                    </Grid>
-                ))}
+                {favorites?.length > 0?(
+                    favorites.map((favorite:any)=>(
+                        <Grid item lg={3} md={4} sm={6} xs={6} key={favorite._id}>
+                            <div className="favorite_box">
+                            <RoomCard {...favorite}></RoomCard>
+                            <Button className='favCancel' startIcon={<FavoriteIcon/>} onClick={()=>handleCancelFavorite(favorite)}>cancel</Button>
+                            </div>
+                        </Grid>
+                    ))
+                ): (
+                    <h3>No Favorite list yet</h3>
+                )}
+              
             </Grid>
         </div>
     );

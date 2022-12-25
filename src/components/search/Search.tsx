@@ -16,7 +16,7 @@ const Search = ({open,setOpen}:any) => {
     const [searchResult, setSearchResult] = useState<any | null>(null);
     const theme=useAppSelector(selectTheme)
     const [isSearch, setIsSearch] = useState(false);
-    const debouncedSearchTerm = useDebounce(keyword, 100);
+    const debouncedSearchTerm = useDebounce(keyword, 500);
     const [loading, setLoading] = useState(false);
     const [isFocus,setIsFocus]=useState(false)
     const mediaMobile=useMediaQuery('(max-width:600px)')
@@ -145,10 +145,12 @@ if((mediaMobile || isFocus && !isSearch && recentHistory.length >0)){
 
 
 const handleBlur=()=>{
-    setIsSearch(false);
-    isFocus&&  setTimeout(() => {
+     isSearch && setTimeout(() => {
+        setIsSearch(false);
+    }, 500);
+    isFocus && setTimeout(() => {
         setIsFocus(false)
-    }, 100);
+    }, 500);
 }
 const handleFocus=()=>{
     if(searchResult && searchResult.length > 0 ){
@@ -169,7 +171,7 @@ const handleFocus=()=>{
                     ref={inputEl}
                     type="text"
                     value={keyword}
-                    placeholder='Search room number' style={{backgroundColor:theme==='light'?'#fff':'rgb(56 56 56 / 64%)',color:theme==='light'?'#000':'#fff',borderColor:theme==='light'?'rgb(228 228 231)':'#333'}}
+                    placeholder='Search by room number' style={{backgroundColor:theme==='light'?'#fff':'rgb(56 56 56 / 64%)',color:theme==='light'?'#000':'#fff',borderColor:theme==='light'?'rgb(228 228 231)':'#333'}}
                     onChange={(e) => setKeyword(e.target.value)}
                     onBlur={handleBlur}
                     onFocus={handleFocus}

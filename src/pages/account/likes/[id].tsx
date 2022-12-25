@@ -28,7 +28,8 @@ const MyLikes = ({data}:any) => {
         <Head>
             <title>Review- Account | Aman-Hotel</title>
         </Head>
-        <div className='myReview_main'>
+        {likesData?.length > 0 ? (
+            <div className='myReview_main'>
             <Grid container>
             {likesData.map((review:any)=>(
                 <Grid item xs={12} key={review._id}>
@@ -47,8 +48,12 @@ const MyLikes = ({data}:any) => {
                 </Grid>
             ))}
             </Grid>
-           
-        </div>
+        </div>)
+        : (
+           <h3>No Like yet</h3>
+         )
+        }
+        
         </>
     );
 };

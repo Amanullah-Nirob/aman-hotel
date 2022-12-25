@@ -27,7 +27,8 @@ const Account = ({children}:any) => {
     </Head>
     <Box className='account_main'>
         <Container maxWidth="xl">
-          <div className="account_all_content" style={{transform: theme==='light'?'translate(0px, 50px)':'translate(0px, 70px)'}}>
+          <Box className="account_all_content"
+           sx={{transform: theme==='light'?{sm:'translate(0px, 65px)',xs:'translate(0px, 50px)'}:{sm:'translate(0px, 100px)',xs:'translate(0px, 70px)'},paddingBottom:{sm:'0',xs:'86px'}}}>
           <div className='account_breadCrumb'><BreadCrumb breacrumb={breadCrumb} /></div>
           <Grid container spacing={3}>
             <Grid item md={2.5} sm={3} xs={12} sx={{display:{sm:'block',xs:'none'}}}>
@@ -37,7 +38,7 @@ const Account = ({children}:any) => {
               {children}
             </Grid>
           </Grid>
-          </div>
+          </Box>
         </Container>
          
       </Box>

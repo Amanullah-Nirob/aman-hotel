@@ -43,7 +43,7 @@ const MainHeader = ({handleDrawerToggle}:any) => {
            <MobileheadItemShow handleDrawerToggle={handleDrawerToggle}></MobileheadItemShow>
 
                {/* navigation list */}
-              <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+              <Box sx={{ display: { xs: 'none', sm: 'block',lineHeight:'40px' } }}>
                 {navItems.map((item) => (
                   <Button key={item.name} 
                     sx={{ 
@@ -63,12 +63,14 @@ const MainHeader = ({handleDrawerToggle}:any) => {
                   </Button>
                 ))}
               </Box>
-              <Box sx={{display:!isRoomSearchOpen?{md:'block',xs:'none'}:'none'}}>
+              <Box sx={{display:!isRoomSearchOpen?{md:'block',xs:'none'}:'none',transform:theme==='light'?'translate(0px, 7px)':'translate(0px, 2px)'}}>
                 <Search></Search>
               </Box>
           {/* login btn dark switch*/}
-              <Box sx={{display: { xs: 'none', sm: 'flex'}}}>
+              <Box sx={{display: { xs: 'none', sm: 'flex'},transform:theme==='light'?'':'translate(0px, -4px)'}}>
+              <Box sx={{transform: 'translate(-3px, 7px)'}}>
               <SwitchToggle></SwitchToggle>
+              </Box>
               {loggedInUser? (
                 <IconButton sx={{ color: "#999999",marginRight:'15px'}} onClick={(e) => setProfileSettingsMenuAnchor(e.target)}>
                     <Avatar src={loggedInUser?.profilePic} alt="User Profile Photo" />

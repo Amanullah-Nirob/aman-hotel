@@ -15,7 +15,7 @@ const ProfileDrawer = ({open,setOpen}:any) => {
         <Box sx={{ display: 'flex' }}>
         <CssBaseline /> 
         <Drawer
-          sx={{ width: drawerWidth,flexShrink: 0, '& .MuiDrawer-paper': { width: drawerWidth,border:0,height: '92%'}, }}
+          sx={{ width: drawerWidth,flexShrink: 0, '& .MuiDrawer-paper': { width: drawerWidth,border:0,height: '92.5%'}, }}
           variant="persistent"
           anchor="right"
           open={open}

@@ -98,7 +98,8 @@ const ConfirmBooking = () => {
     </Head>
     <div className='confirm_booking_main'>
             <Container maxWidth="xl">
-              <Box className="confirm_booking_all_content" sx={{transform:theme==='light'?{sm:'translate(0px, 8vh)',xs:'translate(0px, 9vh)'}:'translate(0px, 10vh)'}}>
+              <Box className="confirm_booking_all_content" 
+              sx={{transform:theme==='light'?{sm:'translate(0px, 8vh)',xs:'translate(0px, 7vh)'}:{sm:'translate(0px, 10vh)',xs:'translate(0px, 9vh)'},paddingBottom:'58px'}}>
               <BreadCrumb breacrumb={breadCrumb} />
               <div className="confirm_booking_title mobile">
                      <h1 className={dmSansFont.className}>Confirm Bookings</h1>
