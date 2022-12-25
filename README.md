@@ -121,10 +121,10 @@ https://aman-hotel.vercel.app/
   </tr>
   <tr>
     <td><img src="./public/app/promotion/homeLight.png" width=500 height=480></td>
-    <td><img src="app/promotion/homeDark.png" width=270 height=480></td>
-    <td><img src="app/promotion/roomLight.png" width=270 height=480></td>
-    <td><img src="app/promotion/singleRoomLight.png" width=270 height=480></td>
-    <td><img src="app/promotion/drawer.png" width=270 height=480></td>
+    <td><img src="./public/app/promotion/homeDark.png" width=270 height=480></td>
+    <td><img src="./public/app/promotion/roomLight.png" width=270 height=480></td>
+    <td><img src="./public/app/promotion/singleRoomLight.png" width=270 height=480></td>
+    <td><img src="./public/app/promotion/drawer.png" width=270 height=480></td>
   </tr>
  </table>
  
