@@ -116,8 +116,8 @@ https://aman-hotel.vercel.app/
     <td>Home Page Light </td>
      <td>Home Page Dark</td>
      <td>Room Page</td>
-     <td>single Room Light</td>
-     <td>Header Drawer</td>
+     <!-- <td>single Room Light</td>
+     <td>Header Drawer</td> -->
   </tr>
   <tr>
     <td><img src="./public/app/promotion/homeLight.png" width=270 height=480></td>
