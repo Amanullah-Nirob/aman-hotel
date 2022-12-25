@@ -25,7 +25,7 @@ const PWANotification = forwardRef<
   const theme=useAppSelector(selectTheme)
   const matchesMobile = useMediaQuery('(max-width:600px)');
   return (
-    <Slide direction="up" in={true} mountOnEnter unmountOnExit>
+    <Slide direction="up" in={show} mountOnEnter unmountOnExit>
       <Box
         ref={ref}
         sx={{
