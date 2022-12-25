@@ -3,12 +3,21 @@
     width: 100%;
     bottom: 0;
     z-index: 1101;
-    padding: 11px 0 0;
+    padding: 12px;
     .notification_content_box{
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        padding: 28px 32px;
+        padding: 0 10px;
+        .notification_box{
+            h2{
+                color:#fff
+            }
+            p{
+                color:rgb(255 255 255 / 87%);
+                font-size: 15px;
+            }
+        }
     }
 }
 
@@ -19,6 +28,8 @@
         bottom: 0;
         z-index: 1101;
         padding: 11px 0 0;
+        border-top-right-radius: 24px;
+        border-top-left-radius: 23px;
         .notification_content_box{
             flex-direction:column;
             border: none !important;

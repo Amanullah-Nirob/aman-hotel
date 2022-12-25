@@ -25,22 +25,17 @@ const PWANotification = forwardRef<
   const theme=useAppSelector(selectTheme)
   const matchesMobile = useMediaQuery('(max-width:600px)');
   return (
-    <Slide direction="up" in={show} mountOnEnter unmountOnExit>
+    <Slide direction="up" in={true} mountOnEnter unmountOnExit>
       <Box
         ref={ref}
         sx={{
-          backgroundColor: theme==='light'?'#fafafa':'#262626',
+          backgroundColor: '#0077ff',
           color:  theme==='light'?'#000':'#fff',
-          borderTop:theme==='light'?'1px solid #ddd':'1px solid #484848'
         }}
         className='installBanner_main'
       >
       <Container>
-        <div className="notification_content_box" 
-        style={{
-          backgroundColor:!matchesMobile?theme==='light'?'#fff':'rgb(22 22 22)':'none',
-          border:theme==='light'?'1px solid #ddd':'1px solid rgb(62 62 62)'
-        }}>
+        <div className="notification_content_box">
         <Box className="notification_box">
         {title ? (
             <Typography
@@ -48,7 +43,7 @@ const PWANotification = forwardRef<
               sx={{
                 fontWeight: 'bold',
                 margin: 0,
-                fontSize: '20px'
+                fontSize: '18px'
               }}
             >
               {title}
@@ -58,14 +53,14 @@ const PWANotification = forwardRef<
         </Box>
         <Box className="notification_actions">
         <Button
-            sx={{ mr: 1 }}
+            sx={{ mr: 1,backgroundColor:'#fff',color:'#000' }}
             onClick={onOk}
             variant="contained"
           >
             {okText}
           </Button>
         <Button
-            sx={{ mr: 1 }}
+            sx={{ mr: 1,backgroundColor:'#fff',color:'#000' }}
             onClick={onCancel}
             variant="outlined"
             disableElevation
