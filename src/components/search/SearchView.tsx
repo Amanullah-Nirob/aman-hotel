@@ -8,7 +8,7 @@ import { truncateString } from '../../utils/appUtils';
 import { removeRecentHistoryData, setRecentHistoryData } from '../../app/slices/RecentHistorySearch';
 import ClearIcon from '@mui/icons-material/Clear';
 
-const SearchView = ({room,isMobileOpenTrue,setIsMobileSet,searchHistory}:any) => {
+const SearchView = ({room,isMobileOpenTrue,setIsMobileSet,searchHistory,setIsFocus,isFocus}:any) => {
     const theme=useAppSelector(selectTheme)
     const mediaMobile=useMediaQuery('(max-width:600px)')
     const dispatch=useAppDispatch()
@@ -20,6 +20,7 @@ const SearchView = ({room,isMobileOpenTrue,setIsMobileSet,searchHistory}:any) =>
     
     const handleCloseHistory=(roomId:any)=>{
        dispatch(removeRecentHistoryData(roomId))
+       isFocus && setIsFocus(true)
     }
     
     return (

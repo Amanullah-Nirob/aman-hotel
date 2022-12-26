@@ -78,6 +78,7 @@ const Search = ({open,setOpen}:any) => {
             isMobileOpenTrue={open}
             setIsMobileSet={setOpen}
             isFocus={isFocus}
+            setIsFocus={setIsFocus}
              room={room}
              key={room._id} />
         ));
@@ -147,10 +148,10 @@ if((mediaMobile || isFocus && !isSearch && recentHistory.length >0)){
 const handleBlur=()=>{
      isSearch && setTimeout(() => {
         setIsSearch(false);
-    }, 500);
+    }, 100);
     isFocus && setTimeout(() => {
         setIsFocus(false)
-    }, 500);
+    }, 100);
 }
 const handleFocus=()=>{
     if(searchResult && searchResult.length > 0 ){

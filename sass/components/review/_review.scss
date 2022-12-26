@@ -51,6 +51,11 @@
     }
     .review_list_main {
         margin-bottom: 30px;
+        max-height: 425px;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 }
 .review_list_contents{ 
@@ -181,6 +186,11 @@
     .review_main{
         border:none !important;
         padding: 0;
+        .review_list_main {
+            &::-webkit-scrollbar {
+                display: block;
+            }
+        }
         .room-info_card {
             text-align: center;
             .room-info_card-rating_title {

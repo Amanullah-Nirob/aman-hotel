@@ -17,8 +17,6 @@ const MyReviews = ({data}:any) => {
     setReviewsData(prevReviewData);
   }
 
-
- 
  
     return (
         <>
@@ -32,7 +30,7 @@ const MyReviews = ({data}:any) => {
                     <Grid container spacing={2}>
                         <Grid item sm={8} xs={12}>
                         <Paper className='myReview_content' variant="outlined">
-                        <ReviewList singleRoomData={review.roomId} setSingleRoomData={updateReviews}></ReviewList>
+                        <ReviewList myReview={true} singleRoomData={review.roomId} setSingleRoomData={updateReviews}></ReviewList>
                         </Paper>
                         </Grid> 
                         <Grid item sm={4} xs={12}>

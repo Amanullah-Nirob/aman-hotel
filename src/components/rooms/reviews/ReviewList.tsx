@@ -8,7 +8,7 @@ import { selectCurrentUser } from '../../../app/slices/auth/authSlice';
 import { useRoomReviewAndRatingUpdateMutation } from '../../../app/apiSlice/roomApiSlice';
 
 
-const ReviewList = ({singleRoomData,setSingleRoomData}:any) => {
+const ReviewList = ({singleRoomData,setSingleRoomData,myReview,myLikes}:any) => {
     const sortedReviews = singleRoomData?.reviews.sort((a:any, b:any) => String(b.created_at).localeCompare(String(a.created_at)));
     const loggedInUser=useAppSelector(selectCurrentUser)
     const [reviewUpdate,{isLoading,isError}]=useReviewUpdateMutation()
@@ -119,15 +119,50 @@ const ReviewList = ({singleRoomData,setSingleRoomData}:any) => {
        }
     }
 
-
+    const myReviews=sortedReviews.filter((review:any)=>review.userId._id === loggedInUser._id)
+    let newLikesArray:any=[]
+   for (let index = 0; index < sortedReviews.length; index++) {
+    const element = sortedReviews[index];
+    element.likes.filter((like:any)=>{
+      if(like.userId ===loggedInUser._id){
+        newLikesArray.push(element);
+      }
+    });
+   }
+   
+   let reviewsList;
+   if(myReview){
+    reviewsList=myReviews?.map((review:any)=> (
+      <ReviewListCard key={review?._id} review={review} 
+        handleDeleteReview={handleDeleteReview}
+        handleSubmitEditReview={handleSubmitEditReview}
+        onToggleLikeSubmit={onToggleLikeSubmit}
+      />
+    ))
+   }if(myLikes){
+    reviewsList=newLikesArray?.map((review:any)=> (
+      <ReviewListCard key={review?._id} review={review} 
+        handleDeleteReview={handleDeleteReview}
+        handleSubmitEditReview={handleSubmitEditReview}
+        onToggleLikeSubmit={onToggleLikeSubmit}
+      />
+    ))
+   }if(!myReview && !myLikes){
+    reviewsList=sortedReviews?.map((review:any)=> (
+      <ReviewListCard key={review?._id} review={review} 
+        handleDeleteReview={handleDeleteReview}
+        handleSubmitEditReview={handleSubmitEditReview}
+        onToggleLikeSubmit={onToggleLikeSubmit}
+      />
+    ))
+   }
+    
+    
     return (
         <div className='review_list_contents'>
             <Grid container spacing={2}>
-             {sortedReviews?.map((review:any)=> <ReviewListCard key={review?._id} review={review} 
-              handleDeleteReview={handleDeleteReview}
-              handleSubmitEditReview={handleSubmitEditReview}
-              onToggleLikeSubmit={onToggleLikeSubmit}
-             />)}
+          {reviewsList}
+
             </Grid>
         </div>
     );
