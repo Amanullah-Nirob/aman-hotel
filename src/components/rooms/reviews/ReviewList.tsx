@@ -161,8 +161,7 @@ const ReviewList = ({singleRoomData,setSingleRoomData,myReview,myLikes}:any) => 
     return (
         <div className='review_list_contents'>
             <Grid container spacing={2}>
-          {reviewsList}
-
+             {reviewsList}
             </Grid>
         </div>
     );
