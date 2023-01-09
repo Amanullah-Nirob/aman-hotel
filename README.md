@@ -2,6 +2,10 @@
 # `Aman-Hotel` Full Stack Hotel-Booking App (pwa)
 </div>
 
+## Project Demo 👇
+[![IMAGE ALT TEXT HERE](https://res.cloudinary.com/dfsvpju3j/image/upload/v1672222100/Untitled_design_1_tue1ds.png)](https://youtu.be/65c9DWCi9m4)
+
+
 ## Features
 * Select Rooms
    - Select check-in and check-out dates from the calendar
@@ -120,9 +124,9 @@ https://aman-hotel.vercel.app/
      <td>Header Drawer</td> -->
   </tr>
   <tr>
-    <td><img src="./public/app/promotion/homeLight.png" width=270 height=480></td>
-    <td><img src="./public/app/promotion/homeDark.png" width=270 height=480></td>
-    <td><img src="./public/app/promotion/roomLight.png" width=270 height=480></td>
+    <td><img src="https://res.cloudinary.com/dfsvpju3j/image/upload/v1672222662/homeDark_lkv1jv.png" width=270 height=480></td>
+    <td><img src="https://res.cloudinary.com/dfsvpju3j/image/upload/v1672222664/roomLight_chzutv.png" width=270 height=480></td>
+    <td><img src="https://res.cloudinary.com/dfsvpju3j/image/upload/v1672222664/singleRoomLight_gdvmig.png" width=270 height=480></td>
     <!-- <td><img src="./public/app/promotion/singleRoomLight.png" width=270 height=480></td>
     <td><img src="./public/app/promotion/drawer.png" width=270 height=480></td> -->
   </tr>
