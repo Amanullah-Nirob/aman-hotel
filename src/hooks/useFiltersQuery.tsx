@@ -2,9 +2,11 @@ import qs from 'query-string';
 import { useCallback, useMemo } from 'react';
 import omit from 'lodash.omit';
 import { useClientRouter } from "use-client-router";
+import { useRouter } from 'next/router';
 
 const useFiltersQuery = () => {
-  const router= useClientRouter()
+  // const router= useClientRouter()
+  const router= useRouter()
   const searchQuery= router.asPath.slice(7)
 
   const searchFilters = useMemo(() => qs.parse(searchQuery, { parseNumbers: true, parseBooleans: true }), [searchQuery]);

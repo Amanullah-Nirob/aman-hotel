@@ -124,7 +124,7 @@ const RoomsMain= ({data}:any)=> {
 };
 
 
-export async function getServerSideProps({query }:any) { 
+export async function getServerSideProps({query}:any) { 
   const rooms = await RoomServices.getRooms(query);
   return {
     props: {
