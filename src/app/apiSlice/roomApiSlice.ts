@@ -31,6 +31,10 @@ export const roomApi=createApi({
             query: (roomId)=>`/${roomId}`,
             providesTags: ["Room"],
         }),
+        allRooms: builder.query<[], any>({ 
+            query: ()=>`/`,
+            providesTags: ["Room"],
+        }),
         roomReviewAndRatingUpdate: builder.mutation<{}, {}>({
             query: (data:any) => ({
               url: `/reviewRate/${data?.roomId}`,
@@ -46,6 +50,7 @@ export const roomApi=createApi({
 export const {
     useRoomGetByFilteredQuery,
     useRoomGetByIdQuery,
-    useRoomReviewAndRatingUpdateMutation
+    useRoomReviewAndRatingUpdateMutation,
+    useAllRoomsQuery
 } = roomApi;
   

@@ -37,7 +37,7 @@ const RoomsMain= ({data}:any)=> {
     {text:'Home',url: '/'},
     {text: 'Rooms'}
   ];
-
+  
   const handlePageChange = ({ selected,pageLimit }: { selected: number,pageLimit?:number }) => {
     const currentPage = selected + 1;
     const newUrl = { ...searchFilters, ['page']: currentPage };
