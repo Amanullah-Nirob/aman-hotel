@@ -11,7 +11,6 @@ import MusterLayout from '../components/layouts/MusterLayout';
 import '/sass/style.scss';
 let persistor = persistStore(store);
 
-
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>

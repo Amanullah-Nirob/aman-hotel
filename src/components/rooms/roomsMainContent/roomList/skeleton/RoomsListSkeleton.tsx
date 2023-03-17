@@ -13,6 +13,6 @@ const RoomsListSkeleton = ({ pageSize }: { pageSize: number }) => {
       ))}
     </Grid>
   );
-};
+}; 
 
 export default RoomsListSkeleton;
